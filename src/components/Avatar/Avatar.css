@@ -1,0 +1,87 @@
+.ornie-avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  overflow: hidden;
+  background: var(--ornie-surface-sunken);
+  color: var(--ornie-text-muted);
+  font-family: var(--ornie-font-sans);
+  font-weight: var(--ornie-weight-bold);
+  user-select: none;
+}
+
+.ornie-avatar--circle {
+  border-radius: 50%;
+}
+.ornie-avatar--square {
+  border-radius: var(--ornie-radius-md);
+}
+
+.ornie-avatar--xs {
+  width: 24px;
+  height: 24px;
+  font-size: 10px;
+}
+.ornie-avatar--sm {
+  width: 32px;
+  height: 32px;
+  font-size: var(--ornie-text-xs);
+}
+.ornie-avatar--md {
+  width: 40px;
+  height: 40px;
+  font-size: var(--ornie-text-md);
+}
+.ornie-avatar--lg {
+  width: 48px;
+  height: 48px;
+  font-size: var(--ornie-text-lg);
+}
+.ornie-avatar--xl {
+  width: 64px;
+  height: 64px;
+  font-size: 22px;
+}
+
+.ornie-avatar--xs.ornie-avatar--square {
+  border-radius: var(--ornie-radius-xs);
+}
+.ornie-avatar--sm.ornie-avatar--square {
+  border-radius: var(--ornie-radius-sm);
+}
+
+.ornie-avatar__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ornie-avatar__icon {
+  width: 60%;
+  height: 60%;
+}
+
+/* Deterministic decorative tints for the initials fallback (Layer 1 by design:
+   these are fixed decorations, not theme roles). */
+.ornie-avatar--tone-ember {
+  background: var(--ornie-ember-100);
+  color: var(--ornie-ember-700);
+}
+.ornie-avatar--tone-green {
+  background: var(--ornie-green-100);
+  color: var(--ornie-green-700);
+}
+.ornie-avatar--tone-amber {
+  background: var(--ornie-amber-100);
+  color: var(--ornie-amber-700);
+}
+.ornie-avatar--tone-sand {
+  background: var(--ornie-sand-200);
+  color: var(--ornie-sand-700);
+}
+.ornie-avatar--tone-red {
+  background: var(--ornie-red-100);
+  color: var(--ornie-red-700);
+}

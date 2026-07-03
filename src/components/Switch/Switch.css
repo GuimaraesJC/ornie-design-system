@@ -1,0 +1,100 @@
+.ornie-switch {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--ornie-space-3);
+  cursor: pointer;
+  font-family: var(--ornie-font-sans);
+}
+
+.ornie-switch--disabled {
+  cursor: not-allowed;
+}
+
+.ornie-switch__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+
+.ornie-switch__track {
+  position: relative;
+  flex: none;
+  border-radius: var(--ornie-radius-full);
+  background: var(--ornie-border-strong);
+  transition:
+    background-color var(--ornie-duration-normal) var(--ornie-ease),
+    box-shadow var(--ornie-duration-fast) var(--ornie-ease);
+}
+
+.ornie-switch--md .ornie-switch__track {
+  width: 42px;
+  height: 24px;
+}
+.ornie-switch--sm .ornie-switch__track {
+  width: 34px;
+  height: 20px;
+  margin-top: 1px;
+}
+
+.ornie-switch__thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 50%;
+  background: var(--ornie-surface);
+  box-shadow: var(--ornie-shadow-sm);
+  transition: transform var(--ornie-duration-normal) var(--ornie-ease);
+}
+
+.ornie-switch--md .ornie-switch__thumb {
+  width: 18px;
+  height: 18px;
+}
+.ornie-switch--sm .ornie-switch__thumb {
+  width: 14px;
+  height: 14px;
+}
+
+.ornie-switch__input:checked + .ornie-switch__track {
+  background: var(--ornie-accent);
+}
+.ornie-switch--md .ornie-switch__input:checked + .ornie-switch__track .ornie-switch__thumb {
+  transform: translateX(18px);
+}
+.ornie-switch--sm .ornie-switch__input:checked + .ornie-switch__track .ornie-switch__thumb {
+  transform: translateX(14px);
+}
+
+.ornie-switch__input:focus-visible + .ornie-switch__track {
+  box-shadow: var(--ornie-focus-ring);
+}
+
+.ornie-switch__input:disabled + .ornie-switch__track {
+  opacity: 0.55;
+}
+.ornie-switch__input:disabled ~ .ornie-switch__text {
+  opacity: 0.55;
+}
+
+.ornie-switch__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ornie-switch__label {
+  font-size: var(--ornie-text-md);
+  font-weight: var(--ornie-weight-medium);
+  color: var(--ornie-text);
+  line-height: 1.5;
+}
+
+.ornie-switch__description {
+  font-size: var(--ornie-text-sm);
+  color: var(--ornie-text-muted);
+  line-height: var(--ornie-leading-normal);
+}

@@ -1,0 +1,47 @@
+.ornie-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: var(--ornie-radius-full);
+  font-family: var(--ornie-font-sans);
+  font-weight: var(--ornie-weight-semibold);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.ornie-badge--sm {
+  font-size: var(--ornie-text-xs);
+  padding: 3px 8px;
+}
+.ornie-badge--md {
+  font-size: var(--ornie-text-sm);
+  padding: 4px 10px;
+}
+
+.ornie-badge__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.ornie-badge--neutral {
+  background: var(--ornie-surface-sunken);
+  color: var(--ornie-text-muted);
+}
+.ornie-badge--accent {
+  background: var(--ornie-accent-subtle);
+  color: var(--ornie-accent-text);
+}
+.ornie-badge--success {
+  background: var(--ornie-success-subtle);
+  color: var(--ornie-success-text);
+}
+.ornie-badge--warning {
+  background: var(--ornie-warning-subtle);
+  color: var(--ornie-warning-text);
+}
+.ornie-badge--danger {
+  background: var(--ornie-danger-subtle);
+  color: var(--ornie-danger-text);
+}

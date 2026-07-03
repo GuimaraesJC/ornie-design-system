@@ -1,0 +1,81 @@
+.ornie-tooltip {
+  position: relative;
+  display: inline-flex;
+}
+
+.ornie-tooltip__bubble {
+  position: absolute;
+  z-index: var(--ornie-z-tooltip);
+  width: max-content;
+  max-width: 240px;
+  padding: 6px 10px;
+  background: var(--ornie-inverse-surface);
+  color: var(--ornie-inverse-text);
+  font-family: var(--ornie-font-sans);
+  font-size: var(--ornie-text-xs);
+  font-weight: var(--ornie-weight-medium);
+  line-height: 1.35;
+  border-radius: var(--ornie-radius-sm);
+  box-shadow: var(--ornie-shadow-md);
+  pointer-events: none;
+  animation: ornie-tooltip-in var(--ornie-duration-fast) var(--ornie-ease);
+}
+
+.ornie-tooltip__bubble::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  transform: rotate(45deg);
+}
+
+.ornie-tooltip__bubble--top {
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ornie-tooltip__bubble--top::after {
+  top: 100%;
+  left: 50%;
+  margin: -4px 0 0 -4px;
+}
+
+.ornie-tooltip__bubble--bottom {
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+.ornie-tooltip__bubble--bottom::after {
+  bottom: 100%;
+  left: 50%;
+  margin: 0 0 -4px -4px;
+}
+
+.ornie-tooltip__bubble--left {
+  right: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ornie-tooltip__bubble--left::after {
+  left: 100%;
+  top: 50%;
+  margin: -4px 0 0 -4px;
+}
+
+.ornie-tooltip__bubble--right {
+  left: calc(100% + 8px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.ornie-tooltip__bubble--right::after {
+  right: 100%;
+  top: 50%;
+  margin: -4px -4px 0 0;
+}
+
+@keyframes ornie-tooltip-in {
+  from {
+    opacity: 0;
+  }
+}

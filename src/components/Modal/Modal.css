@@ -1,0 +1,117 @@
+.ornie-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ornie-z-modal);
+  display: grid;
+  place-items: center;
+  padding: var(--ornie-space-4);
+  background: var(--ornie-overlay);
+  animation: ornie-fade-in var(--ornie-duration-fast) var(--ornie-ease);
+}
+
+.ornie-modal__panel {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: calc(100vh - var(--ornie-space-16));
+  background: var(--ornie-surface);
+  color: var(--ornie-text);
+  font-family: var(--ornie-font-sans);
+  border-radius: var(--ornie-radius-lg);
+  box-shadow: var(--ornie-shadow-lg);
+  animation: ornie-modal-in var(--ornie-duration-normal) var(--ornie-ease);
+}
+
+.ornie-modal__panel--sm {
+  max-width: 400px;
+}
+.ornie-modal__panel--md {
+  max-width: 520px;
+}
+.ornie-modal__panel--lg {
+  max-width: 680px;
+}
+
+.ornie-modal__header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ornie-space-4);
+  padding: var(--ornie-space-6) var(--ornie-space-6) 0;
+}
+
+.ornie-modal__titles {
+  flex: 1;
+  min-width: 0;
+}
+
+.ornie-modal__title {
+  font-size: var(--ornie-text-xl);
+  font-weight: var(--ornie-weight-bold);
+  line-height: var(--ornie-leading-tight);
+}
+
+.ornie-modal__description {
+  margin-top: var(--ornie-space-1);
+  font-size: var(--ornie-text-sm);
+  color: var(--ornie-text-muted);
+  line-height: var(--ornie-leading-normal);
+}
+
+.ornie-modal__close {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin: -6px -8px 0 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: var(--ornie-text-muted);
+  border-radius: var(--ornie-radius-sm);
+  transition:
+    background-color var(--ornie-duration-fast) var(--ornie-ease),
+    color var(--ornie-duration-fast) var(--ornie-ease);
+}
+.ornie-modal__close:hover {
+  background: var(--ornie-surface-sunken);
+  color: var(--ornie-text);
+}
+.ornie-modal__close:focus-visible {
+  outline: none;
+  box-shadow: var(--ornie-focus-ring);
+}
+.ornie-modal__close svg {
+  width: 16px;
+  height: 16px;
+}
+
+.ornie-modal__body {
+  padding: var(--ornie-space-6);
+  overflow-y: auto;
+  font-size: var(--ornie-text-md);
+  line-height: var(--ornie-leading-normal);
+}
+.ornie-modal__header + .ornie-modal__body {
+  padding-top: var(--ornie-space-4);
+}
+
+.ornie-modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ornie-space-3);
+  padding: 0 var(--ornie-space-6) var(--ornie-space-6);
+}
+
+@keyframes ornie-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes ornie-modal-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+}

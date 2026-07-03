@@ -1,0 +1,80 @@
+.ornie-tabs {
+  font-family: var(--ornie-font-sans);
+}
+
+.ornie-tabs__list {
+  display: flex;
+  align-items: center;
+}
+
+.ornie-tabs__tab {
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--ornie-text-md);
+  font-weight: var(--ornie-weight-semibold);
+  color: var(--ornie-text-muted);
+  transition:
+    color var(--ornie-duration-fast) var(--ornie-ease),
+    background-color var(--ornie-duration-fast) var(--ornie-ease),
+    box-shadow var(--ornie-duration-fast) var(--ornie-ease);
+}
+
+.ornie-tabs__tab:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ornie-tabs__tab:focus-visible {
+  outline: none;
+  box-shadow: var(--ornie-focus-ring);
+  border-radius: var(--ornie-radius-sm);
+}
+
+.ornie-tabs__panel {
+  padding-top: var(--ornie-space-5);
+  font-size: var(--ornie-text-md);
+  color: var(--ornie-text);
+  line-height: var(--ornie-leading-normal);
+}
+
+/* Underline variant */
+.ornie-tabs--underline .ornie-tabs__list {
+  gap: var(--ornie-space-5);
+  border-bottom: 1px solid var(--ornie-border);
+}
+.ornie-tabs--underline .ornie-tabs__tab {
+  padding: var(--ornie-space-3) 2px;
+  margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+}
+.ornie-tabs--underline .ornie-tabs__tab:hover:not(:disabled) {
+  color: var(--ornie-text);
+}
+.ornie-tabs--underline .ornie-tabs__tab--active {
+  color: var(--ornie-text);
+  border-bottom-color: var(--ornie-accent);
+}
+
+/* Pills variant */
+.ornie-tabs--pills .ornie-tabs__list {
+  gap: var(--ornie-space-1);
+  width: fit-content;
+  padding: var(--ornie-space-1);
+  background: var(--ornie-surface-sunken);
+  border-radius: var(--ornie-radius-full);
+}
+.ornie-tabs--pills .ornie-tabs__tab {
+  padding: 8px 16px;
+  border-radius: var(--ornie-radius-full);
+}
+.ornie-tabs--pills .ornie-tabs__tab:hover:not(:disabled):not(.ornie-tabs__tab--active) {
+  color: var(--ornie-text);
+}
+.ornie-tabs--pills .ornie-tabs__tab--active {
+  background: var(--ornie-surface);
+  color: var(--ornie-text);
+  box-shadow: var(--ornie-shadow-sm);
+}

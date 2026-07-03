@@ -1,0 +1,22 @@
+/*
+ * Opt-in app shell: put .ornie-app on your page root to get the Ornie page
+ * background, ink color, and type defaults. Components style themselves and
+ * work without it, but the page frame is on you if you skip it.
+ */
+.ornie-app {
+  font-family: var(--ornie-font-sans);
+  font-size: var(--ornie-text-md);
+  line-height: var(--ornie-leading-normal);
+  background: var(--ornie-bg);
+  color: var(--ornie-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+[class^='ornie-'],
+[class*=' ornie-'],
+[class^='ornie-'] *,
+[class*=' ornie-'] *,
+[class^='ornie-'] *::before,
+[class*=' ornie-'] *::after {
+  box-sizing: border-box;
+}

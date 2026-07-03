@@ -1,0 +1,125 @@
+/* Shared frame for labelled form fields (Input, Select). */
+.ornie-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ornie-space-2);
+  font-family: var(--ornie-font-sans);
+  min-width: 0;
+}
+
+.ornie-field__label {
+  font-size: var(--ornie-text-sm);
+  font-weight: var(--ornie-weight-semibold);
+  color: var(--ornie-text);
+  line-height: var(--ornie-leading-tight);
+}
+
+.ornie-field__control {
+  position: relative;
+  display: flex;
+}
+
+.ornie-field__desc {
+  font-size: var(--ornie-text-sm);
+  color: var(--ornie-text-muted);
+  line-height: var(--ornie-leading-tight);
+}
+
+.ornie-field__desc--error {
+  color: var(--ornie-danger-text);
+  font-weight: var(--ornie-weight-medium);
+}
+
+.ornie-field--disabled .ornie-field__label,
+.ornie-field--disabled .ornie-field__desc {
+  opacity: 0.55;
+}
+
+/* Shared control chrome (the <input>/<select> element itself). */
+.ornie-field :is(.ornie-input, .ornie-select) {
+  width: 100%;
+  font-family: var(--ornie-font-sans);
+  color: var(--ornie-text);
+  background: var(--ornie-surface);
+  border: 1px solid var(--ornie-border-strong);
+  border-radius: var(--ornie-radius-md);
+  transition:
+    border-color var(--ornie-duration-fast) var(--ornie-ease),
+    box-shadow var(--ornie-duration-fast) var(--ornie-ease);
+}
+
+.ornie-field :is(.ornie-input, .ornie-select):hover:not(:disabled):not(:focus) {
+  border-color: var(--ornie-border-hover);
+}
+
+.ornie-field :is(.ornie-input, .ornie-select):focus {
+  outline: none;
+  border-color: var(--ornie-accent);
+  box-shadow: var(--ornie-focus-ring);
+}
+
+.ornie-field :is(.ornie-input, .ornie-select):disabled {
+  background: var(--ornie-surface-sunken);
+  color: var(--ornie-text-muted);
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.ornie-field--sm :is(.ornie-input, .ornie-select) {
+  height: 32px;
+  padding: 0 var(--ornie-space-3);
+  font-size: var(--ornie-text-sm);
+  border-radius: var(--ornie-radius-sm);
+}
+.ornie-field--md :is(.ornie-input, .ornie-select) {
+  height: 40px;
+  padding: 0 var(--ornie-space-3);
+  font-size: var(--ornie-text-md);
+}
+.ornie-field--lg :is(.ornie-input, .ornie-select) {
+  height: 48px;
+  padding: 0 var(--ornie-space-4);
+  font-size: 16px;
+}
+
+/* Error state */
+.ornie-field--error :is(.ornie-input, .ornie-select) {
+  border-color: var(--ornie-danger);
+}
+.ornie-field--error :is(.ornie-input, .ornie-select):focus {
+  border-color: var(--ornie-danger);
+  box-shadow: var(--ornie-focus-ring-danger);
+}
+
+/* Leading/trailing icons (Input) */
+.ornie-field__icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  color: var(--ornie-text-subtle);
+  pointer-events: none;
+}
+.ornie-field__icon--start {
+  left: var(--ornie-space-3);
+}
+.ornie-field__icon--end {
+  right: var(--ornie-space-3);
+}
+.ornie-field__icon svg {
+  width: 16px;
+  height: 16px;
+}
+.ornie-field--icon-start .ornie-input {
+  padding-left: 38px;
+}
+.ornie-field--icon-end .ornie-input {
+  padding-right: 38px;
+}
+.ornie-field--icon-start.ornie-field--sm .ornie-input {
+  padding-left: 34px;
+}
+.ornie-field--icon-end.ornie-field--sm .ornie-input {
+  padding-right: 34px;
+}

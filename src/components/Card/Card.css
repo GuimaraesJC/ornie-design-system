@@ -1,0 +1,29 @@
+.ornie-card {
+  background: var(--ornie-surface);
+  border-radius: var(--ornie-radius-lg);
+  font-family: var(--ornie-font-sans);
+  color: var(--ornie-text);
+}
+
+.ornie-card--elevated {
+  border: 1px solid rgba(32, 24, 21, 0.04);
+  box-shadow: var(--ornie-shadow-md);
+}
+
+.ornie-card--outlined {
+  border: 1px solid var(--ornie-border);
+}
+
+.ornie-card--sunken {
+  background: var(--ornie-surface-sunken);
+}
+
+.ornie-card--pad-sm {
+  padding: var(--ornie-space-4);
+}
+.ornie-card--pad-md {
+  padding: var(--ornie-space-6);
+}
+.ornie-card--pad-lg {
+  padding: var(--ornie-space-8);
+}

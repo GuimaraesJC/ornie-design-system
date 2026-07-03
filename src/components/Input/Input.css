@@ -1,0 +1,4 @@
+/* Input-specific chrome; the shared field frame lives in styles/field.css. */
+.ornie-input::placeholder {
+  color: var(--ornie-text-subtle);
+}

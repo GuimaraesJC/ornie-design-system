@@ -1,0 +1,100 @@
+.ornie-check {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--ornie-space-3);
+  cursor: pointer;
+  font-family: var(--ornie-font-sans);
+}
+
+.ornie-check--disabled {
+  cursor: not-allowed;
+}
+
+.ornie-check__input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+}
+
+.ornie-check__box {
+  position: relative;
+  flex: none;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  display: inline-grid;
+  place-items: center;
+  background: var(--ornie-surface);
+  border: 1.5px solid var(--ornie-border-strong);
+  border-radius: var(--ornie-radius-xs);
+  color: var(--ornie-text-on-accent);
+  transition:
+    background-color var(--ornie-duration-fast) var(--ornie-ease),
+    border-color var(--ornie-duration-fast) var(--ornie-ease),
+    box-shadow var(--ornie-duration-fast) var(--ornie-ease);
+}
+
+.ornie-check__box svg {
+  grid-area: 1 / 1;
+  width: 12px;
+  height: 12px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity var(--ornie-duration-fast) var(--ornie-ease),
+    transform var(--ornie-duration-fast) var(--ornie-ease);
+}
+
+.ornie-check:hover .ornie-check__input:not(:disabled):not(:checked):not(:indeterminate) + .ornie-check__box {
+  border-color: var(--ornie-border-hover);
+}
+
+.ornie-check__input:checked + .ornie-check__box,
+.ornie-check__input:indeterminate + .ornie-check__box {
+  background: var(--ornie-accent);
+  border-color: var(--ornie-accent);
+}
+
+.ornie-check__input:checked + .ornie-check__box .ornie-check__check {
+  opacity: 1;
+  transform: none;
+}
+
+.ornie-check__input:indeterminate + .ornie-check__box .ornie-check__dash {
+  opacity: 1;
+  transform: none;
+}
+
+.ornie-check__input:focus-visible + .ornie-check__box {
+  box-shadow: var(--ornie-focus-ring);
+}
+
+.ornie-check__input:disabled + .ornie-check__box {
+  opacity: 0.55;
+}
+.ornie-check__input:disabled ~ .ornie-check__text {
+  opacity: 0.55;
+}
+
+.ornie-check__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.ornie-check__label {
+  font-size: var(--ornie-text-md);
+  font-weight: var(--ornie-weight-medium);
+  color: var(--ornie-text);
+  line-height: 1.35;
+}
+
+.ornie-check__description {
+  font-size: var(--ornie-text-sm);
+  color: var(--ornie-text-muted);
+  line-height: var(--ornie-leading-normal);
+}

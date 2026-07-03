@@ -1,0 +1,29 @@
+/* Select-specific chrome; the shared field frame lives in styles/field.css. */
+.ornie-select {
+  appearance: none;
+  padding-right: 36px !important;
+  cursor: pointer;
+}
+
+.ornie-select:disabled {
+  cursor: not-allowed;
+}
+
+/* Placeholder state: the hidden empty option is selected. */
+.ornie-select:has(option[value='']:checked) {
+  color: var(--ornie-text-subtle);
+}
+
+.ornie-field__chevron {
+  position: absolute;
+  top: 50%;
+  right: var(--ornie-space-3);
+  transform: translateY(-50%);
+  display: inline-flex;
+  color: var(--ornie-text-subtle);
+  pointer-events: none;
+}
+.ornie-field__chevron svg {
+  width: 16px;
+  height: 16px;
+}
