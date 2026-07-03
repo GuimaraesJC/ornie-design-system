@@ -1,5 +1,10 @@
 /*
- * Ornie design tokens — "Ember" theme.
+ * Ornie design tokens — "Riverbed" theme.
+ *
+ * Platypus habitat: earth + water. Warm taupe neutrals (earth) carry the page;
+ * a muted river teal carries actions; fur brown is the identity thread. Status
+ * colors are deliberately muted — Ornie is built for A(u)DHD users, so nothing
+ * on screen should shout.
  *
  * Layer 1 (primitives): raw palette, type scale, spacing, radii, shadows.
  * Layer 2 (semantic):   the roles components actually consume.
@@ -9,49 +14,57 @@
  */
 
 :root {
-  /* --- Layer 1: palette — ember (accent) --- */
-  --ornie-ember-50: #fdeee9;
-  --ornie-ember-100: #fbdcd3;
-  --ornie-ember-200: #f6bbaa;
-  --ornie-ember-300: #f0977e;
-  --ornie-ember-400: #ec765a;
-  --ornie-ember-500: #e9573d;
-  --ornie-ember-600: #c43d2a;
-  --ornie-ember-700: #9e2f20;
-  --ornie-ember-800: #782317;
-  --ornie-ember-900: #521810;
+  /* --- Layer 1: palette — river (accent, muted teal) --- */
+  --ornie-river-50: #edf4f1;
+  --ornie-river-100: #d7e7e0;
+  --ornie-river-200: #b4d0c5;
+  --ornie-river-300: #8bb2a4;
+  --ornie-river-400: #679487;
+  --ornie-river-500: #4c7d70;
+  --ornie-river-600: #3e685d;
+  --ornie-river-700: #32544b;
+  --ornie-river-800: #26413a;
+  --ornie-river-900: #1b2f2a;
 
-  /* --- Layer 1: palette — sand (warm neutrals) --- */
+  /* --- Layer 1: palette — sand (warm taupe neutrals) --- */
   --ornie-sand-0: #ffffff;
-  --ornie-sand-50: #faf7f4;
-  --ornie-sand-100: #f1ece6;
-  --ornie-sand-200: #e4ddd4;
-  --ornie-sand-300: #d2c9be;
-  --ornie-sand-400: #b3a99c;
-  --ornie-sand-500: #8a8178;
-  --ornie-sand-600: #6b635b;
-  --ornie-sand-700: #4e4740;
-  --ornie-sand-800: #362f2a;
-  --ornie-sand-900: #201815;
+  --ornie-sand-50: #f8f5f1;
+  --ornie-sand-100: #efeae3;
+  --ornie-sand-200: #e2dacf;
+  --ornie-sand-300: #cfc3b4;
+  --ornie-sand-400: #aea08f;
+  --ornie-sand-500: #7f7365;
+  --ornie-sand-600: #6a5f52;
+  --ornie-sand-700: #4e453b;
+  --ornie-sand-800: #38312a;
+  --ornie-sand-900: #241e18;
 
-  /* --- Layer 1: palette — status --- */
-  --ornie-green-50: #e9f3ec;
-  --ornie-green-100: #cfe6d6;
-  --ornie-green-500: #3e7d4e;
-  --ornie-green-600: #33693f;
-  --ornie-green-700: #285232;
+  /* --- Layer 1: palette — fur (identity brown: avatars, highlights) --- */
+  --ornie-fur-50: #f4ede5;
+  --ornie-fur-100: #e8d9c8;
+  --ornie-fur-200: #d6bda3;
+  --ornie-fur-300: #bf9d7d;
+  --ornie-fur-500: #8b6a4f;
+  --ornie-fur-700: #5e4433;
 
-  --ornie-amber-50: #fbf3e2;
-  --ornie-amber-100: #f6e5bf;
-  --ornie-amber-500: #c98a1b;
-  --ornie-amber-600: #a56f12;
-  --ornie-amber-700: #82570e;
+  /* --- Layer 1: palette — status (muted by design) --- */
+  --ornie-moss-50: #edf2ea;
+  --ornie-moss-100: #d8e4d2;
+  --ornie-moss-500: #567a4e;
+  --ornie-moss-600: #46653f;
+  --ornie-moss-700: #375031;
 
-  --ornie-red-50: #fbeae6;
-  --ornie-red-100: #f6d3cb;
-  --ornie-red-500: #c2402a;
-  --ornie-red-600: #a33221;
-  --ornie-red-700: #802718;
+  --ornie-clay-50: #f6efe1;
+  --ornie-clay-100: #ecdfc0;
+  --ornie-clay-500: #a98038;
+  --ornie-clay-600: #8c6828;
+  --ornie-clay-700: #6f521f;
+
+  --ornie-rust-50: #f7ece8;
+  --ornie-rust-100: #eed6cd;
+  --ornie-rust-500: #a55c47;
+  --ornie-rust-600: #8f4936;
+  --ornie-rust-700: #733a2b;
 
   /* --- Layer 1: typography --- */
   --ornie-font-sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -90,10 +103,10 @@
   --ornie-radius-lg: 16px; /* cards, modals */
   --ornie-radius-full: 999px;
 
-  /* --- Layer 1: elevation (warm-tinted) --- */
-  --ornie-shadow-sm: 0 1px 2px rgba(32, 24, 21, 0.06);
-  --ornie-shadow-md: 0 2px 8px rgba(32, 24, 21, 0.08), 0 1px 2px rgba(32, 24, 21, 0.05);
-  --ornie-shadow-lg: 0 12px 32px rgba(32, 24, 21, 0.14), 0 2px 8px rgba(32, 24, 21, 0.06);
+  /* --- Layer 1: elevation (warm-tinted, low) --- */
+  --ornie-shadow-sm: 0 1px 2px rgba(36, 30, 24, 0.06);
+  --ornie-shadow-md: 0 2px 8px rgba(36, 30, 24, 0.08), 0 1px 2px rgba(36, 30, 24, 0.05);
+  --ornie-shadow-lg: 0 12px 32px rgba(36, 30, 24, 0.14), 0 2px 8px rgba(36, 30, 24, 0.06);
 
   /* --- Layer 1: motion & stacking --- */
   --ornie-ease: cubic-bezier(0.2, 0, 0.2, 1);
@@ -109,6 +122,7 @@
   --ornie-bg: var(--ornie-sand-50);
   --ornie-surface: var(--ornie-sand-0);
   --ornie-surface-sunken: var(--ornie-sand-100);
+  --ornie-surface-hover: var(--ornie-sand-100);
   --ornie-border: var(--ornie-sand-200);
   --ornie-border-strong: var(--ornie-sand-300);
   --ornie-border-hover: var(--ornie-sand-400);
@@ -120,28 +134,28 @@
   --ornie-inverse-text: var(--ornie-sand-50);
 
   /* --- Layer 2: accent --- */
-  --ornie-accent: var(--ornie-ember-500);
-  --ornie-accent-hover: var(--ornie-ember-600);
-  --ornie-accent-active: var(--ornie-ember-700);
-  --ornie-accent-subtle: var(--ornie-ember-50);
-  --ornie-accent-subtle-border: var(--ornie-ember-200);
-  --ornie-accent-text: var(--ornie-ember-600);
+  --ornie-accent: var(--ornie-river-500);
+  --ornie-accent-hover: var(--ornie-river-600);
+  --ornie-accent-active: var(--ornie-river-700);
+  --ornie-accent-subtle: var(--ornie-river-50);
+  --ornie-accent-subtle-border: var(--ornie-river-200);
+  --ornie-accent-text: var(--ornie-river-600);
 
   /* --- Layer 2: status --- */
-  --ornie-success: var(--ornie-green-500);
-  --ornie-success-subtle: var(--ornie-green-50);
-  --ornie-success-text: var(--ornie-green-700);
-  --ornie-warning: var(--ornie-amber-500);
-  --ornie-warning-subtle: var(--ornie-amber-50);
-  --ornie-warning-text: var(--ornie-amber-700);
-  --ornie-danger: var(--ornie-red-500);
-  --ornie-danger-hover: var(--ornie-red-600);
-  --ornie-danger-active: var(--ornie-red-700);
-  --ornie-danger-subtle: var(--ornie-red-50);
-  --ornie-danger-text: var(--ornie-red-600);
+  --ornie-success: var(--ornie-moss-500);
+  --ornie-success-subtle: var(--ornie-moss-50);
+  --ornie-success-text: var(--ornie-moss-700);
+  --ornie-warning: var(--ornie-clay-500);
+  --ornie-warning-subtle: var(--ornie-clay-50);
+  --ornie-warning-text: var(--ornie-clay-700);
+  --ornie-danger: var(--ornie-rust-500);
+  --ornie-danger-hover: var(--ornie-rust-600);
+  --ornie-danger-active: var(--ornie-rust-700);
+  --ornie-danger-subtle: var(--ornie-rust-50);
+  --ornie-danger-text: var(--ornie-rust-600);
 
   /* --- Layer 2: focus & overlay --- */
-  --ornie-focus-ring: 0 0 0 3px rgba(233, 87, 61, 0.3);
-  --ornie-focus-ring-danger: 0 0 0 3px rgba(194, 64, 42, 0.25);
-  --ornie-overlay: rgba(32, 24, 21, 0.45);
+  --ornie-focus-ring: 0 0 0 3px rgba(76, 125, 112, 0.35);
+  --ornie-focus-ring-danger: 0 0 0 3px rgba(165, 92, 71, 0.3);
+  --ornie-overlay: rgba(36, 30, 24, 0.45);
 }

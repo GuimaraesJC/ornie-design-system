@@ -5,7 +5,7 @@ import { cx } from '../../lib/cx';
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type AvatarShape = 'circle' | 'square';
 
-const TONES = ['ember', 'green', 'amber', 'sand', 'red'] as const;
+const TONES = ['river', 'fur', 'moss', 'clay', 'stone'] as const;
 
 function initialsOf(name: string): string {
   const parts = name.trim().split(/\s+/).filter(Boolean);

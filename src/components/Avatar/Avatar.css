@@ -64,24 +64,25 @@
 }
 
 /* Deterministic decorative tints for the initials fallback (Layer 1 by design:
-   these are fixed decorations, not theme roles). */
-.ornie-avatar--tone-ember {
-  background: var(--ornie-ember-100);
-  color: var(--ornie-ember-700);
+   these are fixed decorations, not theme roles). Rust is deliberately excluded —
+   no alarm-adjacent colors on people. */
+.ornie-avatar--tone-river {
+  background: var(--ornie-river-100);
+  color: var(--ornie-river-700);
 }
-.ornie-avatar--tone-green {
-  background: var(--ornie-green-100);
-  color: var(--ornie-green-700);
+.ornie-avatar--tone-fur {
+  background: var(--ornie-fur-100);
+  color: var(--ornie-fur-700);
 }
-.ornie-avatar--tone-amber {
-  background: var(--ornie-amber-100);
-  color: var(--ornie-amber-700);
+.ornie-avatar--tone-moss {
+  background: var(--ornie-moss-100);
+  color: var(--ornie-moss-700);
 }
-.ornie-avatar--tone-sand {
+.ornie-avatar--tone-clay {
+  background: var(--ornie-clay-100);
+  color: var(--ornie-clay-700);
+}
+.ornie-avatar--tone-stone {
   background: var(--ornie-sand-200);
   color: var(--ornie-sand-700);
-}
-.ornie-avatar--tone-red {
-  background: var(--ornie-red-100);
-  color: var(--ornie-red-700);
 }

@@ -8,7 +8,7 @@ const preview: Preview = {
     backgrounds: {
       default: 'ornie',
       values: [
-        { name: 'ornie', value: '#faf7f4' },
+        { name: 'ornie', value: '#f8f5f1' },
         { name: 'surface', value: '#ffffff' },
       ],
     },

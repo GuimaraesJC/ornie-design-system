@@ -20,3 +20,24 @@
 [class*=' ornie-'] *::after {
   box-sizing: border-box;
 }
+
+/*
+ * Calm by default: Ornie targets A(u)DHD users, so motion is opt-out at the
+ * OS level. Transitions run off the duration tokens; entrance animations are
+ * removed outright. The loading spinner slows down instead of freezing — it
+ * still has to communicate "in progress".
+ */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ornie-duration-fast: 0ms;
+    --ornie-duration-normal: 0ms;
+  }
+  .ornie-modal,
+  .ornie-modal__panel,
+  .ornie-tooltip__bubble {
+    animation: none;
+  }
+  .ornie-btn__spinner::after {
+    animation-duration: 1.6s;
+  }
+}

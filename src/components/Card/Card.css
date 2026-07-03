@@ -6,7 +6,7 @@
 }
 
 .ornie-card--elevated {
-  border: 1px solid rgba(32, 24, 21, 0.04);
+  border: 1px solid rgba(36, 30, 24, 0.05);
   box-shadow: var(--ornie-shadow-md);
 }
 

@@ -34,7 +34,7 @@ export const Interactive: Story = {
             </>
           }
         >
-          <Input label="Project name" defaultValue="Ember landing page" />
+          <Input label="Project name" defaultValue="Morning journal" />
         </Modal>
       </div>
     );
@@ -46,7 +46,7 @@ export const Confirmation: Story = {
     open: true,
     size: 'sm',
     title: 'Delete project?',
-    description: 'This permanently removes “Ember landing page” and all of its history.',
+    description: 'This permanently removes “Weekly review” and all of its history.',
     footer: (
       <>
         <Button variant="ghost">Cancel</Button>

@@ -6,9 +6,9 @@ const PORTRAIT =
   'data:image/svg+xml;utf8,' +
   encodeURIComponent(
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-      <rect width="64" height="64" fill="#f0977e"/>
-      <circle cx="32" cy="24" r="11" fill="#521810"/>
-      <path d="M10 60c0-12 10-18 22-18s22 6 22 18v4H10z" fill="#521810"/>
+      <rect width="64" height="64" fill="#8bb2a4"/>
+      <circle cx="32" cy="24" r="11" fill="#32544b"/>
+      <path d="M10 60c0-12 10-18 22-18s22 6 22 18v4H10z" fill="#32544b"/>
     </svg>`,
   );
 
