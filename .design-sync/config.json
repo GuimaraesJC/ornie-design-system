@@ -1,0 +1,20 @@
+{
+  "projectId": "cc88a26b-23cd-4d75-a14a-92f80eafcd02",
+  "shape": "storybook",
+  "pkg": "@ornie/react",
+  "storybookConfigDir": ".storybook",
+  "storybookStatic": ".design-sync/sb-reference",
+  "buildCmd": "pnpm run build",
+  "readmeHeader": ".design-sync/conventions.md",
+  "overrides": {
+    "Card": { "cardMode": "column" },
+    "Radio": { "cardMode": "column" },
+    "Switch": { "cardMode": "column" },
+    "Tabs": { "cardMode": "column" },
+    "Modal": {
+      "cardMode": "single",
+      "primaryStory": "Interactive",
+      "skip": ["components-modal--confirmation", "components-modal--with-form"]
+    }
+  }
+}
