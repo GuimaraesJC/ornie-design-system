@@ -1,0 +1,125 @@
+/* Foundation reference cards — everything token-driven so the cards stay
+   truthful in both themes. */
+
+.ornie-foundation {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ornie-space-6);
+  font-family: var(--ornie-font-sans);
+  font-size: var(--ornie-text-md);
+  line-height: var(--ornie-leading-normal);
+  color: var(--ornie-text);
+}
+
+.ornie-foundation__title {
+  font-size: var(--ornie-text-lg);
+  font-weight: var(--ornie-weight-bold);
+}
+
+.ornie-foundation__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ornie-space-2);
+}
+
+.ornie-foundation__label {
+  font-size: var(--ornie-text-sm);
+  font-weight: var(--ornie-weight-semibold);
+  color: var(--ornie-text-muted);
+}
+
+.ornie-foundation__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--ornie-space-2);
+}
+
+/* Color swatches */
+.ornie-foundation__swatch {
+  width: 76px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--ornie-space-1);
+}
+.ornie-foundation__swatch--compact {
+  width: 56px;
+}
+.ornie-foundation__chip {
+  height: var(--ornie-space-10);
+  border-radius: var(--ornie-radius-sm);
+  border: 1px solid var(--ornie-border-subtle);
+}
+.ornie-foundation__swatch--compact .ornie-foundation__chip {
+  height: var(--ornie-space-8);
+}
+.ornie-foundation__token {
+  font-size: var(--ornie-text-xs);
+  color: var(--ornie-text-muted);
+  word-break: break-word;
+}
+.ornie-foundation__value {
+  font-size: var(--ornie-text-xs);
+  color: var(--ornie-text-subtle);
+}
+
+/* Type specimens */
+.ornie-foundation__spec-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ornie-space-4);
+  border-bottom: 1px solid var(--ornie-border-subtle);
+  padding-bottom: var(--ornie-space-2);
+}
+.ornie-foundation__spec-meta {
+  flex: 0 0 148px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Spacing bars */
+.ornie-foundation__bar {
+  height: var(--ornie-space-3);
+  border-radius: var(--ornie-radius-xs);
+  background: var(--ornie-accent-subtle);
+  border: 1px solid var(--ornie-accent-subtle-border);
+}
+
+/* Radius tiles */
+.ornie-foundation__tile {
+  width: 72px;
+  height: 72px;
+  background: var(--ornie-surface);
+  border: 1px solid var(--ornie-border-strong);
+}
+
+/* Elevation cards */
+.ornie-foundation__shadow-card {
+  width: 148px;
+  padding: var(--ornie-space-4);
+  border-radius: var(--ornie-radius-lg);
+  background: var(--ornie-surface);
+  border: 1px solid var(--ornie-border-subtle);
+}
+
+/* Dark showcase */
+.ornie-foundation-dark {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ornie-space-6);
+  padding: var(--ornie-space-8);
+  border-radius: var(--ornie-radius-lg);
+  border: 1px solid var(--ornie-border);
+}
+.ornie-foundation-dark__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--ornie-space-3);
+}
+.ornie-foundation-dark__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--ornie-space-6);
+  align-items: start;
+}

@@ -86,3 +86,27 @@
   background: var(--ornie-sand-200);
   color: var(--ornie-sand-700);
 }
+
+/* Dark theme: dim the decorative tints — the light pastels would be the
+   loudest thing on a dark page. Same five hues, deep grounds, pale ink;
+   rust stays excluded. */
+[data-ornie-theme='dark'] .ornie-avatar--tone-river {
+  background: var(--ornie-river-900);
+  color: var(--ornie-river-200);
+}
+[data-ornie-theme='dark'] .ornie-avatar--tone-fur {
+  background: var(--ornie-fur-900);
+  color: var(--ornie-fur-200);
+}
+[data-ornie-theme='dark'] .ornie-avatar--tone-moss {
+  background: var(--ornie-moss-900);
+  color: var(--ornie-moss-200);
+}
+[data-ornie-theme='dark'] .ornie-avatar--tone-clay {
+  background: var(--ornie-clay-900);
+  color: var(--ornie-clay-200);
+}
+[data-ornie-theme='dark'] .ornie-avatar--tone-stone {
+  background: var(--ornie-sand-800);
+  color: var(--ornie-sand-200);
+}

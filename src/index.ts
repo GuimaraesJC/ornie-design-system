@@ -33,3 +33,21 @@ export type { TooltipPlacement, TooltipProps } from './components/Tooltip/Toolti
 
 export { Tabs } from './components/Tabs/Tabs';
 export type { TabItem, TabsProps, TabsVariant } from './components/Tabs/Tabs';
+
+export { ColorPalette } from './foundations/ColorPalette';
+export type { ColorPaletteProps } from './foundations/ColorPalette';
+
+export { TypeScale } from './foundations/TypeScale';
+export type { TypeScaleProps } from './foundations/TypeScale';
+
+export { SpacingScale } from './foundations/SpacingScale';
+export type { SpacingScaleProps } from './foundations/SpacingScale';
+
+export { RadiusScale } from './foundations/RadiusScale';
+export type { RadiusScaleProps } from './foundations/RadiusScale';
+
+export { Elevation } from './foundations/Elevation';
+export type { ElevationProps } from './foundations/Elevation';
+
+export { DarkMode } from './foundations/DarkMode';
+export type { DarkModeProps } from './foundations/DarkMode';

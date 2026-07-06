@@ -9,8 +9,11 @@
  * Layer 1 (primitives): raw palette, type scale, spacing, radii, shadows.
  * Layer 2 (semantic):   the roles components actually consume.
  *
- * Components must only reference Layer 2 tokens. A future dark theme is a
- * Layer 2 override under [data-ornie-theme='dark'] — no component changes.
+ * Components must only reference Layer 2 tokens. The dark theme is a Layer 2
+ * override under [data-ornie-theme='dark'] — attribute-only by design (no
+ * prefers-color-scheme): the app decides, so a page never flips theme on its
+ * own. The dark block must stay AFTER the light block — :root and
+ * [data-ornie-theme='dark'] tie at (0,1,0) specificity, so source order wins.
  */
 
 :root {
@@ -38,6 +41,8 @@
   --ornie-sand-700: #4e453b;
   --ornie-sand-800: #38312a;
   --ornie-sand-900: #241e18;
+  --ornie-sand-950: #1d1813; /* dark theme: page */
+  --ornie-sand-1000: #16110d; /* dark theme: deepest earth (mirrors the sand-0 white anchor) */
 
   /* --- Layer 1: palette — fur (identity brown: avatars, highlights) --- */
   --ornie-fur-50: #f4ede5;
@@ -46,25 +51,34 @@
   --ornie-fur-300: #bf9d7d;
   --ornie-fur-500: #8b6a4f;
   --ornie-fur-700: #5e4433;
+  --ornie-fur-900: #362619;
 
   /* --- Layer 1: palette — status (muted by design) --- */
   --ornie-moss-50: #edf2ea;
   --ornie-moss-100: #d8e4d2;
+  --ornie-moss-200: #b9cfae;
+  --ornie-moss-300: #97b489;
   --ornie-moss-500: #567a4e;
   --ornie-moss-600: #46653f;
   --ornie-moss-700: #375031;
+  --ornie-moss-900: #202e1d;
 
   --ornie-clay-50: #f6efe1;
   --ornie-clay-100: #ecdfc0;
+  --ornie-clay-200: #e0cda1;
+  --ornie-clay-300: #cfb178;
   --ornie-clay-500: #a98038;
   --ornie-clay-600: #8c6828;
   --ornie-clay-700: #6f521f;
+  --ornie-clay-900: #392b16;
 
   --ornie-rust-50: #f7ece8;
   --ornie-rust-100: #eed6cd;
+  --ornie-rust-300: #cd9681; /* no rust-200: rust is excluded from avatar tones */
   --ornie-rust-500: #a55c47;
   --ornie-rust-600: #8f4936;
   --ornie-rust-700: #733a2b;
+  --ornie-rust-900: #3f221a;
 
   /* --- Layer 1: typography --- */
   --ornie-font-sans: 'Manrope', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -118,6 +132,8 @@
 
 :root,
 [data-ornie-theme='light'] {
+  color-scheme: light;
+
   /* --- Layer 2: surfaces & text --- */
   --ornie-bg: var(--ornie-sand-50);
   --ornie-surface: var(--ornie-sand-0);
@@ -126,6 +142,7 @@
   --ornie-border: var(--ornie-sand-200);
   --ornie-border-strong: var(--ornie-sand-300);
   --ornie-border-hover: var(--ornie-sand-400);
+  --ornie-border-subtle: rgba(36, 30, 24, 0.05); /* hairline for elevated surfaces */
   --ornie-text: var(--ornie-sand-900);
   --ornie-text-muted: var(--ornie-sand-600);
   --ornie-text-subtle: var(--ornie-sand-500);
@@ -158,4 +175,65 @@
   --ornie-focus-ring: 0 0 0 3px rgba(76, 125, 112, 0.35);
   --ornie-focus-ring-danger: 0 0 0 3px rgba(165, 92, 71, 0.3);
   --ornie-overlay: rgba(36, 30, 24, 0.45);
+}
+
+/*
+ * Riverbed at night. Same earth-and-water character, lights down: deep warm
+ * browns carry the page (never pure black), the river accent keeps its exact
+ * daytime fills so controls feel like the same objects, and status/decoration
+ * tints flip from pastel-on-light to deep-ground-with-pale-ink. Borders step
+ * up one notch from a naive mirror — shadows carry less edge definition on a
+ * dark page — and elevation leans on the border-subtle edge-light instead.
+ * All text/background pairs are contrast-verified: scripts/check-contrast.mjs.
+ */
+[data-ornie-theme='dark'] {
+  color-scheme: dark;
+
+  /* --- Layer 2: surfaces & text --- */
+  --ornie-bg: var(--ornie-sand-950);
+  --ornie-surface: var(--ornie-sand-900);
+  --ornie-surface-sunken: var(--ornie-sand-1000);
+  --ornie-surface-hover: var(--ornie-sand-800);
+  --ornie-border: var(--ornie-sand-700);
+  --ornie-border-strong: var(--ornie-sand-600);
+  --ornie-border-hover: var(--ornie-sand-500);
+  --ornie-border-subtle: rgba(248, 245, 241, 0.08); /* sand-50 veil: edge-lights elevated cards */
+  --ornie-text: var(--ornie-sand-100);
+  --ornie-text-muted: var(--ornie-sand-400);
+  --ornie-text-subtle: var(--ornie-sand-500);
+  --ornie-text-on-accent: #ffffff;
+  --ornie-inverse-surface: var(--ornie-sand-100);
+  --ornie-inverse-text: var(--ornie-sand-900);
+
+  /* --- Layer 2: accent --- */
+  --ornie-accent: var(--ornie-river-500);
+  --ornie-accent-hover: var(--ornie-river-600);
+  --ornie-accent-active: var(--ornie-river-700);
+  --ornie-accent-subtle: var(--ornie-river-900);
+  --ornie-accent-subtle-border: var(--ornie-river-700);
+  --ornie-accent-text: var(--ornie-river-300);
+
+  /* --- Layer 2: status --- */
+  --ornie-success: var(--ornie-moss-500);
+  --ornie-success-subtle: var(--ornie-moss-900);
+  --ornie-success-text: var(--ornie-moss-300);
+  --ornie-warning: var(--ornie-clay-500);
+  --ornie-warning-subtle: var(--ornie-clay-900);
+  --ornie-warning-text: var(--ornie-clay-300);
+  --ornie-danger: var(--ornie-rust-500);
+  --ornie-danger-hover: var(--ornie-rust-600);
+  --ornie-danger-active: var(--ornie-rust-700);
+  --ornie-danger-subtle: var(--ornie-rust-900);
+  --ornie-danger-text: var(--ornie-rust-300);
+
+  /* --- Layer 2: focus & overlay --- */
+  --ornie-focus-ring: 0 0 0 3px rgba(139, 178, 164, 0.4); /* river-300 @ 40% */
+  --ornie-focus-ring-danger: 0 0 0 3px rgba(205, 150, 129, 0.35); /* rust-300 @ 35% */
+  --ornie-overlay: rgba(22, 17, 13, 0.65); /* sand-1000 scrim, deeper than light */
+
+  /* --- Layer 1 override: elevation. Light shadows are sand-900 tints at
+     6-14% alpha — invisible on a #1d1813 page. --- */
+  --ornie-shadow-sm: 0 1px 2px rgba(10, 7, 4, 0.5);
+  --ornie-shadow-md: 0 2px 8px rgba(10, 7, 4, 0.55), 0 1px 2px rgba(10, 7, 4, 0.4);
+  --ornie-shadow-lg: 0 12px 32px rgba(10, 7, 4, 0.65), 0 2px 8px rgba(10, 7, 4, 0.5);
 }
