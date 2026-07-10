@@ -1,0 +1,58 @@
+/* PageHeader — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors.
+   Values lifted from 2a (mobile) / D:Today (desktop) header inline styles. */
+.ornie-page-header {
+  display: block;
+  min-width: 0;
+  font-family: var(--ornie-font-sans);
+  color: var(--ornie-text);
+}
+
+/* Kicker — 11px caps accent, 0.8px tracking, 6px to the title (2a line: FRIDAY, JULY 3).
+   Bold + accent-text is as loud as it ever gets; it never shouts. */
+.ornie-page-header__kicker {
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: var(--ornie-weight-bold);
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: var(--ornie-accent-text);
+}
+
+/* Title row — title + trailing cluster, 14px gap (2a header flex gap). */
+.ornie-page-header__row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* Screen-title scale: 25px/bold/−0.5px on phone list screens and 2a alike.
+   Long titles wrap; the trailing cluster keeps its box. */
+.ornie-page-header__title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  font-size: 25px;
+  font-weight: var(--ornie-weight-bold);
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+.ornie-page-header--greeting .ornie-page-header__title {
+  line-height: 1.15; /* 2a greeting */
+}
+
+.ornie-page-header__trailing {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: none;
+}
+
+/* Subtitle — 13px quiet line, 3px under the title row (2c / Logbook sublines).
+   text-subtle is AA-tuned (holds 4.5:1 on bg/surface in both themes). */
+.ornie-page-header__subtitle {
+  margin: 3px 0 0;
+  font-size: var(--ornie-text-sm);
+  line-height: 1.5;
+  color: var(--ornie-text-subtle);
+}

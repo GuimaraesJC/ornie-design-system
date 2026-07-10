@@ -41,4 +41,13 @@
 @import '../patterns/EmptyState/EmptyState.css';
 @import '../patterns/Toast/Toast.css';
 
+@import '../shells/Sheet/Sheet.css';
+@import '../shells/Dock/Dock.css';
+@import '../shells/SidebarNav/SidebarNav.css';
+@import '../shells/TopBar/TopBar.css';
+@import '../shells/PageHeader/PageHeader.css';
+@import '../shells/TriageCard/TriageCard.css';
+@import '../shells/PanelDrawer/PanelDrawer.css';
+@import '../shells/CommandOverlay/CommandOverlay.css';
+
 @import '../foundations/foundations.css';

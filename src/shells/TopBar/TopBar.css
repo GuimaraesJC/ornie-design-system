@@ -1,0 +1,56 @@
+/* TopBar — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors.
+   Frame values lifted from the desktop mockup (Ornie App Final.dc.html):
+   height 52px, flex none, align-items center, gap 8px, padding 0 20px, no
+   background (transparent over --ornie-bg). The mockup draws a permanent
+   1px --ornie-border bottom hairline; per the roadmap the hairline is the
+   `scrolled` affordance instead (--ornie-border-subtle, fades in). */
+.ornie-topbar {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--ornie-space-2);
+  height: 52px;
+  flex: none;
+  padding: 0 20px;
+  background: transparent;
+  color: var(--ornie-text);
+  font-family: var(--ornie-font-sans);
+}
+
+/* Scroll hairline — drawn as an overlay line so the bar stays exactly 52px. */
+.ornie-topbar::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--ornie-border-subtle);
+  opacity: 0;
+  transition: opacity var(--ornie-duration-quick) var(--ornie-ease-out);
+  pointer-events: none;
+}
+.ornie-topbar--scrolled::after {
+  opacity: 1;
+}
+
+.ornie-topbar__leading,
+.ornie-topbar__trailing {
+  display: flex;
+  align-items: center;
+  gap: var(--ornie-space-2);
+  flex: none;
+}
+
+.ornie-topbar__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: var(--ornie-text-lg); /* 17px */
+  font-weight: var(--ornie-weight-semibold);
+  letter-spacing: -0.2px;
+  line-height: var(--ornie-leading-tight);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -16,6 +16,8 @@ The blocking dialog: a panel on the `--ornie-overlay` scrim, portaled to `<body>
 - `dismissible={false}` disables Escape and scrim-click closing (the × still works if shown) — reserve it for destructive-loss cases like an unsaved editor. `closeOnOverlayClick` is **deprecated** — it maps to `dismissible` with a dev warning; removed in 0.3.0.
 - `title`/`description` wire `aria-labelledby`/`aria-describedby` automatically; `footer` is the right-aligned action row.
 - `className`/`style`/rest and the forwarded ref land on the dialog panel.
+- `flush` (since 0.2.0) removes the body padding so children run edge-to-edge — CommandOverlay composes it for its input row / results / footer bar.
+- `container` (since 0.2.0) portals somewhere other than `document.body` — for embedding and the variant grid; apps normally omit it (contained modals skip the scroll lock and focus management).
 
 ## Examples
 

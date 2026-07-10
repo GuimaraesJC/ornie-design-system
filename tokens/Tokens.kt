@@ -129,7 +129,7 @@ object OrnieTokens {
         val surfaceHover = Color(0xFF38312A)
         val surfaceInverse = Color(0xFFEFEAE3)
         val hover = Color(0xFF38312A)
-        val selected = Color(0xFF32544B)
+        val selected = Color(0xFF26413A)
         val track = Color(0xFF4E453B)
         val done = Color(0xFF3E685D)
         val border = Color(0xFF4E453B)

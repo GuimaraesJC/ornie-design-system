@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PanelDrawer</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var noop = function () {};
+      var sparkleTile = h(
+        'span',
+        {
+          style: {
+            width: '28px',
+            height: '28px',
+            borderRadius: '9px',
+            background: 'var(--ornie-accent)',
+            color: 'var(--ornie-text-on-accent)',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          },
+        },
+        h(C.Icon, { name: 'sparkle', size: 16 }),
+      );
+      var askBody = h(
+        'div',
+        { style: { display: 'flex', flexWrap: 'wrap', gap: '7px' } },
+        h(C.Chip, { onSelect: noop }, 'What should I focus on?'),
+        h(C.Chip, { onSelect: noop }, 'Anything slipping?'),
+        h(C.Chip, { onSelect: noop }, 'What did I finish this week?'),
+      );
+      var askFooter = h(
+        'div',
+        { style: { display: 'flex', flexDirection: 'column', gap: '8px' } },
+        h(C.Input, { placeholder: 'Ask your workspace…' }),
+        h(
+          'div',
+          { style: { fontSize: 'var(--ornie-text-xs)', color: 'var(--ornie-text-muted)', textAlign: 'center' } },
+          'Answers link back to the exact items they came from',
+        ),
+      );
+      // Inline demos: the panel renders directly in a flex row (no portal).
+      var InlineDemo = function (props) {
+        return h(
+          'div',
+          {
+            style: {
+              display: 'flex',
+              height: '340px',
+              border: '1px solid var(--ornie-border)',
+              borderRadius: 'var(--ornie-radius-lg)',
+              overflow: 'hidden',
+              background: 'var(--ornie-bg)',
+            },
+          },
+          h(
+            'div',
+            { style: { flex: 1, minWidth: 0, padding: '16px', fontSize: 'var(--ornie-text-sm)', color: 'var(--ornie-text-muted)' } },
+            'content column',
+          ),
+          h(C.PanelDrawer, Object.assign({ open: true, mode: 'inline', onClose: noop }, props.drawer), props.children),
+        );
+      };
+      // Overlay demo: portals into the box via the `container` prop
+      // (embedding escape hatch; apps omit it).
+      var OverlayDemo = function (props) {
+        var boxRef = OrnieGrid.React.useRef(null);
+        var mounted = OrnieGrid.React.useState(false);
+        OrnieGrid.React.useEffect(function () { mounted[1](true); }, []);
+        return h(
+          'div',
+          {
+            ref: boxRef,
+            style: {
+              position: 'relative',
+              overflow: 'hidden',
+              height: '340px',
+              border: '1px solid var(--ornie-border)',
+              borderRadius: 'var(--ornie-radius-lg)',
+              background: 'var(--ornie-bg)',
+            },
+          },
+          mounted[0] &&
+            h(
+              C.PanelDrawer,
+              Object.assign(
+                { open: true, mode: 'overlay', onClose: noop, container: boxRef.current },
+                props.drawer,
+              ),
+              props.children,
+            ),
+        );
+      };
+      var note = function (text) {
+        return h('span', { style: { fontSize: 'var(--ornie-text-sm)', color: 'var(--ornie-text-muted)' } }, text);
+      };
+      return [
+        g.section(
+          'inline mode (in-flow, pushes content)',
+          g.row(
+            'Ask panel recipe (leading tile · title · description · footer)',
+            h(InlineDemo, {
+              drawer: {
+                title: 'Ask',
+                description: 'reads your tasks, notes, projects & modules',
+                leading: sparkleTile,
+                footer: askFooter,
+              },
+              children: askBody,
+            }),
+          ),
+          g.row(
+            'title only, no footer',
+            h(InlineDemo, { drawer: { title: 'Detail' }, children: note('body scrolls between header and footer') }),
+          ),
+          g.row(
+            'no close button',
+            h(InlineDemo, { drawer: { title: 'Notes', showCloseButton: false }, children: note('close lives elsewhere (rare)') }),
+          ),
+        ),
+        g.section(
+          'closed (renders nothing)',
+          g.row(
+            'open: false',
+            h(C.PanelDrawer, { open: false, mode: 'inline', title: 'Ask' }),
+            note('No DOM output while closed — inline width collapses via the parent layout.'),
+          ),
+        ),
+        g.section(
+          'overlay mode (contained demo via the container prop)',
+          g.row(
+            'floats over the wash (1z tablet)',
+            h(OverlayDemo, {
+              drawer: { title: 'Task', description: 'Water the ferns' },
+              children: note('scrim + slide-in ≤16px; Esc, scrim tap and × close it'),
+            }),
+          ),
+        ),
+      ];
+      // Focus trap / Esc / focus return / scroll lock are exercised in the
+      // Storybook OverlayMode story — contained grid panels deliberately
+      // skip page-level focus and scroll management.
+    });
+  </script>
+</body>
+</html>

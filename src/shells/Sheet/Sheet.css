@@ -1,0 +1,101 @@
+/* Sheet — semantic tokens only. Values from the 2b capture mockup: radius
+   20 20 0 0, shadow-lg, 10/20/16 padding, 36×4.5 grabber in border-strong.
+   Bottom padding is keyboard-safe via the runtime contract token. */
+.ornie-sheet {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ornie-z-sheet);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: var(--ornie-overlay);
+  animation: ornie-sheet-fade var(--ornie-duration-gentle) var(--ornie-ease-out);
+}
+
+/* Embedded (grids/tests): fill the demo box instead of the viewport. */
+.ornie-sheet--contained {
+  position: absolute;
+}
+
+.ornie-sheet__panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  background: var(--ornie-surface);
+  border-radius: 20px 20px 0 0;
+  box-shadow: var(--ornie-shadow-lg);
+  padding: 10px var(--ornie-space-5)
+    calc(var(--ornie-space-4) + env(safe-area-inset-bottom, 0px) + var(--ornie-keyboard-inset));
+  font-family: var(--ornie-font-sans);
+  color: var(--ornie-text);
+  /* Slide is small + paired with the scrim fade; under reduced motion the
+     token collapses to 1ms and this reads as a quiet appear. */
+  animation: ornie-sheet-rise var(--ornie-duration-gentle) var(--ornie-ease-out);
+}
+.ornie-sheet__panel:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: -2px;
+}
+
+.ornie-sheet__panel--content {
+  max-height: 85dvh;
+}
+.ornie-sheet__panel--half {
+  height: 52dvh;
+}
+.ornie-sheet__panel--tall {
+  height: 90dvh;
+}
+
+.ornie-sheet__grabber {
+  flex: none;
+  width: 36px;
+  height: 4.5px;
+  border-radius: 3px;
+  background: var(--ornie-border-strong);
+  margin: 0 auto 14px;
+}
+
+.ornie-sheet__header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ornie-space-3);
+  margin-bottom: 14px;
+}
+
+/* 10.5 caps header title, per the 2b mockup. */
+.ornie-sheet__title {
+  font-size: 10.5px;
+  font-weight: var(--ornie-weight-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ornie-text-subtle);
+}
+
+.ornie-sheet__close {
+  flex: none;
+  margin-left: auto;
+}
+
+.ornie-sheet__body {
+  min-height: 0;
+  overflow-y: auto;
+}
+.ornie-sheet__body:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: -2px;
+  border-radius: var(--ornie-radius-xs);
+}
+
+@keyframes ornie-sheet-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes ornie-sheet-rise {
+  from {
+    transform: translateY(100%);
+  }
+}

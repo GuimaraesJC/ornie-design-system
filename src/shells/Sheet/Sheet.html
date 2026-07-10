@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sheet</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      // Contained demos: the sheet portals into a phone-shaped box via the
+      // `container` prop (embedding escape hatch; apps omit it).
+      var Demo = function (props) {
+        var boxRef = OrnieGrid.React.useRef(null);
+        var mounted = OrnieGrid.React.useState(false);
+        OrnieGrid.React.useEffect(function () { mounted[1](true); }, []);
+        return h(
+          'div',
+          {
+            ref: boxRef,
+            style: {
+              position: 'relative',
+              overflow: 'hidden',
+              width: '320px',
+              height: props.boxHeight || '380px',
+              borderRadius: 'var(--ornie-radius-lg)',
+              border: '1px solid var(--ornie-border)',
+              background: 'var(--ornie-bg)',
+            },
+          },
+          mounted[0] &&
+            h(
+              C.Sheet,
+              {
+                open: true,
+                onClose: function () {},
+                container: boxRef.current,
+                title: props.title,
+                height: props.height,
+                showCloseButton: props.showCloseButton !== false,
+                dismissible: props.dismissible,
+              },
+              props.children,
+            ),
+        );
+      };
+      var body = h(
+        'div',
+        { style: { display: 'flex', flexDirection: 'column', gap: '12px' } },
+        h(C.Input, { placeholder: "What's on your mind?", size: 'lg' }),
+        h(C.Button, { fullWidth: true, size: 'lg' }, 'Add to Inbox'),
+      );
+      var longBody = h(
+        'div',
+        { style: { display: 'flex', flexDirection: 'column', gap: '10px' } },
+        Array.from({ length: 12 }, function (_, i) {
+          return h(C.ListRow, { key: i, title: 'Field row ' + (i + 1), description: 'scrolls inside the body' });
+        }),
+      );
+      return [
+        g.section(
+          'heights (contained demos)',
+          g.row('content', h(Demo, { title: 'Capture', height: 'content' }, body)),
+          g.row('half (52dvh of the box)', h(Demo, { title: 'Capture', height: 'half' }, body)),
+          g.row('tall (90dvh of the box) — body scrolls', h(Demo, { title: 'Task', height: 'tall', boxHeight: '420px' }, longBody)),
+        ),
+        g.section(
+          'chrome',
+          g.row('no close button (grabber + scrim-tap only)', h(Demo, { title: 'Ask', height: 'content', showCloseButton: false }, body)),
+          g.row('untitled', h(Demo, { height: 'content' }, body)),
+        ),
+      ];
+      // Focus trap / Esc / focus return are exercised in the Storybook
+      // stories — contained grid sheets deliberately skip page-level focus
+      // and scroll management.
+    });
+  </script>
+</body>
+</html>

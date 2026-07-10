@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TopBar</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var box = function (width, node) {
+        return h('div', { style: { width: width, border: '1px solid var(--ornie-border)', background: 'var(--ornie-bg)' } }, node);
+      };
+      var collapseToggle = h(
+        C.IconButton,
+        { 'aria-label': 'Expand sidebar', size: 32 },
+        h(C.Icon, { name: 'chevron-right', size: 16 }),
+      );
+      var back = h(
+        C.IconButton,
+        { 'aria-label': 'Back', size: 32 },
+        h(C.Icon, { name: 'chevron-left', size: 16 }),
+      );
+      var trailingFull = h(
+        'span',
+        { style: { display: 'contents' } },
+        h(C.IconButton, { 'aria-label': 'Search', size: 32 }, h(C.Icon, { name: 'search', size: 16 })),
+        h(C.DayRing, { done: 2, planned: 5 }),
+        h(C.IconButton, { 'aria-label': 'Ask Ornie', variant: 'outline', size: 32 }, h(C.Icon, { name: 'sparkle', size: 16 })),
+      );
+
+      return [
+        g.section(
+          'slots — realistic frame width (720px)',
+          g.row('title only', box('720px', h(C.TopBar, { title: 'Today' }))),
+          g.row(
+            'full slots',
+            box('720px', h(C.TopBar, { title: 'Inbox', leading: collapseToggle, trailing: trailingFull })),
+          ),
+        ),
+        g.section(
+          'scrolled — bottom hairline fades in (--ornie-border-subtle); app wires the scroll listener',
+          g.row('scrolled: false', box('720px', h(C.TopBar, { title: 'Upcoming' }))),
+          g.row('scrolled: true', box('720px', h(C.TopBar, { title: 'Upcoming', scrolled: true }))),
+        ),
+        g.section(
+          'long title truncation — narrow (360px) and tablet (480px) widths',
+          g.row(
+            '360px',
+            box(
+              '360px',
+              h(C.TopBar, {
+                title: 'Modules / GitHub / anthropics/ornie-design-system pull requests',
+                leading: back,
+                trailing: h(C.IconButton, { 'aria-label': 'Ask Ornie', variant: 'outline', size: 32 }, h(C.Icon, { name: 'sparkle', size: 16 })),
+              }),
+            ),
+          ),
+          g.row(
+            '480px',
+            box(
+              '480px',
+              h(C.TopBar, {
+                title: 'A very long view title that should truncate with an ellipsis instead of wrapping',
+                scrolled: true,
+              }),
+            ),
+          ),
+        ),
+      ];
+      // focus-visible: tab through either half — every slotted IconButton gets
+      // the standard 2px outline (--ornie-focus-ring). The bar itself has no
+      // interactive parts.
+    });
+  </script>
+</body>
+</html>

@@ -229,7 +229,7 @@
   --ornie-surface-hover: var(--ornie-sand-800);
   --ornie-surface-inverse: var(--ornie-sand-100);
   --ornie-hover: var(--ornie-sand-800);
-  --ornie-selected: var(--ornie-river-700);
+  --ornie-selected: var(--ornie-river-800); /* river-800, one step deeper than the mockups' river-700: accent-text ink must hold 4.5:1 on the selected wash (sidebar active items) */
   --ornie-track: var(--ornie-sand-700);
   --ornie-done: var(--ornie-river-600);
   --ornie-border: var(--ornie-sand-700);

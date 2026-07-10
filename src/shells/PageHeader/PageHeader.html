@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PageHeader</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var ask = function () {
+        return h(
+          C.IconButton,
+          { variant: 'outline', size: 32, 'aria-label': 'Ask Ornie' },
+          h(C.Icon, { name: 'sparkle', size: 16 }),
+        );
+      };
+      var ringAndAsk = function () {
+        return [h(C.DayRing, { key: 'ring', done: 2, planned: 5 }), h(ask, { key: 'ask' })];
+      };
+      var box = function (width, children) {
+        return h('div', { style: { width: width + 'px', maxWidth: '100%' } }, children);
+      };
+      return [
+        g.section(
+          'greeting (2a) — phone 400',
+          g.row(
+            'full anatomy',
+            box(400, h(C.PageHeader, {
+              variant: 'greeting',
+              kicker: 'Friday, July 3',
+              subtitle: '3 things for today',
+              trailing: ringAndAsk(),
+            }, 'Good morning, Jean')),
+          ),
+          g.row(
+            'no kicker/subtitle',
+            box(400, h(C.PageHeader, { variant: 'greeting', trailing: ringAndAsk() }, 'Good morning, Jean')),
+          ),
+          g.row(
+            'long title',
+            box(400, h(C.PageHeader, {
+              variant: 'greeting',
+              kicker: 'Friday, July 3',
+              subtitle: '3 things for today',
+              trailing: ringAndAsk(),
+            }, 'Good morning, Jean-Sebastien of the very long name')),
+          ),
+        ),
+        g.section(
+          'greeting — desktop 540',
+          g.row(
+            'full anatomy',
+            box(540, h(C.PageHeader, {
+              variant: 'greeting',
+              kicker: 'Friday, July 3',
+              trailing: h(C.DayRing, { done: 1, planned: 5 }),
+            }, 'Good afternoon, Jean')),
+          ),
+        ),
+        g.section(
+          'view — phone 400',
+          g.row('title only', box(400, h(C.PageHeader, null, 'Upcoming'))),
+          g.row(
+            'with subtitle',
+            box(400, h(C.PageHeader, { subtitle: '23 things this week. Quietly impressive.' }, 'Logbook')),
+          ),
+          g.row(
+            'with kicker + trailing',
+            box(400, h(C.PageHeader, { kicker: 'This week', trailing: ask() }, 'Weekly review')),
+          ),
+          g.row(
+            'count suffix recipe',
+            box(400, h(C.PageHeader, { subtitle: 'One at a time — no pressure.' },
+              'Inbox ',
+              h('span', { style: { fontSize: '12.5px', color: 'var(--ornie-text-subtle)', fontWeight: 'var(--ornie-weight-regular)', letterSpacing: '0' } }, '· 3 to sort'),
+            )),
+          ),
+          g.row(
+            'long title',
+            box(400, h(C.PageHeader, { trailing: ask() }, 'A section title that runs long enough to wrap onto a second line')),
+          ),
+        ),
+        g.section(
+          'heading levels',
+          g.row('as h2', box(400, h(C.PageHeader, { as: 'h2', kicker: 'Section' }, 'Rendered as an h2'))),
+        ),
+      ];
+      // Semantics: each header renders <header> + one heading. The h1 default
+      // is right when PageHeader opens the page; use `as` inside panes.
+    });
+  </script>
+</body>
+</html>

@@ -17,6 +17,11 @@
   padding-top: 12vh;
 }
 
+/* Embedded (grids/tests): fill the demo box instead of the viewport. */
+.ornie-modal--contained {
+  position: absolute;
+}
+
 .ornie-modal__panel {
   display: flex;
   flex-direction: column;
@@ -107,6 +112,11 @@
 }
 .ornie-modal__header + .ornie-modal__body {
   padding-top: var(--ornie-space-4);
+}
+/* Edge-to-edge compositions (CommandOverlay input row / results / footer). */
+.ornie-modal__body--flush,
+.ornie-modal__header + .ornie-modal__body--flush {
+  padding: 0;
 }
 
 .ornie-modal__footer {

@@ -1,0 +1,64 @@
+/* TriageCard — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors.
+   Paddings/typography lifted from the 2c (phone) and D:Inbox (desktop) triage cards. */
+.ornie-triage-card {
+  padding: 18px 18px 14px; /* 2c card box */
+}
+
+/* Captured text + optional source line. The 6px gap only exists when both do. */
+.ornie-triage-card__capture {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 15px; /* 2c: text → chips */
+}
+
+.ornie-triage-card__text {
+  font-size: 16px;
+  font-weight: var(--ornie-weight-medium);
+  letter-spacing: -0.2px;
+  line-height: 1.4;
+  color: var(--ornie-text);
+  overflow-wrap: break-word;
+}
+
+/* Footer — hairline, ring + count left, swipe hint right (2c footer row). */
+.ornie-triage-card__footer {
+  display: flex;
+  align-items: center;
+  gap: var(--ornie-space-2);
+  margin-top: 15px;
+  padding-top: 11px;
+  border-top: 1px solid var(--ornie-border-subtle);
+}
+
+.ornie-triage-card__progress {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: 1;
+  min-width: 0;
+}
+
+/* Informational count — never a guilt bar. text-subtle is AA-tuned. */
+.ornie-triage-card__count {
+  font-size: 11.5px;
+  color: var(--ornie-text-subtle);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Swipe affordance — quiet legend, pointer-only shortcut (2c: 11px subtle). */
+.ornie-triage-card__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--ornie-text-subtle);
+  white-space: nowrap;
+}
+.ornie-triage-card__hint-glyph {
+  width: 11px;
+  height: 11px;
+  flex: none;
+}

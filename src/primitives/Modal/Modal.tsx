@@ -40,6 +40,13 @@ export interface ModalProps extends Omit<HTMLAttributes<HTMLDivElement>, 'title'
   closeOnOverlayClick?: boolean;
   /** @default true */
   showCloseButton?: boolean;
+  /**
+   * Removes the body padding so children run edge-to-edge (CommandOverlay's
+   * input row / results / footer bar). @default false
+   */
+  flush?: boolean;
+  /** Portal target — for embedding/testing (grids); apps normally omit it. */
+  container?: Element | null;
 }
 
 /**
@@ -61,6 +68,8 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
     dismissible,
     closeOnOverlayClick,
     showCloseButton = true,
+    flush = false,
+    container,
     className,
     ...rest
   },
@@ -76,9 +85,14 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
     if (dismissible === undefined) canDismiss = closeOnOverlayClick;
   }
 
+  // Portal target; contained (embedded in a demo box) skips page-level
+  // focus/scroll management — same pattern as Sheet.
+  const target = container ?? (typeof document !== 'undefined' ? document.body : null);
+  const contained = !!container && container !== document.body;
+
   // Escape + body scroll lock while open.
   useEffect(() => {
-    if (!open) return;
+    if (!open || contained) return;
     const onKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape' && canDismiss) onClose?.();
     };
@@ -89,11 +103,11 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
       document.removeEventListener('keydown', onKey);
       document.body.style.overflow = prevOverflow;
     };
-  }, [open, canDismiss, onClose]);
+  }, [open, contained, canDismiss, onClose]);
 
   // Focus on open (initialFocus or the panel), return focus to the opener on close.
   useEffect(() => {
-    if (!open) return;
+    if (!open || contained) return;
     const opener = document.activeElement instanceof HTMLElement ? document.activeElement : null;
     const target = initialFocus?.current ?? panelRef.current;
     target?.focus();
@@ -101,9 +115,9 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
       opener?.focus();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps -- re-focusing on ref identity churn would steal focus
-  }, [open]);
+  }, [open, contained]);
 
-  if (!open || typeof document === 'undefined') return null;
+  if (!open || !target) return null;
 
   const setPanelRef = (node: HTMLDivElement | null) => {
     panelRef.current = node;
@@ -142,7 +156,7 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
 
   return createPortal(
     <div
-      className={cx('ornie-modal', `ornie-modal--${placement}`)}
+      className={cx('ornie-modal', `ornie-modal--${placement}`, contained && 'ornie-modal--contained')}
       role="presentation"
       onKeyDown={trapFocus}
       onMouseDown={(event) => {
@@ -185,10 +199,12 @@ export const Modal = forwardRef<HTMLDivElement, ModalProps>(function Modal(
             )}
           </div>
         )}
-        {children != null && <div className="ornie-modal__body">{children}</div>}
+        {children != null && (
+          <div className={cx('ornie-modal__body', flush && 'ornie-modal__body--flush')}>{children}</div>
+        )}
         {footer && <div className="ornie-modal__footer">{footer}</div>}
       </div>
     </div>,
-    document.body,
+    target,
   );
 });

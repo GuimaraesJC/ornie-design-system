@@ -1,0 +1,80 @@
+/* CommandOverlay — semantic tokens only. Audit: no hex, no raw scales w/o
+   comment, no theme selectors. The block class lands on the Modal panel
+   (composition); values lifted from the desktop mockup's Quick Find /
+   quick-capture overlays: input row 14px 18px with 11px gap and 15px icon,
+   results ≤360px in an 8px inset, footer 9px 18px over a hairline. Width is
+   the `width` prop (540 capture / 560 find), set inline. */
+
+.ornie-command-overlay__input-row {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--ornie-border-subtle);
+}
+
+.ornie-command-overlay__icon {
+  flex: none;
+  color: var(--ornie-text-subtle);
+}
+
+/* Borderless on purpose: the panel is the field (mockup). Input is a bare
+   <input> because the Input primitive's field skin (border, ground, min
+   heights) can't be removed from outside without cross-component selectors. */
+.ornie-command-overlay__input {
+  flex: 1;
+  min-width: 0;
+  border: none;
+  background: transparent;
+  padding: 0;
+  font-family: var(--ornie-font-sans);
+  font-size: var(--ornie-text-md);
+  color: var(--ornie-text);
+}
+.ornie-command-overlay__input::placeholder {
+  color: var(--ornie-text-subtle);
+}
+.ornie-command-overlay__input:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}
+
+.ornie-command-overlay__trailing {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.ornie-command-overlay__results {
+  max-height: 360px;
+  overflow-y: auto;
+  padding: var(--ornie-space-2);
+}
+
+/* Managed rows: the roving wash. Row anatomy (dot · title · kind) comes from
+   renderItem — typically a ListRow desktop recipe that owns its inset. */
+.ornie-command-overlay__option {
+  border-radius: var(--ornie-radius-sm);
+  cursor: pointer;
+}
+.ornie-command-overlay__option--active {
+  background: var(--ornie-selected);
+}
+
+.ornie-command-overlay__footer {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 9px 18px;
+  border-top: 1px solid var(--ornie-border-subtle);
+  font-size: 11px;
+  color: var(--ornie-text-subtle);
+}
+
+.ornie-command-overlay__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}

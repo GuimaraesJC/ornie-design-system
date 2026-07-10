@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CommandOverlay</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var noop = function () {};
+      // Contained demos: CommandOverlay composes Modal, which portals into
+      // the demo box via the `container` prop (embedding escape hatch; apps
+      // omit it). Contained overlays skip page focus/scroll management, so
+      // live keyboard roving is proven in the Storybook stories instead.
+      var Demo = function (props) {
+        var boxRef = OrnieGrid.React.useRef(null);
+        var mounted = OrnieGrid.React.useState(false);
+        OrnieGrid.React.useEffect(function () { mounted[1](true); }, []);
+        return h(
+          'div',
+          {
+            ref: boxRef,
+            style: {
+              position: 'relative',
+              overflow: 'hidden',
+              height: props.boxHeight || '360px',
+              border: '1px solid var(--ornie-border)',
+              borderRadius: 'var(--ornie-radius-lg)',
+              background: 'var(--ornie-bg)',
+            },
+          },
+          mounted[0] &&
+            h(
+              C.CommandOverlay,
+              Object.assign(
+                { open: true, onClose: noop, onChange: noop, container: boxRef.current },
+                props.overlay,
+              ),
+              props.children,
+            ),
+        );
+      };
+      var findItems = [
+        { id: '1', label: 'Water the ferns', kind: 'Task · Today', dot: 'moss' },
+        { id: '2', label: 'Website redesign', kind: 'Project', dot: 'river' },
+        { id: '3', label: 'Weekly review notes', kind: 'Note', dot: 'fur' },
+        { id: '4', label: 'Book dentist appointment', kind: 'Task · Inbox', dot: 'clay' },
+      ];
+      var renderResult = function (r) {
+        return h(C.ListRow, {
+          title: r.label,
+          leading: h(C.ProjectDot, { color: r.dot }),
+          trailing: h('span', { style: { fontSize: 'var(--ornie-text-xs)' } }, r.kind),
+          density: 'desktop',
+          padded: true,
+        });
+      };
+      var note = function (text) {
+        return h('span', { style: { fontSize: 'var(--ornie-text-sm)', color: 'var(--ornie-text-muted)' } }, text);
+      };
+      return [
+        g.section(
+          'quick capture (⌘K — 540, plus icon, custom footer)',
+          g.row(
+            'children results area (parse chips are app content)',
+            h(Demo, {
+              boxHeight: '330px',
+              overlay: {
+                value: 'Water the ferns tomorrow 9:00',
+                placeholder: "What's on your mind?",
+                icon: 'plus',
+                trailing: h(C.Kbd, { keys: ['⌘', 'K'] }),
+                'aria-label': 'Quick capture',
+                footer: h(
+                  'span',
+                  { className: 'ornie-command-overlay__hint' },
+                  h(C.Kbd, {}, '↵'),
+                  ' lands in Inbox',
+                ),
+              },
+              children: h(
+                'div',
+                { style: { display: 'flex', alignItems: 'center', gap: '8px', padding: '8px 10px', flexWrap: 'wrap' } },
+                h('span', { style: { fontSize: '12px', color: 'var(--ornie-text-muted)' } }, 'Sort it later —'),
+                h(C.Chip, { selected: true, onSelect: noop }, 'Task'),
+                h(C.Chip, { onSelect: noop }, 'Note'),
+                h(C.Chip, { onSelect: noop }, 'Someday'),
+              ),
+            }),
+          ),
+        ),
+        g.section(
+          'quick find (⌘/ — 560, search icon, managed items)',
+          g.row(
+            'first row active (roving wash), default Kbd footer',
+            h(Demo, {
+              boxHeight: '420px',
+              overlay: {
+                value: '',
+                placeholder: 'Jump anywhere, do anything…',
+                icon: 'search',
+                width: 560,
+                trailing: h(C.Kbd, { keys: ['⌘', '/'] }),
+                'aria-label': 'Quick Find',
+                items: findItems,
+                getKey: function (r) { return r.id; },
+                renderItem: renderResult,
+                onSelect: noop,
+              },
+            }),
+          ),
+          g.row(
+            'empty (children as the empty message)',
+            h(Demo, {
+              boxHeight: '300px',
+              overlay: {
+                value: 'zzz',
+                placeholder: 'Jump anywhere, do anything…',
+                icon: 'search',
+                width: 560,
+                'aria-label': 'Quick Find',
+                items: [],
+                onSelect: noop,
+              },
+              children: h(
+                'div',
+                { style: { padding: '16px 10px', fontSize: 'var(--ornie-text-sm)', color: 'var(--ornie-text-muted)' } },
+                'Nothing matches — press ⌘K to capture it instead.',
+              ),
+            }),
+          ),
+        ),
+        g.section(
+          'behavior notes (live in Storybook: QuickCapture, QuickFind, KeyboardShortcutWiring)',
+          g.row('keyboard', note('↑↓ rove with wrap · ↵ selects the active item · esc closes (Modal) — aria-activedescendant combobox/listbox pair')),
+          g.row('no search logic', note('the app filters items against SQLite (D-23); the overlay only renders what it is given')),
+          g.row('widths', note('540 capture (default) / 560 Quick Find — the width prop; top-pinned 12vh via Modal placement="top"')),
+        ),
+      ];
+    });
+  </script>
+</body>
+</html>

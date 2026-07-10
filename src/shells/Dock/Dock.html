@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dock</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var phone = function (children) {
+        return h(
+          'div',
+          { style: { width: '390px', paddingTop: '40px', background: 'var(--ornie-bg)', borderRadius: 'var(--ornie-radius-lg)', border: '1px solid var(--ornie-border)', overflow: 'hidden' } },
+          children,
+        );
+      };
+      var items = function (activeIndex, badge) {
+        return [
+          { icon: 'sun', label: 'Today', active: activeIndex === 0, onSelect: function () {} },
+          { icon: 'inbox', label: 'Inbox', active: activeIndex === 1, badge: badge, onSelect: function () {} },
+          { icon: 'calendar', label: 'Upcoming', active: activeIndex === 2, onSelect: function () {} },
+          { icon: 'grid', label: 'Browse', active: activeIndex === 3, onSelect: function () {} },
+        ];
+      };
+      return [
+        g.section(
+          'five slots (SPECS: 84px bar, 54px capture at −26px)',
+          g.row('default — Today active, quiet inbox count', phone(h(C.Dock, { items: items(0, 3), capture: { onPress: function () {} } }))),
+          g.row('inbox active', phone(h(C.Dock, { items: items(1, 3), capture: { onPress: function () {} } }))),
+          g.row('badge 0 renders nothing', phone(h(C.Dock, { items: items(0, 0), capture: { onPress: function () {} } }))),
+        ),
+        g.section(
+          'without capture (4 slots)',
+          g.row('nav only', phone(h(C.Dock, { items: items(2) }))),
+        ),
+      ];
+      // The interactive story exercises selection; focus-visible: tab through
+      // items and the capture button — standard outline.
+    });
+  </script>
+</body>
+</html>

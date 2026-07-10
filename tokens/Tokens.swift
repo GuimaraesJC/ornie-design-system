@@ -127,7 +127,7 @@ public enum OrnieTokens {
     public static let surfaceHover = Color(.sRGB, red: 0.2196, green: 0.1922, blue: 0.1647)
     public static let surfaceInverse = Color(.sRGB, red: 0.9373, green: 0.9176, blue: 0.8902)
     public static let hover = Color(.sRGB, red: 0.2196, green: 0.1922, blue: 0.1647)
-    public static let selected = Color(.sRGB, red: 0.1961, green: 0.3294, blue: 0.2941)
+    public static let selected = Color(.sRGB, red: 0.1490, green: 0.2549, blue: 0.2275)
     public static let track = Color(.sRGB, red: 0.3059, green: 0.2706, blue: 0.2314)
     public static let done = Color(.sRGB, red: 0.2431, green: 0.4078, blue: 0.3647)
     public static let border = Color(.sRGB, red: 0.3059, green: 0.2706, blue: 0.2314)

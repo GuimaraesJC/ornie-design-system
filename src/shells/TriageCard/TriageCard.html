@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TriageCard</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var noop = function () {};
+      var targets = function (withDots) {
+        return [
+          { value: 'today', label: 'Today' },
+          { value: 'week', label: 'This week' },
+          { value: 'someday', label: 'Someday' },
+          {
+            value: 'porto',
+            label: 'Porto trip',
+            leading: withDots ? h(C.ProjectDot, { color: 'clay' }) : undefined,
+          },
+          {
+            value: 'website',
+            label: 'Website redesign',
+            leading: withDots ? h(C.ProjectDot, { color: 'river' }) : undefined,
+          },
+        ];
+      };
+      var box = function (width, children) {
+        return h('div', { style: { width: width + 'px', maxWidth: '100%' } }, children);
+      };
+      var matrix = function (width, name) {
+        return g.section(
+          name,
+          g.row(
+            'full anatomy',
+            box(width, h(C.TriageCard, {
+              text: 'Book dentist appointment',
+              source: ['via share sheet', '2h ago'],
+              targets: targets(true),
+              onDecide: noop,
+              progress: { current: 3, total: 7 },
+              swipeHint: true,
+            })),
+          ),
+          g.row(
+            'no leading icons',
+            box(width, h(C.TriageCard, {
+              text: 'Renew passport before September',
+              source: ['typed', 'yesterday'],
+              targets: targets(false),
+              onDecide: noop,
+              progress: { current: 3, total: 7 },
+              swipeHint: true,
+            })),
+          ),
+          g.row(
+            'long captured text',
+            box(width, h(C.TriageCard, {
+              text: 'Idea from the walk: a monthly dinner with Laura & Ben, rotating who cooks, and maybe invite the neighbours from the third floor once it settles into a rhythm',
+              source: ['via share sheet', '2h ago'],
+              targets: targets(true),
+              onDecide: noop,
+              progress: { current: 3, total: 7 },
+              swipeHint: true,
+            })),
+          ),
+          g.row(
+            'progress 1 of 7',
+            box(width, h(C.TriageCard, {
+              text: 'Water filter replacement — check the model number',
+              source: ['email rule', '3d ago'],
+              targets: targets(false),
+              onDecide: noop,
+              progress: { current: 1, total: 7 },
+            })),
+          ),
+          g.row(
+            'progress 6 of 7',
+            box(width, h(C.TriageCard, {
+              text: 'Call the framer about the two prints',
+              source: ['typed', 'just now'],
+              targets: targets(false),
+              onDecide: noop,
+              progress: { current: 6, total: 7 },
+            })),
+          ),
+          g.row(
+            'swipe hint off / minimal',
+            box(width, h(C.TriageCard, {
+              text: 'Look up the ferry timetable',
+              targets: targets(false),
+              onDecide: noop,
+            })),
+          ),
+        );
+      };
+      return [matrix(400, 'phone width — 400'), matrix(540, 'desktop width — 540')];
+      // Keyboard: tab into a card's chip row, arrows rove between targets,
+      // Enter/Space decides. Footer holds nothing focusable; the swipe hint
+      // is aria-hidden (pointer-only shortcut, chips are the a11y path).
+    });
+  </script>
+</body>
+</html>

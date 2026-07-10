@@ -121,6 +121,30 @@ export type {
   ToastContextValue,
 } from './patterns/Toast/Toast';
 
+export { Sheet } from './shells/Sheet/Sheet';
+export type { SheetProps, SheetHeight } from './shells/Sheet/Sheet';
+
+export { Dock } from './shells/Dock/Dock';
+export type { DockProps, DockItem } from './shells/Dock/Dock';
+
+export { SidebarNav, SidebarGroup, SidebarItem } from './shells/SidebarNav/SidebarNav';
+export type { SidebarNavProps, SidebarGroupProps, SidebarItemProps } from './shells/SidebarNav/SidebarNav';
+
+export { TopBar } from './shells/TopBar/TopBar';
+export type { TopBarProps } from './shells/TopBar/TopBar';
+
+export { PageHeader } from './shells/PageHeader/PageHeader';
+export type { PageHeaderProps, PageHeaderVariant, PageHeaderHeadingLevel } from './shells/PageHeader/PageHeader';
+
+export { TriageCard } from './shells/TriageCard/TriageCard';
+export type { TriageCardProps, TriageTarget, TriageProgress } from './shells/TriageCard/TriageCard';
+
+export { PanelDrawer } from './shells/PanelDrawer/PanelDrawer';
+export type { PanelDrawerMode, PanelDrawerProps } from './shells/PanelDrawer/PanelDrawer';
+
+export { CommandOverlay } from './shells/CommandOverlay/CommandOverlay';
+export type { CommandOverlayProps } from './shells/CommandOverlay/CommandOverlay';
+
 export { ColorPalette } from './foundations/ColorPalette/ColorPalette';
 export type { ColorPaletteProps } from './foundations/ColorPalette/ColorPalette';
 

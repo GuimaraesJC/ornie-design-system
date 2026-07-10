@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SidebarNav</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var mark = function (size) {
+        return h(
+          'span',
+          {
+            'aria-hidden': 'true',
+            style: {
+              width: size, height: size, borderRadius: '9px',
+              background: 'var(--ornie-accent)', color: 'var(--ornie-text-on-accent)',
+              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+              fontSize: '15px', fontWeight: 800, flex: 'none',
+            },
+          },
+          'O',
+        );
+      };
+      var header = h(
+        'div',
+        { style: { display: 'flex', alignItems: 'center', gap: '10px', padding: '6px 8px' } },
+        mark('28px'),
+        h(
+          'span',
+          { style: { minWidth: 0 } },
+          h('span', { style: { display: 'block', fontSize: '14px', fontWeight: 700 } }, 'Ornie'),
+          h('span', { style: { display: 'block', fontSize: '11.5px', color: 'var(--ornie-text-subtle)' } }, 'Personal'),
+        ),
+      );
+      var railHeader = h('div', { style: { display: 'flex', justifyContent: 'center' } }, mark('30px'));
+
+      var noop = function () {};
+      var body = function () {
+        return [
+          h(
+            C.SidebarGroup,
+            { key: 'views' },
+            h(C.SidebarItem, { leading: h(C.Icon, { name: 'sun' }), active: true, onSelect: noop, kbd: ['⌘', '1'] }, 'Today'),
+            h(C.SidebarItem, { leading: h(C.Icon, { name: 'inbox' }), count: 4, onSelect: noop, kbd: ['⌘', '2'] }, 'Inbox'),
+            h(C.SidebarItem, { leading: h(C.Icon, { name: 'calendar' }), onSelect: noop }, 'Upcoming'),
+            h(C.SidebarItem, { leading: h(C.Icon, { name: 'layers' }), onSelect: noop }, 'Anytime'),
+            h(C.SidebarItem, { leading: h(C.Icon, { name: 'archive' }), onSelect: noop }, 'Someday'),
+          ),
+          h(
+            C.SidebarGroup,
+            { key: 'library', label: 'Library' },
+            h(C.SidebarItem, { leading: h(C.Icon, { name: 'folder' }), onSelect: noop }, 'Projects'),
+            h(C.SidebarItem, { leading: h(C.Icon, { name: 'book' }), onSelect: noop }, 'Journal'),
+          ),
+          h(
+            C.SidebarGroup,
+            { key: 'projects', label: 'Projects' },
+            h(C.SidebarItem, { leading: h(C.ProjectDot, { color: 'river' }), onSelect: noop }, 'Website redesign'),
+            h(C.SidebarItem, { leading: h(C.ProjectDot, { color: 'clay' }), onSelect: noop }, 'Porto trip'),
+            h(
+              C.SidebarItem,
+              {
+                leading: h(C.ProgressRing, { size: 16, value: 8 / 12, label: 'Q3 finances progress' }),
+                trailing: '8/12',
+                onSelect: noop,
+              },
+              'Q3 finances',
+            ),
+          ),
+        ];
+      };
+      var footer = h(
+        C.SidebarGroup,
+        { label: 'Utilities' },
+        h(C.SidebarItem, { leading: h(C.Icon, { name: 'gear' }), onSelect: noop, kbd: ['⌘', ','] }, 'Settings'),
+      );
+
+      var frame = function (node, height) {
+        return h('div', { style: { height: height || '600px', display: 'flex', border: '1px solid var(--ornie-border)' } }, node);
+      };
+
+      return [
+        g.section(
+          'expanded vs rail — header/footer filled, active + counts + project rows',
+          g.row(
+            '264 / 60',
+            frame(h(C.SidebarNav, { header: header, footer: footer }, body())),
+            frame(h(C.SidebarNav, { collapsed: true, header: railHeader, footer: footer, 'aria-label': 'Main (rail)' }, body())),
+          ),
+        ),
+        g.section(
+          'item states (hover any row for the wash; hover/focus rail items for the right tooltip + kbd)',
+          g.row(
+            'links (href)',
+            frame(
+              h(
+                C.SidebarNav,
+                { 'aria-label': 'Main (links)' },
+                h(
+                  C.SidebarGroup,
+                  { label: 'Views' },
+                  h(C.SidebarItem, { leading: h(C.Icon, { name: 'sun' }), href: '#today', active: true }, 'Today'),
+                  h(C.SidebarItem, { leading: h(C.Icon, { name: 'inbox' }), href: '#inbox', count: 12 }, 'Inbox'),
+                  h(C.SidebarItem, { leading: h(C.Icon, { name: 'archive' }), href: '#someday' }, 'A very long label that truncates with an ellipsis'),
+                ),
+              ),
+              '200px',
+            ),
+          ),
+        ),
+      ];
+      // keyboard: Tab reaches every item in both halves; each control shows the
+      // standard 2px --ornie-focus-ring outline. Rail tooltips also open on
+      // keyboard focus (Tooltip handles focus/blur).
+    });
+  </script>
+</body>
+</html>

@@ -90,6 +90,7 @@ const PAIRS = [
   // Interaction washes carry normal text
   ['--ornie-text', '--ornie-hover', 4.5, true],
   ['--ornie-text', '--ornie-selected', 4.5, true],
+  ['--ornie-accent-text', '--ornie-selected', 4.5, true],
   ['--ornie-text-muted', '--ornie-hover', 4.5, true],
   // Decorative identity tones (Avatar, ProjectDot)
   ['--ornie-tone-river-ink', '--ornie-tone-river', 4.5, true],

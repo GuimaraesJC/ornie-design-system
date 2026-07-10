@@ -1,0 +1,110 @@
+/* PanelDrawer — semantic tokens only. Audit: no hex, no raw scales w/o
+   comment, no theme selectors. Values lifted from the desktop mockup's Ask
+   panel: 372px on surface, 1px left hairline, header 14px 16px with 10px
+   gap, body inset 16px, footer 10px 14px 14px. */
+.ornie-panel-drawer {
+  display: flex;
+  flex-direction: column;
+  flex: none;
+  width: 372px;
+  min-height: 0;
+  background: var(--ornie-surface);
+  border-left: 1px solid var(--ornie-border);
+  font-family: var(--ornie-font-sans);
+  color: var(--ornie-text);
+}
+
+/* Overlay mode: slides in from the right over the scrim. The 16px slide is
+   paired with a fade; under reduced motion the duration token collapses to
+   1ms and this reads as a quiet appear. */
+.ornie-panel-drawer--overlay {
+  height: 100%;
+  max-width: 100%;
+  box-shadow: var(--ornie-shadow-lg);
+  animation: ornie-panel-drawer-slide var(--ornie-duration-gentle) var(--ornie-ease-out);
+}
+.ornie-panel-drawer--overlay:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: -2px;
+}
+
+.ornie-panel-drawer__scrim {
+  position: fixed;
+  inset: 0;
+  z-index: var(--ornie-z-drawer);
+  display: flex;
+  justify-content: flex-end;
+  background: var(--ornie-overlay);
+  animation: ornie-panel-drawer-fade var(--ornie-duration-gentle) var(--ornie-ease-out);
+}
+
+/* Embedded (grids/tests): fill the demo box instead of the viewport. */
+.ornie-panel-drawer__scrim--contained {
+  position: absolute;
+}
+
+.ornie-panel-drawer__header {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px var(--ornie-space-4);
+  border-bottom: 1px solid var(--ornie-border);
+}
+
+.ornie-panel-drawer__leading {
+  flex: none;
+  display: flex;
+}
+
+.ornie-panel-drawer__titles {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 14/semibold + 11.5 subtle, per the Ask panel header. */
+.ornie-panel-drawer__title {
+  font-size: 14px;
+  font-weight: var(--ornie-weight-semibold);
+  line-height: 1.2;
+}
+
+.ornie-panel-drawer__description {
+  font-size: 11.5px;
+  color: var(--ornie-text-subtle);
+  line-height: 1.3;
+}
+
+.ornie-panel-drawer__close {
+  flex: none;
+  margin-left: auto;
+}
+
+.ornie-panel-drawer__body {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: var(--ornie-space-4);
+}
+.ornie-panel-drawer__body:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: -2px;
+  border-radius: var(--ornie-radius-xs);
+}
+
+.ornie-panel-drawer__footer {
+  flex: none;
+  padding: 10px 14px 14px;
+}
+
+@keyframes ornie-panel-drawer-fade {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes ornie-panel-drawer-slide {
+  from {
+    transform: translateX(16px);
+    opacity: 0;
+  }
+}
