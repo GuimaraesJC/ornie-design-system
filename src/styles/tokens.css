@@ -38,7 +38,9 @@
   --ornie-sand-200: #e2dacf;
   --ornie-sand-300: #cfc3b4;
   --ornie-sand-400: #aea08f;
+  --ornie-sand-450: #9c8f7e; /* dark theme subtle ink — AA-tuned: 4.5:1 on every dark ground at small sizes */
   --ornie-sand-500: #7f7365;
+  --ornie-sand-550: #75685a; /* light theme subtle ink — AA-tuned: 4.5:1 on surface, bg and sunken at small sizes */
   --ornie-sand-600: #6a5f52;
   --ornie-sand-700: #4e453b;
   --ornie-sand-800: #38312a;
@@ -138,9 +140,15 @@
   --ornie-spin-state: running; /* animation-play-state for continuous animations; reduced motion flips it to paused */
 
   /* --- Layer 1: stacking --- */
+  --ornie-z-dock: 100; /* app chrome: Dock/TopBar sit above content, below every overlay */
+  --ornie-z-drawer: 800; /* PanelDrawer in overlay mode — under Sheet and Modal */
+  --ornie-z-sheet: 900; /* mobile Sheet — under Modal so confirmations can stack on a sheet */
   --ornie-z-modal: 1000;
   --ornie-z-tooltip: 1100;
   --ornie-z-toast: 1200;
+
+  /* --- Layer 1: runtime contract — contract variables the APP supplies at runtime; these are safe defaults --- */
+  --ornie-keyboard-inset: 0px; /* set by the app from visualViewport/keyboard APIs; Sheet adds it to env(safe-area-inset-bottom) for keyboard-safe bottom padding */
 }
 
 :root,
@@ -162,7 +170,7 @@
   --ornie-border-subtle: rgba(36, 30, 24, 0.05); /* hairline for elevated surfaces */
   --ornie-text: var(--ornie-sand-900);
   --ornie-text-muted: var(--ornie-sand-600);
-  --ornie-text-subtle: var(--ornie-sand-500);
+  --ornie-text-subtle: var(--ornie-sand-550);
   --ornie-text-on-accent: #ffffff;
   --ornie-text-inverse: #ffffff; /* ink on inverse surfaces */
   --ornie-inverse-surface: var(--ornie-surface-inverse); /* DEPRECATED since 0.2.0 — use surface-inverse; remove at 0.3.0 */
@@ -230,7 +238,7 @@
   --ornie-border-subtle: rgba(248, 245, 241, 0.08); /* sand-50 veil: edge-lights elevated cards */
   --ornie-text: var(--ornie-sand-100);
   --ornie-text-muted: var(--ornie-sand-400);
-  --ornie-text-subtle: var(--ornie-sand-500);
+  --ornie-text-subtle: var(--ornie-sand-450); /* sand-450: AA-tuned so 10.5-13px metadata holds 4.5:1 — the quiet third ink */
   --ornie-text-on-accent: #ffffff;
   --ornie-text-inverse: var(--ornie-sand-900);
   --ornie-inverse-surface: var(--ornie-surface-inverse);
@@ -270,7 +278,7 @@
   --ornie-project-rust: var(--ornie-rust-500);
   --ornie-focus-ring: var(--ornie-river-300);
   --ornie-focus-ring-danger: var(--ornie-rust-300);
-  --ornie-overlay: rgba(0, 0, 0, 0.55); /* scrim, deeper than light */
+  --ornie-overlay: rgba(22, 17, 13, 0.55); /* sand-1000 scrim @ 55% — warm, never pure black (theme principle) */
   --ornie-shadow-sm: 0 1px 2px rgba(10, 7, 4, 0.5); /* Layer 1 override: light shadows are sand-900 tints at 6-14% alpha — invisible on a #1d1813 page */
   --ornie-shadow-md: 0 2px 8px rgba(10, 7, 4, 0.55), 0 1px 2px rgba(10, 7, 4, 0.4);
   --ornie-shadow-lg: 0 12px 32px rgba(10, 7, 4, 0.65), 0 2px 8px rgba(10, 7, 4, 0.5);

@@ -5,7 +5,4 @@
   gap: var(--ornie-space-2); /* 8px, per roadmap */
 }
 
-/* Own element class placed on the Chip root (not a reach into Chip internals). */
-.ornie-chip-group__chip--disabled {
-  opacity: 0.45;
-}
+/* Disabled dimming lives in Chip itself (--disabled modifier) since 0.2.0. */

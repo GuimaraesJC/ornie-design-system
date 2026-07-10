@@ -114,6 +114,11 @@ function buildCss() {
   out.push('');
   out.push('  /* --- Layer 1: stacking --- */');
   out.push(cssDecls(l1.z, '  '));
+  if (l1.runtime) {
+    out.push('');
+    out.push(`  /* --- Layer 1: runtime contract — ${l1.runtime.$comment ?? ''} --- */`);
+    out.push(cssDecls(l1.runtime, '  '));
+  }
   out.push('}\n');
 
   const light = tokens.layer2.light;

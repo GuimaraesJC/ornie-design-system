@@ -23,7 +23,9 @@ public enum OrnieTokens {
     public static let sand200 = Color(.sRGB, red: 0.8863, green: 0.8549, blue: 0.8118)
     public static let sand300 = Color(.sRGB, red: 0.8118, green: 0.7647, blue: 0.7059)
     public static let sand400 = Color(.sRGB, red: 0.6824, green: 0.6275, blue: 0.5608)
+    public static let sand450 = Color(.sRGB, red: 0.6118, green: 0.5608, blue: 0.4941)
     public static let sand500 = Color(.sRGB, red: 0.4980, green: 0.4510, blue: 0.3961)
+    public static let sand550 = Color(.sRGB, red: 0.4588, green: 0.4078, blue: 0.3529)
     public static let sand600 = Color(.sRGB, red: 0.4157, green: 0.3725, blue: 0.3216)
     public static let sand700 = Color(.sRGB, red: 0.3059, green: 0.2706, blue: 0.2314)
     public static let sand800 = Color(.sRGB, red: 0.2196, green: 0.1922, blue: 0.1647)
@@ -78,7 +80,7 @@ public enum OrnieTokens {
     public static let borderSubtle = Color(.sRGB, red: 0.1412, green: 0.1176, blue: 0.0941, opacity: 0.05)
     public static let text = Color(.sRGB, red: 0.1412, green: 0.1176, blue: 0.0941)
     public static let textMuted = Color(.sRGB, red: 0.4157, green: 0.3725, blue: 0.3216)
-    public static let textSubtle = Color(.sRGB, red: 0.4980, green: 0.4510, blue: 0.3961)
+    public static let textSubtle = Color(.sRGB, red: 0.4588, green: 0.4078, blue: 0.3529)
     public static let textOnAccent = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000)
     public static let textInverse = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000)
     public static let accent = Color(.sRGB, red: 0.2980, green: 0.4902, blue: 0.4392)
@@ -134,7 +136,7 @@ public enum OrnieTokens {
     public static let borderSubtle = Color(.sRGB, red: 0.9725, green: 0.9608, blue: 0.9451, opacity: 0.08)
     public static let text = Color(.sRGB, red: 0.9373, green: 0.9176, blue: 0.8902)
     public static let textMuted = Color(.sRGB, red: 0.6824, green: 0.6275, blue: 0.5608)
-    public static let textSubtle = Color(.sRGB, red: 0.4980, green: 0.4510, blue: 0.3961)
+    public static let textSubtle = Color(.sRGB, red: 0.6118, green: 0.5608, blue: 0.4941)
     public static let textOnAccent = Color(.sRGB, red: 1.0000, green: 1.0000, blue: 1.0000)
     public static let textInverse = Color(.sRGB, red: 0.1412, green: 0.1176, blue: 0.0941)
     public static let accent = Color(.sRGB, red: 0.2980, green: 0.4902, blue: 0.4392)
@@ -171,7 +173,7 @@ public enum OrnieTokens {
     public static let projectFur = Color(.sRGB, red: 0.5451, green: 0.4157, blue: 0.3098)
     public static let projectRust = Color(.sRGB, red: 0.6471, green: 0.3608, blue: 0.2784)
     public static let focusRing = Color(.sRGB, red: 0.5451, green: 0.6980, blue: 0.6431)
-    public static let overlay = Color(.sRGB, red: 0.0000, green: 0.0000, blue: 0.0000, opacity: 0.55)
+    public static let overlay = Color(.sRGB, red: 0.0863, green: 0.0667, blue: 0.0510, opacity: 0.55)
   }
 
   public enum Typography {

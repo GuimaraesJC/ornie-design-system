@@ -13,6 +13,7 @@ The interactive pill. Badge is static information; Chip is something you tap: a 
 - `onRemove` renders the × as a **separate sibling button** (never a button inside a button), labelled via `removeLabel`.
 - `leading` takes an `<Icon>` or a dot; it is decorative (`aria-hidden`).
 - Sizes: `sm` 24px / `md` 32px. On coarse pointers both get an invisible ≥44px hit-slop — never enlarge the visual to compensate.
+- `disabled` dims the chip and disables both the action and × buttons (since 0.2.0; ChipGroup forwards it per option).
 
 ## Examples
 

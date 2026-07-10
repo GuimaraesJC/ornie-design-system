@@ -1,6 +1,5 @@
-/* MetaLine — semantic tokens only.
-   text-muted, not the mockups' text-subtle: 11.5px is small text and must
-   hold 4.5:1 in both themes (subtle is 3.57:1 in dark — AA audit overrules). */
+/* MetaLine — semantic tokens only. text-subtle per the mockups; the token is
+   AA-tuned (sand-450/550) so 11.5px metadata holds 4.5:1 in both themes. */
 .ornie-metaline {
   display: inline-flex;
   align-items: center;
@@ -8,7 +7,7 @@
   overflow: hidden;
   white-space: nowrap;
   font-size: 11.5px;
-  color: var(--ornie-text-muted);
+  color: var(--ornie-text-subtle);
 }
 
 .ornie-metaline__item {

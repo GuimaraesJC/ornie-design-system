@@ -19,6 +19,8 @@ export interface ChipProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'onSele
   leading?: ReactNode;
   /** sm 24 / md 32 (px height). Touch sizes get ≥44px hit-slop. @default 'md' */
   size?: ChipSize;
+  /** Dims the chip and disables its action and × buttons. */
+  disabled?: boolean;
 }
 
 /**
@@ -26,7 +28,7 @@ export interface ChipProps extends Omit<HTMLAttributes<HTMLSpanElement>, 'onSele
  * See Chip.prompt.md. Screens: 2b parse chips, 2c triage, 1l tags, 1u Ask.
  */
 export const Chip = forwardRef<HTMLSpanElement, ChipProps>(function Chip(
-  { selected, onSelect, onRemove, removeLabel = 'Remove', leading, size = 'md', className, children, ...rest },
+  { selected, onSelect, onRemove, removeLabel = 'Remove', leading, size = 'md', disabled, className, children, ...rest },
   ref,
 ) {
   const selectable = onSelect !== undefined;
@@ -50,19 +52,32 @@ export const Chip = forwardRef<HTMLSpanElement, ChipProps>(function Chip(
         selected && 'ornie-chip--selected',
         selectable && 'ornie-chip--selectable',
         onRemove && 'ornie-chip--removable',
+        disabled && 'ornie-chip--disabled',
         className,
       )}
       {...rest}
     >
       {selectable ? (
-        <button type="button" className="ornie-chip__action" aria-pressed={!!selected} onClick={() => onSelect()}>
+        <button
+          type="button"
+          className="ornie-chip__action"
+          aria-pressed={!!selected}
+          disabled={disabled}
+          onClick={() => onSelect()}
+        >
           {body}
         </button>
       ) : (
         <span className="ornie-chip__action">{body}</span>
       )}
       {onRemove && (
-        <button type="button" className="ornie-chip__remove" aria-label={removeLabel} onClick={() => onRemove()}>
+        <button
+          type="button"
+          className="ornie-chip__remove"
+          aria-label={removeLabel}
+          disabled={disabled}
+          onClick={() => onRemove()}
+        >
           <Icon name="x" size={16} className="ornie-chip__remove-glyph" />
         </button>
       )}

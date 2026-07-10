@@ -37,13 +37,15 @@
   height: 46px;
 }
 
-/* Inner disc — masks the center; also hosts the optional center slot. */
+/* Inner disc — masks the center; also hosts the optional center slot.
+   Consumers on non-surface grounds (SidebarNav's sunken rail) override
+   --ornie-progress-ring-disc so the disc blends with its background. */
 .ornie-progress-ring__disc {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: var(--ornie-radius-full);
-  background: var(--ornie-surface);
+  background: var(--ornie-progress-ring-disc, var(--ornie-surface));
   color: var(--ornie-text);
   font-family: var(--ornie-font-sans);
   font-weight: var(--ornie-weight-semibold);

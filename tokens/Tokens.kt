@@ -25,7 +25,9 @@ object OrnieTokens {
         val sand200 = Color(0xFFE2DACF)
         val sand300 = Color(0xFFCFC3B4)
         val sand400 = Color(0xFFAEA08F)
+        val sand450 = Color(0xFF9C8F7E)
         val sand500 = Color(0xFF7F7365)
+        val sand550 = Color(0xFF75685A)
         val sand600 = Color(0xFF6A5F52)
         val sand700 = Color(0xFF4E453B)
         val sand800 = Color(0xFF38312A)
@@ -80,7 +82,7 @@ object OrnieTokens {
         val borderSubtle = Color(0x0D241E18)
         val text = Color(0xFF241E18)
         val textMuted = Color(0xFF6A5F52)
-        val textSubtle = Color(0xFF7F7365)
+        val textSubtle = Color(0xFF75685A)
         val textOnAccent = Color(0xFFFFFFFF)
         val textInverse = Color(0xFFFFFFFF)
         val accent = Color(0xFF4C7D70)
@@ -136,7 +138,7 @@ object OrnieTokens {
         val borderSubtle = Color(0x14F8F5F1)
         val text = Color(0xFFEFEAE3)
         val textMuted = Color(0xFFAEA08F)
-        val textSubtle = Color(0xFF7F7365)
+        val textSubtle = Color(0xFF9C8F7E)
         val textOnAccent = Color(0xFFFFFFFF)
         val textInverse = Color(0xFF241E18)
         val accent = Color(0xFF4C7D70)
@@ -173,7 +175,7 @@ object OrnieTokens {
         val projectFur = Color(0xFF8B6A4F)
         val projectRust = Color(0xFFA55C47)
         val focusRing = Color(0xFF8BB2A4)
-        val overlay = Color(0x8C000000)
+        val overlay = Color(0x8C16110D)
     }
 
     object Typography {

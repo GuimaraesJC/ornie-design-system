@@ -80,10 +80,9 @@
   color: var(--ornie-text-muted);
 }
 
-/* Done: struck title. text-muted, not the mockups' text-subtle — 15px is
-   still small text and subtle fails 4.5:1 in dark (AA audit overrules). */
+/* Done: struck title in text-subtle (AA-tuned — holds 4.5:1 at 15px). */
 .ornie-taskrow--done .ornie-taskrow__title {
-  color: var(--ornie-text-muted);
+  color: var(--ornie-text-subtle);
 }
 .ornie-taskrow--done .ornie-taskrow__title-text {
   text-decoration: line-through;

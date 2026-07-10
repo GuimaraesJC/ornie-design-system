@@ -15,8 +15,8 @@
   margin-bottom: var(--ornie-space-2);
 }
 
-/* 10.5px caps +1px tracking (SPECS). Mockups use text-subtle here; the AA
-   audit fails it under 15px, so the sanctioned adjustment is text-muted. */
+/* 10.5px caps +1px tracking (SPECS). text-subtle is AA-tuned (sand-450/550)
+   so the mockup ink holds 4.5:1 at this size. */
 .ornie-listsection__label {
   margin: 0;
   font-size: 10.5px;
@@ -24,7 +24,7 @@
   letter-spacing: 1px;
   text-transform: uppercase;
   line-height: var(--ornie-leading-tight);
-  color: var(--ornie-text-muted);
+  color: var(--ornie-text-subtle);
 }
 
 .ornie-listsection__trailing {
@@ -33,7 +33,7 @@
   gap: var(--ornie-space-2);
   flex: none;
   font-size: var(--ornie-text-xs);
-  color: var(--ornie-text-muted);
+  color: var(--ornie-text-subtle);
 }
 
 /*

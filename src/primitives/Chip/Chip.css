@@ -23,8 +23,15 @@
 }
 
 /* States */
-.ornie-chip--selectable:hover {
+.ornie-chip--selectable:not(.ornie-chip--disabled):hover {
   color: var(--ornie-text);
+}
+.ornie-chip--disabled {
+  opacity: 0.55;
+}
+.ornie-chip--disabled .ornie-chip__action,
+.ornie-chip--disabled .ornie-chip__remove {
+  cursor: not-allowed;
 }
 .ornie-chip--selected {
   background: var(--ornie-accent-subtle);

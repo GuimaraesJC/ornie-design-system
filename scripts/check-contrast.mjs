@@ -67,7 +67,10 @@ const PAIRS = [
   ['--ornie-text', '--ornie-surface', 4.5, true],
   ['--ornie-text-muted', '--ornie-surface', 4.5, true],
   ['--ornie-text-muted', '--ornie-surface-sunken', 4.5, true],
-  ['--ornie-text-subtle', '--ornie-surface', 3, true],
+  // subtle is AA-tuned (sand-450/550): full 4.5 even at small sizes, all grounds
+  ['--ornie-text-subtle', '--ornie-surface', 4.5, true],
+  ['--ornie-text-subtle', '--ornie-bg', 4.5, true],
+  ['--ornie-text-subtle', '--ornie-surface-sunken', 4.5, true],
   ['--ornie-accent-text', '--ornie-surface', 4.5, true],
   ['--ornie-accent-text', '--ornie-bg', 4.5, true],
   ['--ornie-text-on-accent', '--ornie-accent', 4.5, true],

@@ -9,10 +9,10 @@
   cursor: not-allowed;
 }
 
-/* Placeholder state: the hidden empty option is selected. text-muted, not
-   text-subtle — this is real 13-15px text and must hold 4.5:1 in both themes. */
+/* Placeholder state: the hidden empty option is selected. text-subtle is
+   AA-tuned and holds 4.5:1 in both themes. */
 .ornie-select:has(option[value='']:checked) {
-  color: var(--ornie-text-muted);
+  color: var(--ornie-text-subtle);
 }
 
 .ornie-field__chevron {

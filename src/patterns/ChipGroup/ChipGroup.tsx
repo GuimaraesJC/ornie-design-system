@@ -83,9 +83,9 @@ export const ChipGroup = forwardRef<HTMLDivElement, ChipGroupProps>(function Chi
   };
 
   // Roving tabindex. Chip owns its internal <button>, so the group manages
-  // tabIndex/focus() on the rendered buttons directly (disabled options
-  // render inert — no button — so they're skipped for free). `active` is
-  // ephemeral focus bookkeeping, not selection state.
+  // tabIndex/focus() on the rendered buttons directly (disabled options render
+  // real disabled buttons, excluded from the rove). `active` is ephemeral
+  // focus bookkeeping, not selection state.
   const [active, setActive] = useState(() => {
     const interactive = options.filter((option) => !option.disabled);
     const firstSelected = interactive.findIndex((option) => selectedValues.includes(option.value));
@@ -94,7 +94,7 @@ export const ChipGroup = forwardRef<HTMLDivElement, ChipGroupProps>(function Chi
 
   const getButtons = () =>
     rootRef.current
-      ? Array.from(rootRef.current.querySelectorAll<HTMLButtonElement>('button.ornie-chip__action'))
+      ? Array.from(rootRef.current.querySelectorAll<HTMLButtonElement>('button.ornie-chip__action:not(:disabled)'))
       : [];
 
   useEffect(() => {
@@ -141,30 +141,19 @@ export const ChipGroup = forwardRef<HTMLDivElement, ChipGroupProps>(function Chi
       onKeyDown={onKeyDown}
       onFocus={onFocus}
     >
-      {options.map((option) =>
-        option.disabled ? (
-          <Chip
-            key={option.value}
-            size={size}
-            leading={option.leading}
-            aria-disabled="true"
-            className="ornie-chip-group__chip ornie-chip-group__chip--disabled"
-          >
-            {option.label}
-          </Chip>
-        ) : (
-          <Chip
-            key={option.value}
-            size={size}
-            leading={option.leading}
-            selected={isSelected(option.value)}
-            onSelect={() => toggle(option.value)}
-            className="ornie-chip-group__chip"
-          >
-            {option.label}
-          </Chip>
-        ),
-      )}
+      {options.map((option) => (
+        <Chip
+          key={option.value}
+          size={size}
+          leading={option.leading}
+          disabled={option.disabled}
+          selected={isSelected(option.value)}
+          onSelect={() => toggle(option.value)}
+          className="ornie-chip-group__chip"
+        >
+          {option.label}
+        </Chip>
+      ))}
     </div>
   );
 });

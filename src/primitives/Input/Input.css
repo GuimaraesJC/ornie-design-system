@@ -2,8 +2,7 @@
    (do not restyle .ornie-field frame rules here).
    Audit: semantic tokens only, no hex, no theme selectors. */
 .ornie-input::placeholder {
-  /* text-muted, not subtle: placeholder is real text, must hold 4.5:1 in dark */
-  color: var(--ornie-text-muted);
+  color: var(--ornie-text-subtle); /* AA-tuned: holds 4.5:1 in both themes */
 }
 
 /* Shell — positions the leading/trailing slots inside the field frame.
