@@ -1,0 +1,39 @@
+/* ProjectDot — semantic tokens only. The dot is decorative; the label (or
+   adjacent text) carries the meaning. */
+.ornie-projectdot {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-width: 0;
+}
+
+.ornie-projectdot__dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--ornie-radius-full);
+}
+
+/* Identity mids — same in both themes; themes may retarget the tokens (D-61). */
+.ornie-projectdot__dot--river {
+  background: var(--ornie-project-river);
+}
+.ornie-projectdot__dot--moss {
+  background: var(--ornie-project-moss);
+}
+.ornie-projectdot__dot--clay {
+  background: var(--ornie-project-clay);
+}
+.ornie-projectdot__dot--fur {
+  background: var(--ornie-project-fur);
+}
+.ornie-projectdot__dot--rust {
+  background: var(--ornie-project-rust);
+}
+
+.ornie-projectdot__label {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

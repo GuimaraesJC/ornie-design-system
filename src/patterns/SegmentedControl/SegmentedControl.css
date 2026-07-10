@@ -1,0 +1,82 @@
+/* SegmentedControl — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-segmented {
+  display: inline-flex;
+  align-items: stretch;
+  padding: 2px; /* mockup: 2px track inset around the thumb */
+  border-radius: var(--ornie-radius-full);
+  background: var(--ornie-surface-sunken);
+  font-family: var(--ornie-font-sans);
+}
+
+.ornie-segmented__option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--ornie-radius-full);
+  background: none;
+  color: var(--ornie-text-muted);
+  font-family: inherit;
+  font-weight: var(--ornie-weight-medium);
+  white-space: nowrap;
+  cursor: pointer;
+  /* No sliding thumb: selection is a quiet background/shadow swap on the
+     item itself (the calm choice — nothing glides across the track). */
+  transition:
+    background-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    color var(--ornie-duration-quick) var(--ornie-ease-out),
+    box-shadow var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+
+/* Sizes. md lifted from the D:settings appearance toggle (26px inner height,
+   12px labels, 0 12px padding in the mockup) adjusted to the roadmap's
+   28px/13px md scale; sm is the roadmap's 24px/12px dense variant. */
+.ornie-segmented--md .ornie-segmented__option {
+  height: 28px;
+  padding: 0 12px;
+  font-size: var(--ornie-text-sm);
+}
+.ornie-segmented--sm .ornie-segmented__option {
+  height: 24px;
+  padding: 0 10px;
+  font-size: var(--ornie-text-xs);
+}
+
+.ornie-segmented__option:hover:not(:disabled):not(.ornie-segmented__option--selected) {
+  color: var(--ornie-text);
+}
+
+/* The "thumb" is the selected item itself: raised surface + hairline + low shadow. */
+.ornie-segmented__option--selected {
+  background: var(--ornie-surface);
+  color: var(--ornie-text);
+  font-weight: var(--ornie-weight-semibold);
+  box-shadow:
+    0 0 0 1px var(--ornie-border-subtle),
+    var(--ornie-shadow-sm);
+}
+
+.ornie-segmented__option:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.ornie-segmented__option:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ≥44px hit targets on touch: vertical-only hit-slop so adjacent options
+   never steal each other's taps (horizontal edges stay exact). */
+@media (pointer: coarse) {
+  .ornie-segmented__option::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 44px;
+    transform: translateY(-50%);
+  }
+}

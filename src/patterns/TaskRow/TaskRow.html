@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TaskRow</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var noop = function () {};
+      var meta = h(
+        C.MetaLine,
+        null,
+        h('span', null, '9:00'),
+        h(C.ProjectDot, { color: 'moss', label: 'Garden project' }),
+        h('span', null, '25m'),
+      );
+      var card = function (children) {
+        return h(
+          'div',
+          { style: { background: 'var(--ornie-surface)', borderRadius: 'var(--ornie-radius-lg)', padding: '0 16px', maxWidth: '460px' } },
+          children,
+        );
+      };
+      var states = function (density, name) {
+        return g.section(
+          name,
+          card([
+            h(C.TaskRow, { key: 'a', density: density, title: 'Email design feedback to Sam', onToggle: noop, meta: meta }),
+            h(C.TaskRow, { key: 'b', density: density, title: 'Water the ferns', state: 'done', onToggle: noop }),
+            h(C.TaskRow, {
+              key: 'c',
+              density: density,
+              title: 'Contract draft',
+              state: 'waiting',
+              onToggle: noop,
+              meta: h(C.MetaLine, null, h('span', null, h(C.Icon, { name: 'person', size: 16 }), ' waiting on Sam')),
+            }),
+            h(C.TaskRow, { key: 'd', density: density, title: 'Renew passport', state: 'resurfaced', onToggle: noop }),
+            h(C.TaskRow, {
+              key: 'e',
+              density: density,
+              title: 'Opens the detail sheet',
+              onToggle: noop,
+              onOpen: noop,
+              trailing: h(C.Icon, { name: 'chevron-right', size: 16 }),
+            }),
+            h(C.TaskRow, {
+              key: 'f',
+              density: density,
+              title: 'A very long task title that runs on and on until it truncates somewhere sensible',
+              onToggle: noop,
+              meta: meta,
+            }),
+            h(C.TaskRow, { key: 'g', density: density, title: 'No check (display only)' }),
+          ]),
+        );
+      };
+      return [states('phone', 'density phone (12px pad, 23px check)'), states('desktop', 'density desktop (8px pad, 20px check)')];
+      // Separators between rows belong to ListSection, not TaskRow — rows here
+      // deliberately render bare inside the card.
+    });
+  </script>
+</body>
+</html>

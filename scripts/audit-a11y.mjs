@@ -65,6 +65,12 @@ for (const grid of targets) {
   });
   const results = await page.evaluate(async () => await window.axe.run(document, {
     resultTypes: ['violations'],
+    rules: {
+      // The grid renders the SAME tree twice (light + dark halves), so any
+      // named landmark legitimately appears twice per document. Real screens
+      // render once; this rule can't coexist with the both-themes proof.
+      'landmark-unique': { enabled: false },
+    },
   }));
   const rel = relative(root, grid);
   if (results.violations.length === 0) {

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DayRing</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      return [
+        g.section(
+          'day states',
+          g.row('fresh morning (0 of 4)', h(C.DayRing, { done: 0, planned: 4 })),
+          g.row('mid-day (2 of 5)', h(C.DayRing, { done: 2, planned: 5 })),
+          g.row('one left (4 of 5)', h(C.DayRing, { done: 4, planned: 5 })),
+          g.row('all done (5 of 5)', h(C.DayRing, { done: 5, planned: 5 })),
+          g.row('resting day (nothing planned)', h(C.DayRing, { done: 0, planned: 0 })),
+        ),
+        g.section(
+          'guards',
+          g.row('over-done clamps (6 of 5)', h(C.DayRing, { done: 6, planned: 5 })),
+        ),
+      ];
+      // No streaks, no red: the API cannot express either (R-5).
+    });
+  </script>
+</body>
+</html>

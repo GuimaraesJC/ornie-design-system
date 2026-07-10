@@ -1,0 +1,24 @@
+/* DayRing — semantic tokens only. 46px ring, 37px inner disc (ProgressRing
+   owns the geometry, SPECS). The center never shouts: a tabular count of
+   what's left, or the otter-dot on resting days. */
+.ornie-dayring {
+  display: inline-flex;
+  flex: none;
+}
+
+.ornie-dayring__count {
+  font-family: var(--ornie-font-sans);
+  font-size: var(--ornie-text-sm);
+  font-weight: var(--ornie-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  color: var(--ornie-text);
+}
+
+/* The otter-dot: fur-300 rounded square, lifted from the 2a mockup.
+   Decorative resting-day marker. */
+.ornie-dayring__rest {
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: var(--ornie-fur-300); /* layer1: the 2a otter-dot is exactly fur-300; no semantic role fits a one-off mascot mark */
+}

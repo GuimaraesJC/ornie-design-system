@@ -82,6 +82,7 @@ const PAIRS = [
   ['--ornie-warning-text', '--ornie-warning-subtle', 4.5, true],
   ['--ornie-danger-text', '--ornie-danger-subtle', 4.5, true],
   ['--ornie-danger-text', '--ornie-surface', 4.5, true],
+  ['--ornie-danger-text', '--ornie-bg', 4.5, true],
   ['--ornie-text-inverse', '--ornie-surface-inverse', 4.5, true],
   // Interaction washes carry normal text
   ['--ornie-text', '--ornie-hover', 4.5, true],

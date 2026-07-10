@@ -26,4 +26,19 @@
 @import '../primitives/Tooltip/Tooltip.css';
 @import '../primitives/Tabs/Tabs.css';
 
+@import '../patterns/TaskCheck/TaskCheck.css';
+@import '../patterns/TaskRow/TaskRow.css';
+@import '../patterns/MetaLine/MetaLine.css';
+@import '../patterns/ProjectDot/ProjectDot.css';
+@import '../patterns/DayRing/DayRing.css';
+@import '../patterns/ListSection/ListSection.css';
+@import '../patterns/ListRow/ListRow.css';
+@import '../patterns/DateGroupHeader/DateGroupHeader.css';
+@import '../patterns/FormField/FormField.css';
+@import '../patterns/SearchField/SearchField.css';
+@import '../patterns/SegmentedControl/SegmentedControl.css';
+@import '../patterns/ChipGroup/ChipGroup.css';
+@import '../patterns/EmptyState/EmptyState.css';
+@import '../patterns/Toast/Toast.css';
+
 @import '../foundations/foundations.css';

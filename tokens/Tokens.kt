@@ -111,6 +111,11 @@ object OrnieTokens {
         val toneClayInk = Color(0xFF6F521F)
         val toneStone = Color(0xFFE2DACF)
         val toneStoneInk = Color(0xFF4E453B)
+        val projectRiver = Color(0xFF4C7D70)
+        val projectMoss = Color(0xFF567A4E)
+        val projectClay = Color(0xFFA98038)
+        val projectFur = Color(0xFF8B6A4F)
+        val projectRust = Color(0xFFA55C47)
         val focusRing = Color(0xFF4C7D70)
         val overlay = Color(0x66241E18)
     }
@@ -162,6 +167,11 @@ object OrnieTokens {
         val toneClayInk = Color(0xFFE0CDA1)
         val toneStone = Color(0xFF38312A)
         val toneStoneInk = Color(0xFFE2DACF)
+        val projectRiver = Color(0xFF4C7D70)
+        val projectMoss = Color(0xFF567A4E)
+        val projectClay = Color(0xFFA98038)
+        val projectFur = Color(0xFF8B6A4F)
+        val projectRust = Color(0xFFA55C47)
         val focusRing = Color(0xFF8BB2A4)
         val overlay = Color(0x8C000000)
     }

@@ -140,6 +140,7 @@
   /* --- Layer 1: stacking --- */
   --ornie-z-modal: 1000;
   --ornie-z-tooltip: 1100;
+  --ornie-z-toast: 1200;
 }
 
 :root,
@@ -194,6 +195,11 @@
   --ornie-tone-clay-ink: var(--ornie-clay-700);
   --ornie-tone-stone: var(--ornie-sand-200);
   --ornie-tone-stone-ink: var(--ornie-sand-700);
+  --ornie-project-river: var(--ornie-river-500); /* ProjectDot identity mids — same in both themes (500s read on both grounds); semantic so themes can retarget (D-61). Rust allowed here (projects aren't people) */
+  --ornie-project-moss: var(--ornie-moss-500);
+  --ornie-project-clay: var(--ornie-clay-500);
+  --ornie-project-fur: var(--ornie-fur-500);
+  --ornie-project-rust: var(--ornie-rust-500);
   --ornie-focus-ring: var(--ornie-river-500); /* the ONE focus color: outline 2px solid, offset 2px, everywhere */
   --ornie-focus-ring-danger: var(--ornie-rust-500); /* DEPRECATED since 0.2.0 — focus is identical everywhere; remove at 0.3.0 */
   --ornie-overlay: rgba(36, 30, 24, 0.4); /* modal/sheet scrim wash */
@@ -257,6 +263,11 @@
   --ornie-tone-clay-ink: var(--ornie-clay-200);
   --ornie-tone-stone: var(--ornie-sand-800);
   --ornie-tone-stone-ink: var(--ornie-sand-200);
+  --ornie-project-river: var(--ornie-river-500);
+  --ornie-project-moss: var(--ornie-moss-500);
+  --ornie-project-clay: var(--ornie-clay-500);
+  --ornie-project-fur: var(--ornie-fur-500);
+  --ornie-project-rust: var(--ornie-rust-500);
   --ornie-focus-ring: var(--ornie-river-300);
   --ornie-focus-ring-danger: var(--ornie-rust-300);
   --ornie-overlay: rgba(0, 0, 0, 0.55); /* scrim, deeper than light */

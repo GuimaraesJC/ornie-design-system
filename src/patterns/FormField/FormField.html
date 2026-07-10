@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FormField</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var noop = function () {};
+      return [
+        g.section(
+          'single control (label htmlFor → injected id)',
+          g.row(
+            'label + help',
+            h(
+              C.FormField,
+              { label: 'Project name', help: 'Shown in the sidebar and on task rows.' },
+              h(C.Input, { placeholder: 'Garden' }),
+            ),
+          ),
+          g.row(
+            'label only',
+            h(C.FormField, { label: 'Device name' }, h(C.Input, { placeholder: 'Kitchen laptop' })),
+          ),
+          g.row(
+            'error (replaces help)',
+            h(
+              C.FormField,
+              {
+                label: 'Passphrase',
+                help: 'Lost passphrase means lost entries.',
+                error: 'Passphrase needs at least 8 characters',
+              },
+              h(C.Input, { type: 'password', defaultValue: 'otter' }),
+            ),
+          ),
+          g.row(
+            'required',
+            h(
+              C.FormField,
+              {
+                label: 'Passphrase',
+                required: true,
+                help: 'Lost passphrase means lost entries. Keep the recovery code safe.',
+              },
+              h(C.Input, { type: 'password', required: true }),
+            ),
+          ),
+          g.row(
+            'required + error',
+            h(
+              C.FormField,
+              { label: 'Passphrase', required: true, error: 'Passphrase needs at least 8 characters' },
+              h(C.Input, { type: 'password', defaultValue: 'otter', required: true }),
+            ),
+          ),
+        ),
+        g.section(
+          'group (role=group + aria-labelledby)',
+          g.row(
+            'checkbox group + help',
+            h(
+              C.FormField,
+              { label: 'Sync scope', help: 'Choose what this device keeps locally.' },
+              h(C.Checkbox, { label: 'Tasks', defaultChecked: true, onChange: noop }),
+              h(C.Checkbox, { label: 'Notes', defaultChecked: true, onChange: noop }),
+              h(C.Checkbox, { label: 'Journal', onChange: noop }),
+            ),
+          ),
+          g.row(
+            'checkbox group + error',
+            h(
+              C.FormField,
+              { label: 'Reminder days', error: 'Pick at least one day' },
+              h(C.Checkbox, { label: 'Weekdays', onChange: noop }),
+              h(C.Checkbox, { label: 'Weekends', onChange: noop }),
+            ),
+          ),
+          g.row(
+            'group + required',
+            h(
+              C.FormField,
+              { label: 'Keep at least one copy', required: true, help: 'Backups run nightly on this device.' },
+              h(C.Checkbox, { label: 'This device', defaultChecked: true, onChange: noop }),
+              h(C.Checkbox, { label: 'Encrypted cloud copy', onChange: noop }),
+            ),
+          ),
+        ),
+      ];
+      // focus-visible: labels are real <label htmlFor> in single mode — click
+      // one to land in the control; groups announce label + message on entry.
+    });
+  </script>
+</body>
+</html>

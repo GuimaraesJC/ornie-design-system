@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TaskCheck</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var noop = function () {};
+      var matrix = function (size, name) {
+        return g.section(
+          name,
+          g.row(
+            'empty / checked / disabled',
+            h(C.TaskCheck, { size: size, checked: false, onChange: noop, 'aria-label': 'Water the ferns' }),
+            h(C.TaskCheck, { size: size, checked: true, onChange: noop, 'aria-label': 'Water the ferns' }),
+            h(C.TaskCheck, { size: size, checked: false, disabled: true, onChange: noop, 'aria-label': 'Water the ferns' }),
+            h(C.TaskCheck, { size: size, checked: true, disabled: true, onChange: noop, 'aria-label': 'Water the ferns' }),
+          ),
+          g.row(
+            'interactive (tap to draw the check)',
+            h(function () {
+              var s = OrnieGrid.React.useState(false);
+              return h(C.TaskCheck, { size: size, checked: s[0], onChange: s[1], 'aria-label': 'Try me' });
+            }),
+          ),
+        );
+      };
+      return [matrix('md', 'md 23px (phone)'), matrix('sm', 'sm 20px (desktop)')];
+      // focus-visible: tab to any circle — standard 2px outline, offset 2.
+      // hover: ring tints toward --ornie-done.
+    });
+  </script>
+</body>
+</html>

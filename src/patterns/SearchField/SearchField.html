@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SearchField</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var noop = function () {};
+      return [
+        g.section(
+          'states',
+          g.row('empty', h(C.SearchField, { value: '', onChange: noop })),
+          g.row(
+            'empty + kbd hint',
+            h(C.SearchField, { value: '', onChange: noop, kbd: ['⌘', '/'], placeholder: 'Quick find' }),
+          ),
+          g.row(
+            'with value (clear visible, kbd yields)',
+            h(C.SearchField, { value: 'garden', onChange: noop, kbd: ['⌘', '/'] }),
+          ),
+          g.row(
+            'custom labels',
+            h(C.SearchField, {
+              value: 'watering',
+              onChange: noop,
+              placeholder: 'Search notes',
+              'aria-label': 'Search notes',
+              clearLabel: 'Clear notes search',
+            }),
+          ),
+          g.row('disabled empty', h(C.SearchField, { value: '', onChange: noop, kbd: ['⌘', '/'], disabled: true })),
+          g.row('disabled with value', h(C.SearchField, { value: 'garden', onChange: noop, disabled: true })),
+        ),
+        g.section(
+          'sizes (from Input: sm 32 / md 40 / lg 48)',
+          g.row('sm', h(C.SearchField, { size: 'sm', value: '', onChange: noop, placeholder: 'Search notes' })),
+          g.row('sm with value', h(C.SearchField, { size: 'sm', value: 'garden', onChange: noop })),
+          g.row('md', h(C.SearchField, { size: 'md', value: '', onChange: noop, kbd: ['⌘', '/'] })),
+          g.row('lg', h(C.SearchField, { size: 'lg', value: '', onChange: noop, kbd: ['⌘', '/'] })),
+          g.row('lg with value', h(C.SearchField, { size: 'lg', value: 'greenhouse shelf', onChange: noop })),
+        ),
+      ];
+      // focus-visible: tab into a field with a value — input gets the standard
+      // ring, then the clear IconButton (aria-label "Clear search") gets its own.
+    });
+  </script>
+</body>
+</html>

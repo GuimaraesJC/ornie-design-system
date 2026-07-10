@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DateGroupHeader</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var box = function (child) {
+        return h('div', { style: { width: '340px' } }, child);
+      };
+      return [
+        g.section(
+          'labels (app-formatted; DS only styles)',
+          g.row('full date', box(h(C.DateGroupHeader, null, 'Friday, July 3'))),
+          g.row('relative', box(h(C.DateGroupHeader, null, 'Tomorrow · Saturday'))),
+          g.row('weekday', box(h(C.DateGroupHeader, null, 'Monday'))),
+          g.row('other year', box(h(C.DateGroupHeader, null, 'Friday, July 3, 2027'))),
+        ),
+        g.section(
+          'trailing count',
+          g.row('count', box(h(C.DateGroupHeader, { trailing: '4' }, 'Monday'))),
+          g.row('badge', box(h(C.DateGroupHeader, { trailing: h(C.Badge, { count: 12 }) }, 'Friday, July 3'))),
+        ),
+        g.section(
+          'with rows (2e grouping)',
+          g.row(
+            'group',
+            box(
+              h(
+                'div',
+                null,
+                h(C.DateGroupHeader, { trailing: '2', style: { marginBottom: '2px' } }, 'Tomorrow · Saturday'),
+                h(C.ListRow, { title: 'Pack for Porto — passports, chargers', description: 'Porto trip · 25 min' }),
+                h(C.ListRow, { title: "Buy Sam's birthday card", description: '10 min' }),
+              ),
+            ),
+          ),
+        ),
+        g.section(
+          'sticky (scroll the box)',
+          g.row(
+            'sticky',
+            box(
+              h(
+                'div',
+                {
+                  // Scrollable regions need keyboard access (axe): real screens
+                  // give their scroll container tabindex + a name, as here.
+                  tabIndex: 0,
+                  role: 'region',
+                  'aria-label': 'Upcoming (scrolls)',
+                  style: { height: '160px', overflowY: 'auto', border: '1px solid var(--ornie-border)', borderRadius: 'var(--ornie-radius-sm)' },
+                },
+                h(C.DateGroupHeader, { sticky: true }, 'Tomorrow · Saturday'),
+                h(C.ListRow, { title: 'Pack for Porto — passports, chargers', description: 'Porto trip · 25 min' }),
+                h(C.ListRow, { title: 'Water plants before leaving' }),
+                h(C.DateGroupHeader, { sticky: true }, 'Monday'),
+                h(C.ListRow, { title: 'Homepage wireframe — first pass', description: 'Website redesign · 45 min' }),
+                h(C.ListRow, { title: 'Review Q3 budget draft', description: 'Q3 finances' }),
+                h(C.ListRow, { title: 'Book dentist follow-up' }),
+              ),
+            ),
+          ),
+        ),
+      ];
+    });
+  </script>
+</body>
+</html>

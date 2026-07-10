@@ -1,0 +1,41 @@
+/* EmptyState — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: var(--ornie-space-6);
+  font-family: var(--ornie-font-sans);
+  text-align: center;
+}
+
+/* Icon slot — non-text graphic, so text-subtle is allowed here. */
+.ornie-empty-state__icon {
+  display: inline-flex;
+  margin-bottom: var(--ornie-space-4);
+  color: var(--ornie-text-subtle);
+}
+.ornie-empty-state__icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.ornie-empty-state__title {
+  margin: 0;
+  font-size: var(--ornie-text-md);
+  font-weight: var(--ornie-weight-semibold);
+  letter-spacing: -0.2px;
+  color: var(--ornie-text);
+}
+
+.ornie-empty-state__body {
+  margin: var(--ornie-space-2) 0 0;
+  max-width: 44ch;
+  font-size: var(--ornie-text-sm);
+  line-height: var(--ornie-leading-normal);
+  color: var(--ornie-text-muted);
+}
+
+.ornie-empty-state__action {
+  margin-top: var(--ornie-space-5);
+}

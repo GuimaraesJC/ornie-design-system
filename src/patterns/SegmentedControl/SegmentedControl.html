@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SegmentedControl</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      // Live wrapper: real useState so every control in the grid is interactive.
+      function Demo(props) {
+        var state = OrnieGrid.React.useState(props.initial);
+        return h(C.SegmentedControl, {
+          size: props.size,
+          options: props.options,
+          value: state[0],
+          onChange: state[1],
+          'aria-label': props.label,
+        });
+      }
+      var two = [
+        { value: 'local', label: 'Local' },
+        { value: 'cloud', label: 'Cloud' },
+      ];
+      var three = [
+        { value: 'light', label: 'Light' },
+        { value: 'dark', label: 'Dark' },
+        { value: 'system', label: 'System' },
+      ];
+      var four = [
+        { value: 'none', label: 'None' },
+        { value: 'low', label: 'Low' },
+        { value: 'medium', label: 'Medium' },
+        { value: 'high', label: 'High' },
+      ];
+      var disabledMid = [
+        { value: 'light', label: 'Light' },
+        { value: 'dark', label: 'Dark', disabled: true },
+        { value: 'system', label: 'System' },
+      ];
+      var matrix = function (size) {
+        return g.section(
+          'size ' + size,
+          g.row('2 options', h(Demo, { size: size, options: two, initial: 'local', label: 'Ask model' })),
+          g.row(
+            '3 options, each position',
+            h(Demo, { size: size, options: three, initial: 'light', label: 'Appearance (first)' }),
+            h(Demo, { size: size, options: three, initial: 'dark', label: 'Appearance (middle)' }),
+            h(Demo, { size: size, options: three, initial: 'system', label: 'Appearance (last)' }),
+          ),
+          g.row('4 options', h(Demo, { size: size, options: four, initial: 'low', label: 'Energy' })),
+          g.row(
+            'disabled option',
+            h(Demo, { size: size, options: disabledMid, initial: 'light', label: 'Appearance, dark unavailable' }),
+          ),
+        );
+      };
+      return [matrix('sm'), matrix('md')];
+      // Keyboard proof: one tab stop per control; arrows move AND select
+      // (wrapping, skipping disabled), Home/End jump; 2px --ornie-focus-ring.
+    });
+  </script>
+</body>
+</html>

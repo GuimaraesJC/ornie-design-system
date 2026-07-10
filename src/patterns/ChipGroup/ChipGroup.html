@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ChipGroup</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var useState = OrnieGrid.React.useState;
+      // Live wrappers: real useState so selection works in the grid.
+      function Single(props) {
+        var state = useState(props.initial === undefined ? null : props.initial);
+        return h(C.ChipGroup, {
+          mode: 'single',
+          required: props.required,
+          size: props.size,
+          options: props.options,
+          value: state[0],
+          onChange: state[1],
+          'aria-label': props.label,
+          style: props.style,
+        });
+      }
+      function Multi(props) {
+        var state = useState(props.initial || []);
+        return h(C.ChipGroup, {
+          mode: 'multi',
+          size: props.size,
+          options: props.options,
+          value: state[0],
+          onChange: state[1],
+          'aria-label': props.label,
+        });
+      }
+      var targets = [
+        { value: 'today', label: 'Today' },
+        { value: 'week', label: 'This week' },
+        { value: 'someday', label: 'Someday' },
+      ];
+      var tags = [
+        { value: 'errands', label: 'errands' },
+        { value: 'home', label: 'home' },
+        { value: 'focus', label: 'focus' },
+        { value: 'calls', label: 'calls' },
+      ];
+      var withLeading = [
+        { value: 'scheduled', label: 'Scheduled', leading: h(C.Icon, { name: 'calendar' }) },
+        { value: 'tagged', label: 'Tagged', leading: h(C.Icon, { name: 'tag' }) },
+        { value: 'waiting', label: 'Waiting', leading: h(C.Icon, { name: 'person' }) },
+      ];
+      var withDisabled = [
+        { value: 'today', label: 'Today' },
+        { value: 'week', label: 'This week' },
+        { value: 'project', label: 'Garden project', disabled: true },
+      ];
+      var long = [
+        'Today', 'This week', 'Someday', 'Garden project', 'Reading list',
+        'Errands', 'Calls', 'Home admin', 'Deep focus', 'Waiting on someone',
+      ].map(function (label) {
+        return { value: label.toLowerCase().replace(/ /g, '-'), label: label };
+      });
+      return [
+        g.section(
+          'single',
+          g.row('deselectable', h(Single, { options: targets, initial: 'today', label: 'Send to' })),
+          g.row('no selection yet', h(Single, { options: targets, label: 'Send to' })),
+          g.row('required', h(Single, { options: targets, initial: 'week', required: true, label: 'Scope' })),
+        ),
+        g.section(
+          'multi',
+          g.row('md', h(Multi, { options: tags, initial: ['errands', 'focus'], label: 'Tags' })),
+          g.row('sm', h(Multi, { options: tags, initial: ['home'], size: 'sm', label: 'Tags' })),
+        ),
+        g.section(
+          'leading icons',
+          g.row('md', h(Single, { options: withLeading, initial: 'scheduled', label: 'Filter' })),
+          g.row('sm', h(Single, { options: withLeading, initial: 'waiting', size: 'sm', label: 'Filter' })),
+        ),
+        g.section(
+          'disabled option',
+          g.row('inert + dimmed', h(Single, { options: withDisabled, initial: 'today', label: 'Send to' })),
+        ),
+        g.section(
+          'wrapped long set',
+          g.row(
+            'constrained width',
+            h(
+              'div',
+              { style: { maxWidth: '320px' } },
+              h(Multi, { options: long, initial: ['today', 'errands'], size: 'sm', label: 'Filters' }),
+            ),
+          ),
+        ),
+      ];
+      // Keyboard proof: each group is one tab stop; all four arrows move focus
+      // (wrapping, disabled chips skipped), Home/End jump, Space/Enter toggles.
+    });
+  </script>
+</body>
+</html>

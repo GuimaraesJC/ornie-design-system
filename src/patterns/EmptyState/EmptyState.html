@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EmptyState</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var action = function (label) {
+        return h(C.Button, { variant: 'secondary', size: 'sm' }, label || 'Capture something');
+      };
+      return [
+        g.section(
+          'icon + title + body',
+          g.row(
+            'no action',
+            h(
+              C.EmptyState,
+              { icon: h(C.Icon, { name: 'inbox' }), title: 'Inbox is clear' },
+              'New captures land here first — sort them whenever you’re ready.',
+            ),
+          ),
+          g.row(
+            'with action',
+            h(
+              C.EmptyState,
+              { icon: h(C.Icon, { name: 'inbox' }), title: 'Inbox is clear', action: action() },
+              'New captures land here first — sort them whenever you’re ready.',
+            ),
+          ),
+        ),
+        g.section(
+          'title + body (no icon)',
+          g.row(
+            'no action',
+            h(
+              C.EmptyState,
+              { title: 'Trash is empty' },
+              'Nothing here screams. Items rest for 30 days, then leave on their own.',
+            ),
+          ),
+          g.row(
+            'with action',
+            h(
+              C.EmptyState,
+              { title: 'Nothing logged yet', action: h(C.Button, { variant: 'ghost', size: 'sm' }, 'Go to Today') },
+              'Finished tasks gather here at the close of each day.',
+            ),
+          ),
+        ),
+        g.section(
+          'title only',
+          g.row('minimal', h(C.EmptyState, { title: 'Nothing waiting on anyone' })),
+          g.row(
+            'title + action',
+            h(C.EmptyState, { title: 'Nothing planned for the weekend', action: action('Plan something') }),
+          ),
+        ),
+        g.section(
+          'long body',
+          g.row(
+            'wraps at 44ch',
+            h(
+              C.EmptyState,
+              { icon: h(C.Icon, { name: 'moon' }), title: 'The day is closed' },
+              'Everything you finished is in the Logbook, and everything left has already moved to tomorrow — there is nothing more to do here tonight.',
+            ),
+          ),
+        ),
+      ];
+    });
+  </script>
+</body>
+</html>

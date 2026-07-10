@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Toast</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    // Static proof only: these are inline presentational <Toast> pills.
+    // The live behavior — portal to body, one-visible queue, 8s timer with
+    // hover/focus pause, enter/leave rise — lives in the Storybook story
+    // 'Components/Toast' → QueueDemo (ToastProvider + useToast + ToastHost).
+    OrnieGrid.mount(function (h, C, g) {
+      var noop = function () {};
+      return [
+        g.section(
+          'message only',
+          g.row('short', h(C.Toast, {}, 'Done')),
+          g.row('sentence', h(C.Toast, {}, 'Let go. It rests in Trash for 30 days.')),
+        ),
+        g.section(
+          'with action ("Done · Undo")',
+          g.row('undo', h(C.Toast, { action: 'Undo', onAction: noop }, 'Done')),
+          g.row('export ready', h(C.Toast, { action: 'Download', onAction: noop }, 'Export ready')),
+          g.row('device added', h(C.Toast, { action: 'View devices', onAction: noop }, 'Device added')),
+        ),
+        g.section(
+          'long text',
+          g.row(
+            'wraps, action stays on one line',
+            h(
+              C.Toast,
+              { action: 'Undo', onAction: noop },
+              'Captured — it’s in Inbox. Sort it whenever you have a quiet moment.',
+            ),
+          ),
+        ),
+      ];
+      // focus-visible: tab to any action — standard 2px --ornie-focus-ring outline.
+    });
+  </script>
+</body>
+</html>

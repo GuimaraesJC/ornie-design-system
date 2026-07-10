@@ -1,0 +1,19 @@
+/* SearchField — semantic tokens only. Audit: no hex, no raw scales, no theme selectors.
+   Element-level selectors only (no other component's BEM block is targeted). */
+
+/* Hide the native WebKit search adornments — the DS clear IconButton owns
+   clearing, and two ×s would be noise. */
+.ornie-searchfield input[type='search']::-webkit-search-decoration,
+.ornie-searchfield input[type='search']::-webkit-search-cancel-button,
+.ornie-searchfield input[type='search']::-webkit-search-results-button,
+.ornie-searchfield input[type='search']::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Shortcut hint sits inert in the trailing slot (Input's slot CSS keeps
+   non-interactive content click-through). */
+.ornie-searchfield__kbd {
+  display: inline-flex;
+  align-items: center;
+}

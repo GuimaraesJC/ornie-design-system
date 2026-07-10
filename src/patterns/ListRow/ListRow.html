@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ListRow</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var box = function (child) {
+        return h('div', { style: { width: '340px' } }, child);
+      };
+      var slots = function (density) {
+        return g.section(
+          'density ' + density + ' — slots',
+          g.row('title only', box(h(C.ListRow, { density: density, title: 'Appearance' }))),
+          g.row(
+            'description',
+            box(h(C.ListRow, { density: density, title: 'Porto ideas', description: 'Tram 28 at golden hour, the bookshop near the bridge, that tiled façade…' })),
+          ),
+          g.row(
+            'leading',
+            box(h(C.ListRow, { density: density, leading: h(C.Icon, { name: 'note', size: 20 }), title: 'Porto ideas', description: 'Tram 28 at golden hour' })),
+          ),
+          g.row(
+            'trailing',
+            box(h(C.ListRow, { density: density, title: 'Today density', trailing: 'Focused' })),
+          ),
+          g.row(
+            'all slots',
+            box(
+              h(C.ListRow, {
+                density: density,
+                leading: h(C.Icon, { name: 'gear', size: 20 }),
+                title: 'Sidebar stage',
+                description: 'Month three',
+                trailing: h(C.Badge, { count: 2 }),
+              }),
+            ),
+          ),
+        );
+      };
+
+      return [
+        slots('phone'),
+        slots('desktop'),
+        g.section(
+          'interactive + chevron + padded',
+          g.row(
+            'interactive button',
+            box(h(C.ListRow, { interactive: true, onClick: function () {}, title: 'Appearance', trailing: 'Riverbed · Light' })),
+          ),
+          g.row(
+            'chevron',
+            box(h(C.ListRow, { interactive: true, onClick: function () {}, title: 'Appearance', trailing: 'Riverbed · Light', chevron: true })),
+          ),
+          g.row(
+            'interactive link',
+            box(h(C.ListRow, { interactive: true, href: '#shortcuts', title: 'Keyboard shortcuts', chevron: true })),
+          ),
+          g.row(
+            'padded (card inset)',
+            box(h(C.ListRow, { padded: true, interactive: true, onClick: function () {}, title: 'Home widgets', trailing: 'Today + Capture', chevron: true })),
+          ),
+          g.row(
+            'chevron only, static',
+            box(h(C.ListRow, { title: 'Share sheet', chevron: true })),
+          ),
+        ),
+        g.section(
+          'recipes',
+          g.row(
+            'settings row',
+            box(
+              h(C.ListRow, {
+                padded: true,
+                interactive: true,
+                onClick: function () {},
+                leading: h(C.Icon, { name: 'moon', size: 20 }),
+                title: 'Appearance',
+                trailing: 'Riverbed · Light',
+                chevron: true,
+              }),
+            ),
+          ),
+          g.row(
+            'person row',
+            box(
+              h(C.ListRow, {
+                interactive: true,
+                onClick: function () {},
+                leading: h(C.Avatar, { name: 'Laura Mendes', size: 'sm' }),
+                title: 'Laura Mendes',
+                description: '2 waiting',
+                trailing: h(C.Badge, { count: 2 }),
+                chevron: true,
+              }),
+            ),
+          ),
+          g.row(
+            'note row',
+            box(
+              h(C.ListRow, {
+                interactive: true,
+                onClick: function () {},
+                title: 'Porto ideas',
+                description: 'Tram 28 at golden hour, the bookshop near the bridge…',
+                trailing: 'Jul 2',
+              }),
+            ),
+          ),
+          g.row(
+            'module row',
+            box(
+              h(C.ListRow, {
+                padded: true,
+                leading: h(C.Icon, { name: 'puzzle', size: 20 }),
+                title: 'Calendar',
+                description: "Today's shape on the Upcoming view",
+                trailing: h(C.Switch, { 'aria-label': 'Calendar module', defaultChecked: true }),
+              }),
+            ),
+          ),
+        ),
+      ];
+      // focus-visible: tab through either half — every interactive row gets
+      // the standard 2px outline (--ornie-focus-ring).
+    });
+  </script>
+</body>
+</html>

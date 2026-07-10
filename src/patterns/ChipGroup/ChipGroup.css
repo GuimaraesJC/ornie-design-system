@@ -1,0 +1,11 @@
+/* ChipGroup — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ornie-space-2); /* 8px, per roadmap */
+}
+
+/* Own element class placed on the Chip root (not a reach into Chip internals). */
+.ornie-chip-group__chip--disabled {
+  opacity: 0.45;
+}

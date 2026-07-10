@@ -1,0 +1,90 @@
+/* Toast — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+
+/* Host: bottom-centered fixed region; the toast itself takes pointer events.
+   Mounted persistently (aria-live region) — invisible when the queue is empty. */
+.ornie-toast-host {
+  position: fixed;
+  bottom: calc(var(--ornie-space-8) + env(safe-area-inset-bottom, 0px)); /* mockup: bottom 32px */
+  left: 50%;
+  transform: translateX(-50%);
+  /* TOKEN GAP: --ornie-z-toast is not in tokens.json yet (above modal 1000 /
+     tooltip 1100) — fallback until the integrator adds it. */
+  z-index: var(--ornie-z-toast, 1200);
+  display: flex;
+  justify-content: center;
+  width: max-content;
+  max-width: calc(100vw - var(--ornie-space-8));
+  pointer-events: none;
+}
+
+/* The pill. Padding/radius lifted from the desktop mockup toast:
+   12px 18px, --ornie-radius-md, shadow-lg, gap 10px. */
+.ornie-toast {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: 100%;
+  padding: 12px 18px;
+  border-radius: var(--ornie-radius-md);
+  background: var(--ornie-surface-inverse);
+  color: var(--ornie-text-inverse);
+  font-family: var(--ornie-font-sans);
+  font-size: var(--ornie-text-sm);
+  font-weight: var(--ornie-weight-medium);
+  line-height: var(--ornie-leading-normal);
+  box-shadow: var(--ornie-shadow-lg);
+  pointer-events: auto;
+  transition:
+    opacity var(--ornie-duration-gentle) var(--ornie-ease-out),
+    transform var(--ornie-duration-gentle) var(--ornie-ease-out);
+}
+
+/* Enter/leave: fade + 4px rise. Reduced motion collapses via the duration token. */
+.ornie-toast--entering,
+.ornie-toast--leaving {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.ornie-toast__message {
+  min-width: 0;
+}
+
+/* Quiet separator — decorative (aria-hidden). */
+.ornie-toast__sep {
+  opacity: 0.72;
+}
+
+/* Action ("Undo"): inverse ink, semibold, underlined. Sanctioned exception to
+   the accent-for-actions rule — --ornie-accent-text fails AA contrast on
+   --ornie-surface-inverse, so the action is --ornie-text-inverse and the
+   underline + weight carry the affordance instead of color. */
+.ornie-toast__action {
+  position: relative;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-weight: var(--ornie-weight-semibold);
+  color: var(--ornie-text-inverse);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.ornie-toast__action:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}
+
+/* ≥44px hit target on touch: invisible hit-slop, visual size unchanged. */
+@media (pointer: coarse) {
+  .ornie-toast__action::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: max(100%, 44px);
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+}

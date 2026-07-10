@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ListSection</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      // Fixed-width host so rows read like a list column, not a flex shelf.
+      var box = function (child) {
+        return h('div', { style: { width: '340px' } }, child);
+      };
+      var demoRows = function (padded) {
+        return [
+          h(C.ListRow, { key: 'a', padded: padded, title: 'Pack for Porto — passports, chargers', description: 'Porto trip · 25 min' }),
+          h(C.ListRow, { key: 'b', padded: padded, title: "Buy Sam's birthday card", description: '10 min' }),
+          h(C.ListRow, { key: 'c', padded: padded, title: 'Water plants before leaving' }),
+        ];
+      };
+      var settingsRows = [
+        h(C.ListRow, { key: 'a', padded: true, interactive: true, onClick: function () {}, title: 'Appearance', trailing: 'Riverbed · Light', chevron: true }),
+        h(C.ListRow, { key: 'b', padded: true, interactive: true, onClick: function () {}, title: 'Today density', trailing: 'Focused', chevron: true }),
+        h(C.ListRow, { key: 'c', padded: true, title: 'Quiet hours', trailing: h(C.Switch, { 'aria-label': 'Quiet hours', defaultChecked: true }) }),
+      ];
+
+      return [
+        g.section(
+          'surface plain — separators between rows',
+          g.row('no trailing', box(h(C.ListSection, { label: 'This weekend' }, demoRows(false)))),
+          g.row('trailing count', box(h(C.ListSection, { label: 'Waiting', trailing: h(C.Badge, { count: 3 }) }, demoRows(false)))),
+          g.row(
+            'trailing action',
+            box(h(C.ListSection, { label: 'Recently deleted', trailing: h(C.Button, { variant: 'ghost', size: 'sm' }, 'Empty') }, demoRows(false))),
+          ),
+          g.row('no label', box(h(C.ListSection, null, demoRows(false)))),
+        ),
+        g.section(
+          'surface card — separators between padded rows',
+          g.row('no trailing', box(h(C.ListSection, { label: 'On this phone', surface: 'card' }, settingsRows))),
+          g.row('trailing count', box(h(C.ListSection, { label: 'Sealed', surface: 'card', trailing: h(C.Badge, { count: 3 }) }, demoRows(true)))),
+        ),
+        g.section(
+          'label element (as)',
+          g.row('as h3', box(h(C.ListSection, { label: 'Sealed · 3 entries', as: 'h3', surface: 'card' }, demoRows(true)))),
+        ),
+      ];
+      // focus-visible: tab into the card sections — interactive rows get the
+      // standard 2px outline (--ornie-focus-ring), unclipped by the card.
+    });
+  </script>
+</body>
+</html>

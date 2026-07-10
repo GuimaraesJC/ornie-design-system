@@ -109,6 +109,11 @@ public enum OrnieTokens {
     public static let toneClayInk = Color(.sRGB, red: 0.4353, green: 0.3216, blue: 0.1216)
     public static let toneStone = Color(.sRGB, red: 0.8863, green: 0.8549, blue: 0.8118)
     public static let toneStoneInk = Color(.sRGB, red: 0.3059, green: 0.2706, blue: 0.2314)
+    public static let projectRiver = Color(.sRGB, red: 0.2980, green: 0.4902, blue: 0.4392)
+    public static let projectMoss = Color(.sRGB, red: 0.3373, green: 0.4784, blue: 0.3059)
+    public static let projectClay = Color(.sRGB, red: 0.6627, green: 0.5020, blue: 0.2196)
+    public static let projectFur = Color(.sRGB, red: 0.5451, green: 0.4157, blue: 0.3098)
+    public static let projectRust = Color(.sRGB, red: 0.6471, green: 0.3608, blue: 0.2784)
     public static let focusRing = Color(.sRGB, red: 0.2980, green: 0.4902, blue: 0.4392)
     public static let overlay = Color(.sRGB, red: 0.1412, green: 0.1176, blue: 0.0941, opacity: 0.4)
   }
@@ -160,6 +165,11 @@ public enum OrnieTokens {
     public static let toneClayInk = Color(.sRGB, red: 0.8784, green: 0.8039, blue: 0.6314)
     public static let toneStone = Color(.sRGB, red: 0.2196, green: 0.1922, blue: 0.1647)
     public static let toneStoneInk = Color(.sRGB, red: 0.8863, green: 0.8549, blue: 0.8118)
+    public static let projectRiver = Color(.sRGB, red: 0.2980, green: 0.4902, blue: 0.4392)
+    public static let projectMoss = Color(.sRGB, red: 0.3373, green: 0.4784, blue: 0.3059)
+    public static let projectClay = Color(.sRGB, red: 0.6627, green: 0.5020, blue: 0.2196)
+    public static let projectFur = Color(.sRGB, red: 0.5451, green: 0.4157, blue: 0.3098)
+    public static let projectRust = Color(.sRGB, red: 0.6471, green: 0.3608, blue: 0.2784)
     public static let focusRing = Color(.sRGB, red: 0.5451, green: 0.6980, blue: 0.6431)
     public static let overlay = Color(.sRGB, red: 0.0000, green: 0.0000, blue: 0.0000, opacity: 0.55)
   }

@@ -1,0 +1,46 @@
+/* FormField — semantic tokens only. Audit: no hex, no raw scales, no theme selectors.
+   Mirrors the shared field skin's label/desc measures (styles/field.css) without
+   reaching into another component's block. */
+.ornie-formfield {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ornie-space-2);
+  font-family: var(--ornie-font-sans);
+  min-width: 0;
+}
+
+.ornie-formfield__label {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ornie-space-2);
+  font-size: var(--ornie-text-sm);
+  font-weight: var(--ornie-weight-semibold);
+  color: var(--ornie-text);
+  line-height: var(--ornie-leading-tight);
+}
+
+/* Quiet "required" hint — a plain muted word, never an asterisk or a color alarm. */
+.ornie-formfield__required {
+  font-size: var(--ornie-text-xs);
+  font-weight: var(--ornie-weight-regular);
+  color: var(--ornie-text-muted);
+}
+
+.ornie-formfield__control {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ornie-space-2);
+  min-width: 0;
+}
+
+.ornie-formfield__desc {
+  font-size: var(--ornie-text-sm);
+  color: var(--ornie-text-muted);
+  line-height: var(--ornie-leading-tight);
+}
+
+/* Error ink — quiet color change plus a plain sentence; nothing moves or shouts. */
+.ornie-formfield__desc--error {
+  color: var(--ornie-danger-text);
+  font-weight: var(--ornie-weight-medium);
+}

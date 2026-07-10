@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MetaLine</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var surface = function (width, children) {
+        return h(
+          'div',
+          { style: { background: 'var(--ornie-surface)', borderRadius: 'var(--ornie-radius-sm)', padding: '8px 12px', width: width + 'px' } },
+          children,
+        );
+      };
+      return [
+        g.section(
+          'runs',
+          g.row('time · project · estimate', surface(340, h(C.MetaLine, null, h('span', null, '9:00'), h(C.ProjectDot, { color: 'moss', label: 'Garden project' }), h('span', null, '25m')))),
+          g.row('with repeat glyph', surface(340, h(C.MetaLine, null, h('span', null, 'tomorrow'), h('span', null, h(C.Icon, { name: 'repeat', size: 16 }), ' weekly')))),
+          g.row('single fragment', surface(340, h(C.MetaLine, null, h('span', null, 'today')))),
+        ),
+        g.section(
+          'behavior',
+          g.row(
+            'truncates tail-first at 220px',
+            surface(220, h(C.MetaLine, null, h('span', null, '9:00'), h(C.ProjectDot, { color: 'clay', label: 'A project with a very long name indeed' }))),
+          ),
+          g.row(
+            'conditional fragments drop cleanly',
+            surface(340, h(C.MetaLine, null, h('span', null, 'today'), null, false, h('span', null, '15m'))),
+          ),
+        ),
+      ];
+    });
+  </script>
+</body>
+</html>

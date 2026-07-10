@@ -1,0 +1,102 @@
+/* ListRow — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-listrow {
+  display: flex;
+  align-items: center;
+  gap: var(--ornie-space-3);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  background: none;
+  font-family: var(--ornie-font-sans);
+  color: var(--ornie-text);
+  text-align: inherit;
+}
+
+/* Semantic-element resets (interactive rows render <button>/<a>) */
+a.ornie-listrow,
+button.ornie-listrow {
+  appearance: none;
+  font: inherit;
+  font-family: var(--ornie-font-sans);
+  text-decoration: none;
+}
+
+/* Density: phone rows are their own ≥44px hit target; desktop is tighter. */
+.ornie-listrow--phone {
+  min-height: 44px;
+  padding-top: var(--ornie-space-2);
+  padding-bottom: var(--ornie-space-2);
+}
+.ornie-listrow--desktop {
+  min-height: 36px;
+  padding-top: var(--ornie-space-1);
+  padding-bottom: var(--ornie-space-1);
+}
+
+/* Horizontal inset — parent's by default; 16px when the row is inside a
+   ListSection card (mockup 1v uses 15px; snapped to the 4px grid, matching
+   Divider inset="md"). */
+.ornie-listrow--padded {
+  padding-left: var(--ornie-space-4);
+  padding-right: var(--ornie-space-4);
+}
+
+.ornie-listrow__leading {
+  display: inline-flex;
+  align-items: center;
+  flex: none;
+  color: var(--ornie-text-muted);
+}
+
+.ornie-listrow__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.ornie-listrow__title {
+  font-size: var(--ornie-text-md);
+  font-weight: var(--ornie-weight-medium);
+  line-height: var(--ornie-leading-tight);
+  color: var(--ornie-text);
+}
+
+.ornie-listrow__description {
+  font-size: var(--ornie-text-sm);
+  line-height: var(--ornie-leading-tight);
+  color: var(--ornie-text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ornie-listrow__trailing {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ornie-space-2);
+  flex: none;
+  font-size: var(--ornie-text-sm);
+  color: var(--ornie-text-muted);
+}
+
+.ornie-listrow__chevron {
+  flex: none;
+  color: var(--ornie-text-muted);
+}
+
+/* Interactive — quiet hover wash, standard focus ring */
+.ornie-listrow--interactive {
+  cursor: pointer;
+  transition: background-color var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+.ornie-listrow--interactive:hover {
+  background: var(--ornie-hover);
+}
+.ornie-listrow--interactive:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}

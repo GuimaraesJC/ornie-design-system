@@ -1,0 +1,39 @@
+/* DateGroupHeader — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-dategroupheader {
+  display: flex;
+  align-items: baseline;
+  gap: var(--ornie-space-2);
+  margin: 0;
+  font-family: var(--ornie-font-sans);
+}
+
+/* 11px caps accent kicker (2a/2e header kicker style, SPECS) */
+.ornie-dategroupheader__label {
+  font-size: 11px;
+  font-weight: var(--ornie-weight-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: var(--ornie-leading-tight);
+  color: var(--ornie-accent-text);
+}
+
+/* Trailing count — informational, never alarm-colored (D-01) */
+.ornie-dategroupheader__trailing {
+  font-size: 11px;
+  font-weight: var(--ornie-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  line-height: var(--ornie-leading-tight);
+  color: var(--ornie-text-muted);
+}
+
+/* Sticky: pins to the scroll container top on the page ground so rows
+   scroll under. Small own padding so pinned rows don't touch the text —
+   the documented exception to parents-own-spacing. */
+.ornie-dategroupheader--sticky {
+  position: sticky;
+  top: 0;
+  z-index: 1; /* above sibling rows only; overlays use --ornie-z-* */
+  background: var(--ornie-bg);
+  padding-top: var(--ornie-space-2);
+  padding-bottom: var(--ornie-space-1);
+}

@@ -1,0 +1,69 @@
+/* ListSection — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-listsection {
+  display: block;
+  margin: 0;
+  font-family: var(--ornie-font-sans);
+  color: var(--ornie-text);
+}
+
+/* Header line: label + optional trailing count/action */
+.ornie-listsection__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ornie-space-2);
+  margin-bottom: var(--ornie-space-2);
+}
+
+/* 10.5px caps +1px tracking (SPECS). Mockups use text-subtle here; the AA
+   audit fails it under 15px, so the sanctioned adjustment is text-muted. */
+.ornie-listsection__label {
+  margin: 0;
+  font-size: 10.5px;
+  font-weight: var(--ornie-weight-bold);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  line-height: var(--ornie-leading-tight);
+  color: var(--ornie-text-muted);
+}
+
+.ornie-listsection__trailing {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ornie-space-2);
+  flex: none;
+  font-size: var(--ornie-text-xs);
+  color: var(--ornie-text-muted);
+}
+
+/*
+ * The section owns the hairlines between its rows. `> * + *` targets the
+ * anonymous children slot (whatever rows the consumer passed), not another
+ * component's internals — sanctioned in the roadmap spec for this component.
+ */
+.ornie-listsection__rows {
+  display: block;
+}
+.ornie-listsection__rows > * + * {
+  border-top: 1px solid var(--ornie-track);
+}
+
+/* Card surface: rows sit on a flat card (1v settings groups). Rows inside
+   should be `padded` so content insets from the card edge; separators stay
+   full-bleed like the mockups. */
+.ornie-listsection--card .ornie-listsection__rows {
+  background: var(--ornie-surface);
+  border: 1px solid var(--ornie-border-subtle);
+  border-radius: var(--ornie-radius-lg);
+}
+/* Round the outer rows so hover washes follow the card corners (no
+   overflow:hidden — it would clip row focus rings). Still the anonymous
+   slot, not another component's internals. */
+.ornie-listsection--card .ornie-listsection__rows > :first-child {
+  border-top-left-radius: calc(var(--ornie-radius-lg) - 1px);
+  border-top-right-radius: calc(var(--ornie-radius-lg) - 1px);
+}
+.ornie-listsection--card .ornie-listsection__rows > :last-child {
+  border-bottom-left-radius: calc(var(--ornie-radius-lg) - 1px);
+  border-bottom-right-radius: calc(var(--ornie-radius-lg) - 1px);
+}
