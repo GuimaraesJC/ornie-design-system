@@ -80,40 +80,31 @@ const PAIRS = [
   ['--ornie-warning-text', '--ornie-warning-subtle', 4.5, true],
   ['--ornie-danger-text', '--ornie-danger-subtle', 4.5, true],
   ['--ornie-danger-text', '--ornie-surface', 4.5, true],
-  ['--ornie-inverse-text', '--ornie-inverse-surface', 4.5, true],
+  ['--ornie-text-inverse', '--ornie-surface-inverse', 4.5, true],
+  // Interaction washes carry normal text
+  ['--ornie-text', '--ornie-hover', 4.5, true],
+  ['--ornie-text', '--ornie-selected', 4.5, true],
+  ['--ornie-text-muted', '--ornie-hover', 4.5, true],
+  // Decorative identity tones (Avatar, ProjectDot)
+  ['--ornie-tone-river-ink', '--ornie-tone-river', 4.5, true],
+  ['--ornie-tone-fur-ink', '--ornie-tone-fur', 4.5, true],
+  ['--ornie-tone-moss-ink', '--ornie-tone-moss', 4.5, true],
+  ['--ornie-tone-clay-ink', '--ornie-tone-clay', 4.5, true],
+  ['--ornie-tone-stone-ink', '--ornie-tone-stone', 4.5, true],
   // UI boundaries (WCAG 1.4.11 where ≥3; hairlines are deliberate and non-fatal)
   ['--ornie-accent', '--ornie-bg', 3, true],
   ['--ornie-danger', '--ornie-bg', 3, true],
+  ['--ornie-focus-ring', '--ornie-bg', 3, true],
+  ['--ornie-focus-ring', '--ornie-surface', 3, true],
   ['--ornie-border', '--ornie-surface', 1.3, false],
   ['--ornie-border-strong', '--ornie-surface', 1.7, false],
   ['--ornie-border-hover', '--ornie-surface', 2.5, false],
 ];
 
-// Avatar decorative tones (defined in Avatar.css, not tokens.css)
-const TONES = {
-  light: [
-    ['--ornie-river-700', '--ornie-river-100'],
-    ['--ornie-fur-700', '--ornie-fur-100'],
-    ['--ornie-moss-700', '--ornie-moss-100'],
-    ['--ornie-clay-700', '--ornie-clay-100'],
-    ['--ornie-sand-700', '--ornie-sand-200'],
-  ],
-  dark: [
-    ['--ornie-river-200', '--ornie-river-900'],
-    ['--ornie-fur-200', '--ornie-fur-900'],
-    ['--ornie-moss-200', '--ornie-moss-900'],
-    ['--ornie-clay-200', '--ornie-clay-900'],
-    ['--ornie-sand-200', '--ornie-sand-800'],
-  ],
-};
-
 let failed = 0;
 for (const [themeName, theme] of [['light', light], ['dark', dark]]) {
   const page = parseColor(resolve('--ornie-bg', theme));
-  const rows = [
-    ...PAIRS,
-    ...TONES[themeName].map(([fg, bgc]) => [fg, bgc, 4.5, true]),
-  ];
+  const rows = PAIRS;
   console.log(`\n${themeName}`);
   for (const [fgName, bgName, min, fatal] of rows) {
     let bgc = parseColor(resolve(bgName, theme));

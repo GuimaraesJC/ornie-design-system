@@ -1,4 +1,4 @@
-import { Section, Swatch, TokenValue } from './shared';
+import { Section, Swatch, TokenValue } from '../shared';
 
 const SHADOWS = [
   { name: 'sm', note: 'inputs, secondary buttons' },

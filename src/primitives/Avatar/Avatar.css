@@ -63,50 +63,26 @@
   height: 60%;
 }
 
-/* Deterministic decorative tints for the initials fallback (Layer 1 by design:
-   these are fixed decorations, not theme roles). Rust is deliberately excluded —
-   no alarm-adjacent colors on people. */
+/* Deterministic decorative tints for the initials fallback. The tone tokens
+   resolve per theme (pastel grounds by day, deep grounds with pale ink at
+   night). Rust is deliberately excluded — no alarm-adjacent colors on people. */
 .ornie-avatar--tone-river {
-  background: var(--ornie-river-100);
-  color: var(--ornie-river-700);
+  background: var(--ornie-tone-river);
+  color: var(--ornie-tone-river-ink);
 }
 .ornie-avatar--tone-fur {
-  background: var(--ornie-fur-100);
-  color: var(--ornie-fur-700);
+  background: var(--ornie-tone-fur);
+  color: var(--ornie-tone-fur-ink);
 }
 .ornie-avatar--tone-moss {
-  background: var(--ornie-moss-100);
-  color: var(--ornie-moss-700);
+  background: var(--ornie-tone-moss);
+  color: var(--ornie-tone-moss-ink);
 }
 .ornie-avatar--tone-clay {
-  background: var(--ornie-clay-100);
-  color: var(--ornie-clay-700);
+  background: var(--ornie-tone-clay);
+  color: var(--ornie-tone-clay-ink);
 }
 .ornie-avatar--tone-stone {
-  background: var(--ornie-sand-200);
-  color: var(--ornie-sand-700);
-}
-
-/* Dark theme: dim the decorative tints — the light pastels would be the
-   loudest thing on a dark page. Same five hues, deep grounds, pale ink;
-   rust stays excluded. */
-[data-ornie-theme='dark'] .ornie-avatar--tone-river {
-  background: var(--ornie-river-900);
-  color: var(--ornie-river-200);
-}
-[data-ornie-theme='dark'] .ornie-avatar--tone-fur {
-  background: var(--ornie-fur-900);
-  color: var(--ornie-fur-200);
-}
-[data-ornie-theme='dark'] .ornie-avatar--tone-moss {
-  background: var(--ornie-moss-900);
-  color: var(--ornie-moss-200);
-}
-[data-ornie-theme='dark'] .ornie-avatar--tone-clay {
-  background: var(--ornie-clay-900);
-  color: var(--ornie-clay-200);
-}
-[data-ornie-theme='dark'] .ornie-avatar--tone-stone {
-  background: var(--ornie-sand-800);
-  color: var(--ornie-sand-200);
+  background: var(--ornie-tone-stone);
+  color: var(--ornie-tone-stone-ink);
 }

@@ -69,7 +69,8 @@
 }
 
 .ornie-check__input:focus-visible + .ornie-check__box {
-  box-shadow: var(--ornie-focus-ring);
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
 }
 
 .ornie-check__input:disabled + .ornie-check__box {

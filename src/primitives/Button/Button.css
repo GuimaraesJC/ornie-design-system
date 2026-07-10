@@ -20,8 +20,8 @@
 }
 
 .ornie-btn:focus-visible {
-  outline: none;
-  box-shadow: var(--ornie-focus-ring);
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
 }
 
 .ornie-btn:disabled {

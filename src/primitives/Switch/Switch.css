@@ -69,7 +69,8 @@
 }
 
 .ornie-switch__input:focus-visible + .ornie-switch__track {
-  box-shadow: var(--ornie-focus-ring);
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
 }
 
 .ornie-switch__input:disabled + .ornie-switch__track {

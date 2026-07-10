@@ -60,7 +60,8 @@
 }
 
 .ornie-radio__input:focus-visible + .ornie-radio__circle {
-  box-shadow: var(--ornie-focus-ring);
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
 }
 
 .ornie-radio__input:disabled + .ornie-radio__circle {

@@ -4,17 +4,17 @@
 @import './base.css';
 @import './field.css';
 
-@import '../components/Button/Button.css';
-@import '../components/Input/Input.css';
-@import '../components/Select/Select.css';
-@import '../components/Checkbox/Checkbox.css';
-@import '../components/Radio/Radio.css';
-@import '../components/Switch/Switch.css';
-@import '../components/Badge/Badge.css';
-@import '../components/Avatar/Avatar.css';
-@import '../components/Card/Card.css';
-@import '../components/Modal/Modal.css';
-@import '../components/Tooltip/Tooltip.css';
-@import '../components/Tabs/Tabs.css';
+@import '../primitives/Button/Button.css';
+@import '../primitives/Input/Input.css';
+@import '../primitives/Select/Select.css';
+@import '../primitives/Checkbox/Checkbox.css';
+@import '../primitives/Radio/Radio.css';
+@import '../primitives/Switch/Switch.css';
+@import '../primitives/Badge/Badge.css';
+@import '../primitives/Avatar/Avatar.css';
+@import '../primitives/Card/Card.css';
+@import '../primitives/Modal/Modal.css';
+@import '../primitives/Tooltip/Tooltip.css';
+@import '../primitives/Tabs/Tabs.css';
 
 @import '../foundations/foundations.css';

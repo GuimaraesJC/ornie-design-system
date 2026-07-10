@@ -28,8 +28,8 @@
 }
 
 .ornie-tabs__tab:focus-visible {
-  outline: none;
-  box-shadow: var(--ornie-focus-ring);
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
   border-radius: var(--ornie-radius-sm);
 }
 

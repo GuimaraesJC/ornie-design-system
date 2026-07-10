@@ -53,9 +53,9 @@
 }
 
 .ornie-field :is(.ornie-input, .ornie-select):focus {
-  outline: none;
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
   border-color: var(--ornie-accent);
-  box-shadow: var(--ornie-focus-ring);
 }
 
 .ornie-field :is(.ornie-input, .ornie-select):disabled {
@@ -86,9 +86,10 @@
 .ornie-field--error :is(.ornie-input, .ornie-select) {
   border-color: var(--ornie-danger);
 }
+/* Focus is identical everywhere — the error state keeps its danger border,
+   the outline stays the one focus ring. */
 .ornie-field--error :is(.ornie-input, .ornie-select):focus {
   border-color: var(--ornie-danger);
-  box-shadow: var(--ornie-focus-ring-danger);
 }
 
 /* Leading/trailing icons (Input) */

@@ -1,12 +1,12 @@
-import { Avatar } from '../components/Avatar/Avatar';
-import { Badge } from '../components/Badge/Badge';
-import { Button } from '../components/Button/Button';
-import { Card } from '../components/Card/Card';
-import { Checkbox } from '../components/Checkbox/Checkbox';
-import { Input } from '../components/Input/Input';
-import { Select } from '../components/Select/Select';
-import { Switch } from '../components/Switch/Switch';
-import { Tabs } from '../components/Tabs/Tabs';
+import { Avatar } from '../../primitives/Avatar/Avatar';
+import { Badge } from '../../primitives/Badge/Badge';
+import { Button } from '../../primitives/Button/Button';
+import { Card } from '../../primitives/Card/Card';
+import { Checkbox } from '../../primitives/Checkbox/Checkbox';
+import { Input } from '../../primitives/Input/Input';
+import { Select } from '../../primitives/Select/Select';
+import { Switch } from '../../primitives/Switch/Switch';
+import { Tabs } from '../../primitives/Tabs/Tabs';
 
 export interface DarkModeProps {}
 

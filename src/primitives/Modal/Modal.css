@@ -78,8 +78,8 @@
   color: var(--ornie-text);
 }
 .ornie-modal__close:focus-visible {
-  outline: none;
-  box-shadow: var(--ornie-focus-ring);
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
 }
 .ornie-modal__close svg {
   width: 16px;

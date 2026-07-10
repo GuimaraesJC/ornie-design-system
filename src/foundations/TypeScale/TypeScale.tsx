@@ -1,4 +1,4 @@
-import { Section, TokenValue } from './shared';
+import { Section, TokenValue } from '../shared';
 
 const SIZES = ['xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl'] as const;
 const WEIGHTS = ['regular', 'medium', 'semibold', 'bold', 'extrabold'] as const;

@@ -1,4 +1,4 @@
-import { Section, TokenValue } from './shared';
+import { Section, TokenValue } from '../shared';
 
 const RADII = [
   { name: 'xs', note: 'chips, bars' },

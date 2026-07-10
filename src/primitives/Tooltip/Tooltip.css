@@ -9,8 +9,8 @@
   width: max-content;
   max-width: 240px;
   padding: 6px 10px;
-  background: var(--ornie-inverse-surface);
-  color: var(--ornie-inverse-text);
+  background: var(--ornie-surface-inverse);
+  color: var(--ornie-text-inverse);
   font-family: var(--ornie-font-sans);
   font-size: var(--ornie-text-xs);
   font-weight: var(--ornie-weight-medium);
