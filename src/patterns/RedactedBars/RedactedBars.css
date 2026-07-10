@@ -1,0 +1,14 @@
+/* RedactedBars — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+/* Deliberately no transition/animation anywhere: this is concealment, not a skeleton. */
+.ornie-redactedbars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.ornie-redactedbars__bar {
+  height: 7px;
+  border-radius: var(--ornie-radius-full);
+  background: var(--ornie-track);
+}

@@ -112,6 +112,24 @@ export type {
 export { EmptyState } from './patterns/EmptyState/EmptyState';
 export type { EmptyStateProps } from './patterns/EmptyState/EmptyState';
 
+export { Prose } from './patterns/Prose/Prose';
+export type { ProseProps } from './patterns/Prose/Prose';
+
+export { WikiLink } from './patterns/WikiLink/WikiLink';
+export type { WikiLinkProps } from './patterns/WikiLink/WikiLink';
+
+export { WeekDots } from './patterns/WeekDots/WeekDots';
+export type { WeekDotsProps } from './patterns/WeekDots/WeekDots';
+
+export { SealBadge } from './patterns/SealBadge/SealBadge';
+export type { SealBadgeProps } from './patterns/SealBadge/SealBadge';
+
+export { RedactedBars } from './patterns/RedactedBars/RedactedBars';
+export type { RedactedBarsProps } from './patterns/RedactedBars/RedactedBars';
+
+export { StepDots } from './patterns/StepDots/StepDots';
+export type { StepDotsProps } from './patterns/StepDots/StepDots';
+
 export { Toast, ToastHost, ToastProvider, useToast } from './patterns/Toast/Toast';
 export type {
   ToastProps,
@@ -165,3 +183,6 @@ export type { DarkModeProps } from './foundations/DarkMode/DarkMode';
 
 export { Icons } from './foundations/Icons/Icons';
 export type { IconsProps } from './foundations/Icons/Icons';
+
+export { Motion } from './foundations/Motion/Motion';
+export type { MotionProps } from './foundations/Motion/Motion';

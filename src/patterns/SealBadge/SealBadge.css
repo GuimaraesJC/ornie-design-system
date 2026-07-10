@@ -1,0 +1,34 @@
+/* SealBadge — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-sealbadge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ornie-space-2);
+  font-family: var(--ornie-font-sans);
+  white-space: nowrap;
+}
+
+.ornie-sealbadge__pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 20px;
+  padding: 0 var(--ornie-space-2);
+  border-radius: var(--ornie-radius-full);
+  background: var(--ornie-accent-subtle);
+  color: var(--ornie-accent-text);
+  font-size: 11px;
+  font-weight: var(--ornie-weight-semibold);
+  line-height: 1;
+}
+
+.ornie-sealbadge__glyph {
+  /* Spec: 10px lock glyph (Icon's size prop steps 16/20/24). */
+  width: 10px;
+  height: 10px;
+  flex: none;
+}
+
+.ornie-sealbadge__detail {
+  font-size: 11px;
+  color: var(--ornie-text-subtle);
+}

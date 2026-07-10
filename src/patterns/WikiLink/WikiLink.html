@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WikiLink</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var para = function (children) {
+        return h(
+          'p',
+          {
+            style: {
+              margin: 0,
+              maxWidth: '46ch',
+              fontSize: 'var(--ornie-text-md)',
+              lineHeight: 1.65,
+              color: 'var(--ornie-text)',
+            },
+          },
+          children,
+        );
+      };
+      return [
+        g.section(
+          'pill',
+          g.row('resolved', h(C.WikiLink, { href: '#' }, 'Moodboard directions')),
+          g.row('unresolved', h(C.WikiLink, { href: '#', unresolved: true }, 'Porto trip — packing')),
+          g.row('no href (inert)', h(C.WikiLink, null, 'Design feedback from Sam')),
+        ),
+        g.section(
+          'inline in text',
+          g.row(
+            'resolved',
+            para([
+              'Type scale reference lives in ',
+              h(C.WikiLink, { href: '#', key: 'w' }, 'Moodboard directions'),
+              ' — keep them in sync.',
+            ]),
+          ),
+          g.row(
+            'unresolved',
+            para([
+              'Full packing brain-dump lives in ',
+              h(C.WikiLink, { href: '#', unresolved: true, key: 'w' }, 'Porto trip — packing'),
+              '.',
+            ]),
+          ),
+          g.row(
+            'long title wraps',
+            para([
+              'Notes from the call are in ',
+              h(
+                C.WikiLink,
+                { href: '#', key: 'w' },
+                'Website redesign — spacing pass, hero CTA copy, and the pricing page follow-ups',
+              ),
+              ' for later.',
+            ]),
+          ),
+        ),
+        g.section(
+          'inside Prose',
+          g.row(
+            'both states',
+            h(
+              C.Prose,
+              { style: { maxWidth: '46ch' } },
+              h('p', { key: 'p' }, [
+                'Went through the build with Sam. Spacing notes moved to ',
+                h(C.WikiLink, { href: '#', key: 'a' }, 'Design feedback from Sam'),
+                ', and the follow-ups will live in ',
+                h(C.WikiLink, { href: '#', unresolved: true, key: 'b' }, 'Website redesign — round two'),
+                '.',
+              ]),
+            ),
+          ),
+        ),
+      ];
+      // hover: resolved wash raises accent-subtle → selected; unresolved gains
+      // the accent-subtle wash. focus-visible: standard 2px --ornie-focus-ring.
+    });
+  </script>
+</body>
+</html>

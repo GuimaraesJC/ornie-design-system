@@ -1,0 +1,31 @@
+/* WeekDots — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-weekdots {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ornie-weekdots__dot {
+  box-sizing: border-box;
+  width: 8px;
+  height: 8px;
+  flex: none;
+  border-radius: var(--ornie-radius-full);
+  background: var(--ornie-track);
+}
+
+.ornie-weekdots__dot--done {
+  background: var(--ornie-done);
+}
+
+/* Today: thin ring with a transparent gap (mockups ring today over any wash). */
+.ornie-weekdots__dot--today {
+  outline: 1.5px solid var(--ornie-done);
+  outline-offset: 1.5px;
+}
+
+/* The future is dashed — not a miss, just days that haven't happened yet. */
+.ornie-weekdots__dot--future {
+  background: transparent;
+  border: 1px dashed var(--ornie-border-strong);
+}

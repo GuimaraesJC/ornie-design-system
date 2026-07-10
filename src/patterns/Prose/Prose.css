@@ -1,0 +1,154 @@
+/* Prose — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+
+/*
+ * The one component whose job is styling content the app renders: element
+ * selectors are fine INSIDE this block, and only here. Components the app
+ * interleaves (WikiLink, Chip) keep their own look — anchor rules below
+ * deliberately match bare `a:not([class])` only, never component anchors.
+ *
+ * Reading measure lifted from 1p/1q and D:Notes/D:Journal (14.5px/1.7 body,
+ * 17px in-body headings, 12.5px inline code, 12px paragraph rhythm), snapped
+ * to the type scale: body 15/1.65 per the roadmap.
+ */
+.ornie-prose {
+  font-family: var(--ornie-font-sans);
+  font-size: var(--ornie-text-md); /* 15px */
+  line-height: 1.65;
+  color: var(--ornie-text);
+}
+
+/* ---- Block rhythm: margin-top between siblings only, so the first and last
+   children sit flush and the root composes cleanly (no outer margins). ---- */
+.ornie-prose > * {
+  margin: 0;
+}
+.ornie-prose > * + * {
+  margin-top: var(--ornie-space-3); /* 12px — D:Notes paragraph rhythm */
+}
+.ornie-prose > * + h1 {
+  margin-top: var(--ornie-space-6); /* 24px above a top heading (D:Notes) */
+}
+.ornie-prose > * + h2 {
+  margin-top: 22px; /* lifted: D:Notes ## margin */
+}
+.ornie-prose > * + h3 {
+  margin-top: 18px; /* lifted: 1p in-body heading margin */
+}
+/* Content following a heading sits close to it (lifted: 8–10px, 1p/D:Notes). */
+.ornie-prose > h1 + *,
+.ornie-prose > h2 + *,
+.ornie-prose > h3 + * {
+  margin-top: 10px;
+}
+
+/* ---- Headings — sizes stay on the type scale; nothing jumps past text-xl. ---- */
+.ornie-prose h1 {
+  font-size: var(--ornie-text-xl); /* 20px */
+  font-weight: var(--ornie-weight-semibold);
+  letter-spacing: -0.3px;
+  line-height: var(--ornie-leading-tight);
+}
+.ornie-prose h2 {
+  font-size: var(--ornie-text-lg); /* 17px */
+  font-weight: var(--ornie-weight-semibold);
+  letter-spacing: -0.2px;
+  line-height: var(--ornie-leading-tight);
+}
+.ornie-prose h3 {
+  font-size: var(--ornie-text-md); /* 15px */
+  font-weight: var(--ornie-weight-semibold);
+  line-height: var(--ornie-leading-tight);
+}
+
+/* ---- Lists — calm markers: quiet ink, standard glyphs. ---- */
+.ornie-prose ul,
+.ornie-prose ol {
+  padding-left: var(--ornie-space-5);
+}
+.ornie-prose li + li,
+.ornie-prose li > ul,
+.ornie-prose li > ol {
+  margin-top: 6px; /* lifted: 1p checklist row gap */
+}
+.ornie-prose li::marker {
+  color: var(--ornie-text-subtle); /* non-text graphic, mirrors 1p's muted dots */
+}
+
+/* ---- Blockquote — a plain held breath: hairline edge, muted ink. ---- */
+.ornie-prose blockquote {
+  border-left: 3px solid var(--ornie-border-strong);
+  padding: 2px 0 2px var(--ornie-space-4);
+  color: var(--ornie-text-muted);
+}
+.ornie-prose blockquote > * {
+  margin: 0;
+}
+.ornie-prose blockquote > * + * {
+  margin-top: var(--ornie-space-2);
+}
+
+/* ---- Code — sunken ground, monospace, sized off the surrounding text. ---- */
+.ornie-prose code {
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.86em; /* lifted: 12.5px code in 14.5px body (1p, D:Notes) */
+  background: var(--ornie-surface-sunken);
+  border-radius: var(--ornie-radius-xs);
+  padding: 1px 5px; /* lifted from 1p inline code */
+}
+/* pre scrolls horizontally — the markdown renderer must set tabindex="0" on
+   pre so keyboard users can scroll it (documented in Prose.prompt.md). */
+.ornie-prose pre {
+  font-family: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: var(--ornie-text-sm); /* 13px */
+  line-height: 1.6;
+  background: var(--ornie-surface-sunken);
+  border-radius: var(--ornie-radius-xs);
+  padding: var(--ornie-space-3) var(--ornie-space-4);
+  overflow-x: auto;
+}
+.ornie-prose pre:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}
+.ornie-prose pre code {
+  font-size: inherit;
+  background: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+/* ---- Rules and emphasis ---- */
+.ornie-prose hr {
+  border: 0;
+  border-top: 1px solid var(--ornie-border);
+}
+.ornie-prose strong {
+  font-weight: var(--ornie-weight-bold); /* lifted: 1p inline bold */
+}
+.ornie-prose em {
+  font-style: italic;
+}
+
+/* ---- Bare anchors (rendered markdown) get Link's accent voice — the same
+   declarations as .ornie-link--accent, restated here so there is no
+   cross-component selector. Classed anchors (WikiLink, Link) are skipped. ---- */
+.ornie-prose a:not([class]) {
+  border-radius: var(--ornie-radius-xs); /* softens the focus outline corners */
+  color: var(--ornie-accent-text);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-decoration-color: var(--ornie-accent-subtle-border);
+  text-underline-offset: 2px;
+  cursor: pointer;
+  transition:
+    color var(--ornie-duration-quick) var(--ornie-ease-out),
+    text-decoration-color var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+.ornie-prose a:not([class]):hover {
+  color: var(--ornie-accent-text-hover);
+  text-decoration-color: currentColor;
+}
+.ornie-prose a:not([class]):focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}

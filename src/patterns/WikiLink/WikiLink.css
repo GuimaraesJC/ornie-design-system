@@ -1,0 +1,51 @@
+/* WikiLink — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+
+/*
+ * Inline flow (not inline-flex): long note titles wrap across lines, and
+ * box-decoration-break keeps every wrapped fragment its own rounded pill.
+ * Type is em-based so the pill inherits the surrounding text size —
+ * lifted from 1p: a 12.5px semibold pill inside 14.5px body ≈ 0.875em.
+ */
+.ornie-wikilink {
+  box-decoration-break: clone;
+  -webkit-box-decoration-break: clone;
+  padding: 0.1em 0.6em;
+  border: 1px solid transparent; /* resolved and unresolved keep the same box */
+  border-radius: var(--ornie-radius-full);
+  background: var(--ornie-accent-subtle);
+  color: var(--ornie-accent-text);
+  font-size: 0.875em;
+  font-weight: var(--ornie-weight-semibold);
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    border-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    color var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+
+/*
+ * Hover raises the wash one quiet step (accent-subtle → selected; the token
+ * layer guarantees accent-text ink holds AA on both, in both themes).
+ * The mockups show no hover treatment for wikilink pills, so this is the
+ * calm pick — accent-subtle-border as a background would be too strong.
+ */
+.ornie-wikilink:hover {
+  background: var(--ornie-selected);
+}
+
+.ornie-wikilink:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}
+
+/* Unresolved — the note doesn't exist yet: dashed edge marks the not-yet-real. */
+.ornie-wikilink--unresolved {
+  border: 1px dashed var(--ornie-accent-subtle-border);
+  background: transparent;
+}
+
+/* Hovering an unresolved link previews the wash it gains once the note exists. */
+.ornie-wikilink--unresolved:hover {
+  background: var(--ornie-accent-subtle);
+}

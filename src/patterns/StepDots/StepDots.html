@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>StepDots</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var positions = function (count) {
+        var rows = [];
+        for (var i = 0; i < count; i++) {
+          rows.push(g.row('step ' + (i + 1) + ' of ' + count, h(C.StepDots, { count: count, active: i })));
+        }
+        return g.section.apply(null, ['count ' + count].concat(rows));
+      };
+      return [
+        positions(3),
+        positions(5),
+        positions(7),
+        g.section(
+          'label',
+          g.row('custom aria-label (i18n)', h(C.StepDots, { count: 3, active: 1, label: 'Passo 2 de 3' })),
+        ),
+      ];
+      // Indicator only: no dot is focusable or clickable — navigation
+      // belongs to the flow's buttons.
+    });
+  </script>
+</body>
+</html>

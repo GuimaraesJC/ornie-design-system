@@ -40,6 +40,12 @@
 @import '../patterns/ChipGroup/ChipGroup.css';
 @import '../patterns/EmptyState/EmptyState.css';
 @import '../patterns/Toast/Toast.css';
+@import '../patterns/Prose/Prose.css';
+@import '../patterns/WikiLink/WikiLink.css';
+@import '../patterns/WeekDots/WeekDots.css';
+@import '../patterns/SealBadge/SealBadge.css';
+@import '../patterns/RedactedBars/RedactedBars.css';
+@import '../patterns/StepDots/StepDots.css';
 
 @import '../shells/Sheet/Sheet.css';
 @import '../shells/Dock/Dock.css';

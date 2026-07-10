@@ -3,10 +3,16 @@ import { Badge } from '../../primitives/Badge/Badge';
 import { Button } from '../../primitives/Button/Button';
 import { Card } from '../../primitives/Card/Card';
 import { Checkbox } from '../../primitives/Checkbox/Checkbox';
+import { Chip } from '../../primitives/Chip/Chip';
+import { Icon } from '../../primitives/Icon/Icon';
 import { Input } from '../../primitives/Input/Input';
+import { Kbd } from '../../primitives/Kbd/Kbd';
 import { Select } from '../../primitives/Select/Select';
 import { Switch } from '../../primitives/Switch/Switch';
 import { Tabs } from '../../primitives/Tabs/Tabs';
+import { MetaLine } from '../../patterns/MetaLine/MetaLine';
+import { ProjectDot } from '../../patterns/ProjectDot/ProjectDot';
+import { TaskRow } from '../../patterns/TaskRow/TaskRow';
 
 export interface DarkModeProps {}
 
@@ -90,6 +96,34 @@ export function DarkMode(_props: DarkModeProps) {
           { label: 'Settings' },
         ]}
       />
+
+      {/* The 0.2.0 task language: hover/selected/track/done + tone tokens
+          all resolve through the same dark block — zero component changes. */}
+      <Card variant="flat" padding="sm">
+        <TaskRow
+          title="Email design feedback to Sam"
+          onToggle={() => {}}
+          meta={
+            <MetaLine>
+              <span>9:00</span>
+              <ProjectDot color="moss" label="Garden project" />
+              <span>25m</span>
+            </MetaLine>
+          }
+        />
+        <TaskRow title="Water the ferns" state="done" onToggle={() => {}} />
+      </Card>
+
+      <div className="ornie-foundation-dark__row">
+        <Chip selected onSelect={() => {}}>
+          Today
+        </Chip>
+        <Chip onSelect={() => {}}>This week</Chip>
+        <Chip leading={<Icon name="tag" />} onRemove={() => {}}>
+          errands
+        </Chip>
+        <Kbd keys={['⌘', 'K']} />
+      </div>
     </div>
   );
 }

@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SealBadge</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      return [
+        g.section(
+          'variants',
+          g.row('plain', h(C.SealBadge, {})),
+          g.row('detail', h(C.SealBadge, { detail: true })),
+          g.row('custom label (i18n)', h(C.SealBadge, { label: 'Selado' })),
+          g.row('custom label + detail', h(C.SealBadge, { label: 'Selado', detail: true })),
+        ),
+        g.section(
+          'composition',
+          g.row(
+            'TaskRow trailing slot (1l vaulted task)',
+            h(
+              'div',
+              { style: { width: '380px' } },
+              h(C.TaskRow, {
+                title: 'Therapy notes — Tuesday',
+                meta: h(C.MetaLine, {}, 'Burrow'),
+                trailing: h(C.SealBadge, {}),
+                onToggle: function () {},
+              }),
+            ),
+          ),
+        ),
+      ];
+      // Static span — nothing here is focusable or clickable by design.
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prose</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      // A realistic rendered note: headings, paragraphs, list, quote, code,
+      // bare links, and embedded WikiLinks (resolved + unresolved).
+      var doc = function () {
+        return [
+          h('h1', { key: 'h1' }, 'Design feedback from Sam'),
+          h('p', { key: 'p1' }, [
+            'Went through the latest build with Sam over a call. Overall reaction was warm — ',
+            h('strong', { key: 's' }, '"clearest version so far."'),
+            ' Spacing is still inconsistent between ',
+            h('code', { key: 'c1' }, '/pricing'),
+            ' and ',
+            h('code', { key: 'c2' }, '/about'),
+            ', and the ',
+            h('em', { key: 'e' }, 'almost done'),
+            ' pages are the ones circling my brain.',
+          ]),
+          h('h2', { key: 'h2' }, 'Fix this week'),
+          h('ul', { key: 'ul' }, [
+            h('li', { key: 'l1' }, 'Fix hero CTA copy'),
+            h('li', { key: 'l2' }, ['Spacing pass on ', h('code', { key: 'c' }, '/pricing')]),
+            h('li', { key: 'l3' }, ['Reply to the thread with ', h('a', { href: '#', key: 'a' }, 'the shared checklist')]),
+          ]),
+          h('blockquote', { key: 'q' }, h('p', null, '"Ship the calm version. The loud one can wait forever."')),
+          h(
+            'pre',
+            { key: 'pre', tabIndex: 0 },
+            h('code', null, 'ornie "book flights #porto [[Porto trip]]"\n# capture from anywhere — the CLI parses dates, #tags, [[links]]'),
+          ),
+          h('hr', { key: 'hr' }),
+          h('h3', { key: 'h3' }, 'Sync notes'),
+          h('ol', { key: 'ol' }, [
+            h('li', { key: 'o1' }, 'Moodboard first, then the type scale'),
+            h('li', { key: 'o2' }, 'Sam reviews Thursday'),
+          ]),
+          h('p', { key: 'p2' }, [
+            'Type scale reference lives in ',
+            h(C.WikiLink, { href: '#', key: 'w1' }, 'Moodboard directions'),
+            ' — keep them in sync. Full packing brain-dump lives in ',
+            h(C.WikiLink, { href: '#', unresolved: true, key: 'w2' }, 'Porto trip — packing'),
+            '.',
+          ]),
+        ];
+      };
+      var at = function (width) {
+        return g.section(
+          width + ' — rendered note',
+          g.row('document', h('div', { style: { width: width, maxWidth: '100%' } }, h(C.Prose, null, doc()))),
+        );
+      };
+      return [at('400px'), at('640px')];
+      // Width comes from the demo box — Prose itself sets no max-width.
+      // First/last children sit flush: no stray margins above h1 or below the
+      // final paragraph. The pre scrolls horizontally inside the 400px box.
+    });
+  </script>
+</body>
+</html>

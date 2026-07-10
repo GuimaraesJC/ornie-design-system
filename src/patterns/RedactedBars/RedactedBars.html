@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RedactedBars</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var box = function (child) {
+        return h('div', { style: { width: '280px' } }, child);
+      };
+      return [
+        g.section(
+          'seeds (deterministic, organic)',
+          g.row('seed "entry-1"', box(h(C.RedactedBars, { seed: 'entry-1' }))),
+          g.row('seed "entry-2"', box(h(C.RedactedBars, { seed: 'entry-2' }))),
+          g.row('seed "entry-3"', box(h(C.RedactedBars, { seed: 'entry-3' }))),
+          g.row('seed "journal-2026-07-08"', box(h(C.RedactedBars, { seed: 'journal-2026-07-08' }))),
+          g.row('seed 42 (number)', box(h(C.RedactedBars, { seed: 42 }))),
+        ),
+        g.section(
+          'fixed bar count',
+          g.row('bars 2', box(h(C.RedactedBars, { seed: 'entry-3', bars: 2 }))),
+          g.row('bars 3', box(h(C.RedactedBars, { seed: 'entry-3', bars: 3 }))),
+        ),
+        g.section(
+          'composition (Burrow locked entry)',
+          g.row(
+            'SealBadge + bars',
+            h(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 'var(--ornie-space-3)',
+                  width: '280px',
+                  padding: '14px 16px',
+                  background: 'var(--ornie-surface)',
+                  border: '1px solid var(--ornie-border)',
+                  borderRadius: 'var(--ornie-radius-lg)',
+                },
+              },
+              h(C.SealBadge, {}),
+              h(C.RedactedBars, { seed: 'journal-2026-07-08', label: 'Sealed journal entry' }),
+            ),
+          ),
+        ),
+      ];
+      // Never animates: concealment, not loading. Same seed = same bars, forever.
+    });
+  </script>
+</body>
+</html>

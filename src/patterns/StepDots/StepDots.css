@@ -1,0 +1,24 @@
+/* StepDots — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-stepdots {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ornie-space-2);
+}
+
+.ornie-stepdots__dot {
+  width: 7px;
+  height: 7px;
+  flex: none;
+  border-radius: var(--ornie-radius-full);
+  background: var(--ornie-track);
+  /* The elongation is the one movement here; the token layer collapses it
+     to 1ms under reduced motion, leaving a clean swap. */
+  transition:
+    width var(--ornie-duration-gentle) var(--ornie-ease-out),
+    background-color var(--ornie-duration-gentle) var(--ornie-ease-out);
+}
+
+.ornie-stepdots__dot--active {
+  width: 18px;
+  background: var(--ornie-accent);
+}

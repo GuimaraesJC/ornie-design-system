@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WeekDots</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      return [
+        g.section(
+          'weeks',
+          g.row('empty week', h(C.WeekDots, { values: [false, false, false, false, false, false, false] })),
+          g.row('partial (4 of 7)', h(C.WeekDots, { values: [true, true, false, true, true, false, false] })),
+          g.row('full week', h(C.WeekDots, { values: [true, true, true, true, true, true, true] })),
+        ),
+        g.section(
+          'today + future (2j: today ringed, futures dashed)',
+          g.row(
+            'today mid-week, done',
+            h(C.WeekDots, { values: [true, true, false, true, true, false, false], todayIndex: 4 }),
+          ),
+          g.row(
+            'today mid-week, not yet',
+            h(C.WeekDots, { values: [true, true, true, false, false, false, false], todayIndex: 3 }),
+          ),
+          g.row('today is Monday', h(C.WeekDots, { values: [false, false, false, false, false, false, false], todayIndex: 0 })),
+          g.row('today is Sunday', h(C.WeekDots, { values: [true, false, true, true, true, false, true], todayIndex: 6 })),
+        ),
+        g.section(
+          'label',
+          g.row(
+            'custom aria-label',
+            h(C.WeekDots, {
+              values: [true, false, true, true, false, false, false],
+              todayIndex: 3,
+              label: 'Morning pages, 3 of 7 days this week',
+            }),
+          ),
+        ),
+      ];
+      // No streak prop exists (R-5): the API cannot express one.
+    });
+  </script>
+</body>
+</html>
