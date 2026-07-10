@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Select } from './Select';
+import { Icon } from '../Icon/Icon';
 
 const PLANS = [
   { value: 'starter', label: 'Starter — free' },
@@ -49,6 +50,24 @@ export const WithHint: Story = {
 
 export const WithError: Story = {
   args: { placeholder: 'Choose a plan…', error: 'Please select a plan to continue.' },
+  render: (args) => (
+    <div style={{ width: 280 }}>
+      <Select {...args} />
+    </div>
+  ),
+};
+
+export const WithLeadingIcon: Story = {
+  args: {
+    label: 'Project',
+    leading: <Icon name="folder" />,
+    options: [
+      { value: 'garden', label: 'Garden project' },
+      { value: 'kitchen', label: 'Kitchen reno' },
+      { value: 'none', label: 'No project' },
+    ],
+    defaultValue: 'garden',
+  },
   render: (args) => (
     <div style={{ width: 280 }}>
       <Select {...args} />

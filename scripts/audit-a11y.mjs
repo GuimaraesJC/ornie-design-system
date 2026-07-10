@@ -52,6 +52,17 @@ let failures = 0;
 for (const grid of targets) {
   await page.goto(pathToFileURL(grid).href);
   await page.addScriptTag({ content: axeSource });
+  // Let fonts load and finite animations (entrance fades) finish — axe reads
+  // mid-animation opacity as a real color blend otherwise. Infinite animations
+  // (Spinner) are skipped.
+  await page.evaluate(async () => {
+    await document.fonts?.ready;
+    const finite = document
+      .getAnimations()
+      .filter((a) => a.effect?.getTiming().iterations !== Infinity);
+    await Promise.all(finite.map((a) => a.finished.catch(() => {})));
+    await new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r)));
+  });
   const results = await page.evaluate(async () => await window.axe.run(document, {
     resultTypes: ['violations'],
   }));

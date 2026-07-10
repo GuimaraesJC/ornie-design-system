@@ -1,0 +1,114 @@
+/* Chip — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: var(--ornie-radius-full);
+  background: var(--ornie-surface-sunken);
+  color: var(--ornie-text-muted);
+  font-family: var(--ornie-font-sans);
+  white-space: nowrap;
+  transition:
+    background-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    color var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+
+/* Sizes */
+.ornie-chip--sm {
+  height: 24px;
+  font-size: 11.5px;
+}
+.ornie-chip--md {
+  height: 32px;
+  font-size: var(--ornie-text-sm);
+}
+
+/* States */
+.ornie-chip--selectable:hover {
+  color: var(--ornie-text);
+}
+.ornie-chip--selected {
+  background: var(--ornie-accent-subtle);
+  color: var(--ornie-accent-text);
+  font-weight: var(--ornie-weight-semibold);
+}
+
+/* Action area (button when selectable, span otherwise) */
+.ornie-chip__action {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 100%;
+  padding: 0 var(--ornie-space-3);
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  font: inherit;
+  color: inherit;
+}
+.ornie-chip--sm .ornie-chip__action {
+  padding: 0 10px;
+}
+button.ornie-chip__action {
+  cursor: pointer;
+}
+.ornie-chip__action:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}
+.ornie-chip--removable .ornie-chip__action {
+  padding-right: var(--ornie-space-1);
+}
+
+.ornie-chip__leading {
+  display: inline-flex;
+  align-items: center;
+}
+.ornie-chip__leading svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Remove affordance */
+.ornie-chip__remove {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--ornie-radius-full);
+  background: none;
+  color: inherit;
+  opacity: 0.7;
+  cursor: pointer;
+  transition: opacity var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+.ornie-chip__remove:hover {
+  opacity: 1;
+}
+.ornie-chip__remove:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 1px;
+  opacity: 1;
+}
+.ornie-chip__remove-glyph {
+  width: 12px;
+  height: 12px;
+}
+
+/* ≥44px hit targets on touch: invisible hit-slop, visual size unchanged. */
+@media (pointer: coarse) {
+  .ornie-chip__action::after,
+  .ornie-chip__remove::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: max(100%, 44px);
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+}

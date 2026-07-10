@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IconButton</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var pair = function (size, variant, icon, label) {
+        return g.row(
+          variant,
+          h(C.IconButton, { size: size, variant: variant, 'aria-label': label }, h(C.Icon, { name: icon })),
+          h(
+            C.IconButton,
+            { size: size, variant: variant, disabled: true, 'aria-label': label },
+            h(C.Icon, { name: icon }),
+          ),
+        );
+      };
+      var matrix = function (size) {
+        return g.section(
+          'size ' + size,
+          pair(size, 'ghost', 'x', 'Close'),
+          pair(size, 'outline', 'sparkle', 'Ask Ornie'),
+          pair(size, 'filled', 'plus', 'Add task'),
+        );
+      };
+      return [matrix(32), matrix(40), matrix(44)];
+      // Each row: rest · disabled. Hover/active are live; focus-visible: tab
+      // through either half — every button gets the standard 2px outline
+      // (--ornie-focus-ring). Sizes 32/40 carry ≥44px hit-slop on touch.
+    });
+  </script>
+</body>
+</html>

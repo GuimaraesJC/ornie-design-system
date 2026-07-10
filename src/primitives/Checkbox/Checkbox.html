@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkbox</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var desc = 'Share anonymous usage data to help us improve Ornie.';
+      return [
+        g.section(
+          'states',
+          g.row('unchecked', h(C.Checkbox, { label: 'Email me product updates' })),
+          g.row('checked', h(C.Checkbox, { label: 'Email me product updates', defaultChecked: true })),
+          g.row('indeterminate', h(C.Checkbox, { label: 'Select all', indeterminate: true })),
+          g.row('bare (aria-label)', h(C.Checkbox, { 'aria-label': 'Include archived items' })),
+        ),
+        g.section(
+          'with description',
+          g.row(
+            'unchecked',
+            h('div', { style: { width: '320px' } }, h(C.Checkbox, { label: 'Usage analytics', description: desc })),
+          ),
+          g.row(
+            'checked',
+            h(
+              'div',
+              { style: { width: '320px' } },
+              h(C.Checkbox, { label: 'Usage analytics', description: desc, defaultChecked: true }),
+            ),
+          ),
+          g.row(
+            'indeterminate',
+            h(
+              'div',
+              { style: { width: '320px' } },
+              h(C.Checkbox, {
+                label: 'Select all',
+                description: 'Two of five checklist items are selected.',
+                indeterminate: true,
+              }),
+            ),
+          ),
+        ),
+        g.section(
+          'disabled',
+          g.row('unchecked', h(C.Checkbox, { label: 'Disabled unchecked', disabled: true })),
+          g.row('checked', h(C.Checkbox, { label: 'Disabled checked', disabled: true, defaultChecked: true })),
+          g.row('indeterminate', h(C.Checkbox, { label: 'Disabled mixed', disabled: true, indeterminate: true })),
+          g.row(
+            'with description',
+            h(
+              'div',
+              { style: { width: '320px' } },
+              h(C.Checkbox, { label: 'Usage analytics', description: desc, disabled: true, defaultChecked: true }),
+            ),
+          ),
+        ),
+      ];
+      // focus-visible: tab to any box — the standard 2px outline
+      // (--ornie-focus-ring) lands on the box, not the whole label.
+      // Space toggles; description is announced via aria-describedby.
+    });
+  </script>
+</body>
+</html>

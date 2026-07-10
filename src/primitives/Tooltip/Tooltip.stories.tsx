@@ -49,3 +49,19 @@ export const LongContent: Story = {
     children: <Button variant="ghost">Hover for details</Button>,
   },
 };
+
+export const WithShortcut: Story = {
+  args: {
+    content: 'Quick Find',
+    kbd: ['⌘', '/'],
+    children: <Button variant="ghost">Search</Button>,
+  },
+};
+
+export const ControlledOpen: Story = {
+  args: {
+    open: true,
+    content: 'Pinned open via the controlled prop',
+    children: <Button variant="secondary">Always described</Button>,
+  },
+};

@@ -1,0 +1,47 @@
+/* Divider — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+
+/*
+ * The root spans the full track (no outer margins — parents own spacing);
+ * the visible hairline is a ::before layer so inset presets shift the line's
+ * start edge without margin tricks.
+ */
+.ornie-divider {
+  position: relative;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  background: none;
+  flex: none;
+}
+.ornie-divider::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ornie-border-subtle);
+}
+
+/* Orientation */
+.ornie-divider--horizontal {
+  display: block;
+  width: 100%;
+  height: 1px;
+}
+.ornie-divider--vertical {
+  display: inline-block;
+  width: 1px;
+  align-self: stretch; /* flex parents give it height; otherwise set one */
+}
+
+/* Inset presets — start edge only (left when horizontal, top when vertical) */
+.ornie-divider--inset-md.ornie-divider--horizontal::before {
+  left: var(--ornie-space-4);
+}
+.ornie-divider--inset-lg.ornie-divider--horizontal::before {
+  left: var(--ornie-space-6);
+}
+.ornie-divider--inset-md.ornie-divider--vertical::before {
+  top: var(--ornie-space-4);
+}
+.ornie-divider--inset-lg.ornie-divider--vertical::before {
+  top: var(--ornie-space-6);
+}

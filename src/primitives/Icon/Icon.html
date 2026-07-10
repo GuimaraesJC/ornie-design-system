@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Icon</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var names = Object.keys(C.glyphs);
+      return [
+        g.section(
+          'sizes',
+          g.row(
+            '16 / 20 / 24',
+            h(C.Icon, { name: 'inbox', size: 16 }),
+            h(C.Icon, { name: 'inbox', size: 20 }),
+            h(C.Icon, { name: 'inbox', size: 24 }),
+          ),
+          g.row(
+            'inherits color',
+            h('span', { style: { color: 'var(--ornie-text-subtle)' } }, h(C.Icon, { name: 'sun' })),
+            h('span', { style: { color: 'var(--ornie-text-muted)' } }, h(C.Icon, { name: 'sun' })),
+            h('span', { style: { color: 'var(--ornie-accent-text)' } }, h(C.Icon, { name: 'sun' })),
+          ),
+          g.row('labelled (informative)', h(C.Icon, { name: 'lock', size: 16, label: 'Sealed' })),
+        ),
+        g.section(
+          'all glyphs',
+          h(
+            'div',
+            { style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(96px, 1fr))', gap: 'var(--ornie-space-3)' } },
+            names.map(function (n) {
+              return h(
+                'div',
+                {
+                  key: n,
+                  style: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: 'var(--ornie-space-2)',
+                    color: 'var(--ornie-text-muted)',
+                  },
+                },
+                h(C.Icon, { name: n }),
+                h('span', { style: { fontSize: '10.5px', color: 'var(--ornie-text-muted)' } }, n),
+              );
+            }),
+          ),
+        ),
+      ];
+    });
+  </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Modal } from './Modal';
 import { Button } from '../Button/Button';
@@ -76,4 +76,37 @@ export const WithForm: Story = {
     ),
   },
   parameters: { docs: { disable: true } },
+};
+
+export const TopPlacement: Story = {
+  args: {
+    open: true,
+    placement: 'top',
+    title: 'Quick capture',
+    description: 'Top placement pins the panel 12vh from the top — the CommandOverlay position.',
+    children: <Input placeholder="Capture a thought…" />,
+  },
+  parameters: { docs: { disable: true } },
+};
+
+export const InitialFocus: Story = {
+  args: { open: false },
+  render: () => {
+    const [open, setOpen] = useState(false);
+    const fieldRef = useRef<HTMLInputElement>(null);
+    return (
+      <div style={{ display: 'grid', placeItems: 'center', minHeight: 320 }}>
+        <Button onClick={() => setOpen(true)}>Open with focused field</Button>
+        <Modal
+          open={open}
+          onClose={() => setOpen(false)}
+          title="New tag"
+          initialFocus={fieldRef}
+          footer={<Button onClick={() => setOpen(false)}>Create tag</Button>}
+        >
+          <Input ref={fieldRef} label="Tag name" placeholder="errands" />
+        </Modal>
+      </div>
+    );
+  },
 };

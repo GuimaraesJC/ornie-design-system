@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chip</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var dot = h('span', {
+        style: { width: '6px', height: '6px', borderRadius: '999px', background: 'var(--ornie-tone-moss-ink)' },
+      });
+      var matrix = function (size) {
+        return g.section(
+          'size ' + size,
+          g.row('plain', h(C.Chip, { size: size }, 'errands'), h(C.Chip, { size: size, selected: true }, 'selected')),
+          g.row(
+            'selectable',
+            h(C.Chip, { size: size, onSelect: function () {} }, 'Today'),
+            h(C.Chip, { size: size, selected: true, onSelect: function () {} }, 'This week'),
+          ),
+          g.row(
+            'leading',
+            h(C.Chip, { size: size, leading: h(C.Icon, { name: 'calendar' }) }, 'tomorrow 9:00'),
+            h(C.Chip, { size: size, leading: dot }, 'Garden project'),
+          ),
+          g.row(
+            'removable',
+            h(C.Chip, { size: size, onRemove: function () {}, removeLabel: 'Remove tag errands' }, 'errands'),
+            h(
+              C.Chip,
+              { size: size, selected: true, leading: h(C.Icon, { name: 'tag' }), onRemove: function () {}, removeLabel: 'Remove tag focus' },
+              'focus',
+            ),
+          ),
+          g.row(
+            'select + remove',
+            h(
+              C.Chip,
+              { size: size, selected: size === 'md', onSelect: function () {}, onRemove: function () {}, removeLabel: 'Remove' },
+              'both affordances',
+            ),
+          ),
+        );
+      };
+      return [matrix('sm'), matrix('md')];
+      // focus-visible: tab through either half — every action and × gets the
+      // standard 2px outline (--ornie-focus-ring).
+    });
+  </script>
+</body>
+</html>

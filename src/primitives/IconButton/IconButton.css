@@ -1,0 +1,97 @@
+/* IconButton — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-icon-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--ornie-radius-full); /* the mockups' icon buttons are round */
+  background: transparent;
+  color: var(--ornie-text-muted);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    border-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    color var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+
+.ornie-icon-btn:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}
+
+.ornie-icon-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* Sizes — exact px boxes from the roadmap (not t-shirt). */
+.ornie-icon-btn--32 {
+  width: 32px;
+  height: 32px;
+}
+.ornie-icon-btn--40 {
+  width: 40px;
+  height: 40px;
+}
+.ornie-icon-btn--44 {
+  width: 44px;
+  height: 44px;
+}
+
+/* ghost — transparent, quiet sunken wash on hover */
+.ornie-icon-btn--ghost:hover:not(:disabled) {
+  background: var(--ornie-surface-sunken);
+  color: var(--ornie-text);
+}
+.ornie-icon-btn--ghost:active:not(:disabled) {
+  background: var(--ornie-border);
+}
+
+/* outline — the Ask sparkle treatment: 1px bordered circle on surface */
+.ornie-icon-btn--outline {
+  background: var(--ornie-surface);
+  border-color: var(--ornie-border-strong);
+}
+.ornie-icon-btn--outline:hover:not(:disabled) {
+  border-color: var(--ornie-border-hover);
+  color: var(--ornie-text);
+}
+.ornie-icon-btn--outline:active:not(:disabled) {
+  background: var(--ornie-surface-sunken);
+}
+
+/* filled — accent; mirrors Button primary */
+.ornie-icon-btn--filled {
+  background: var(--ornie-accent);
+  color: var(--ornie-text-on-accent);
+}
+.ornie-icon-btn--filled:hover:not(:disabled) {
+  background: var(--ornie-accent-hover);
+}
+.ornie-icon-btn--filled:active:not(:disabled) {
+  background: var(--ornie-accent-active);
+}
+
+.ornie-icon-btn__glyph {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ≥44px hit targets on touch for the sub-44 sizes: invisible hit-slop,
+   visual size unchanged (Chip.css pattern). Size 44 already meets the floor. */
+@media (pointer: coarse) {
+  .ornie-icon-btn--32::after,
+  .ornie-icon-btn--40::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
+}

@@ -1,3 +1,4 @@
+/* Badge — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
 .ornie-badge {
   display: inline-flex;
   align-items: center;
@@ -16,6 +17,24 @@
 .ornie-badge--md {
   font-size: var(--ornie-text-sm);
   padding: 4px 10px;
+}
+
+/* Count mode: tabular numerals so widths never dance; min-width makes a
+   one-digit count a round pill. */
+.ornie-badge--count {
+  justify-content: center;
+  box-sizing: border-box;
+  font-variant-numeric: tabular-nums;
+}
+.ornie-badge--count.ornie-badge--sm {
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+}
+.ornie-badge--count.ornie-badge--md {
+  min-width: 21px;
+  height: 21px;
+  padding: 0 6px;
 }
 
 .ornie-badge__dot {

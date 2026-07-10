@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { Tabs } from './Tabs';
 
 const ITEMS = [
@@ -63,4 +64,28 @@ export const SecondTabActive: Story = {
       <Tabs {...args} />
     </div>
   ),
+};
+
+export const SmallSize: Story = {
+  args: { size: 'sm' },
+  render: (args) => (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 32, width: 420 }}>
+      <Tabs {...args} />
+      <Tabs {...args} variant="pills" />
+    </div>
+  ),
+};
+
+export const Controlled: Story = {
+  render: (args) => {
+    const [index, setIndex] = useState(0);
+    return (
+      <div style={{ width: 420 }}>
+        <Tabs {...args} index={index} onChange={setIndex} />
+        <div style={{ marginTop: 16, fontSize: 13, color: 'var(--ornie-text-muted)' }}>
+          Active view: {index + 1} of {args.items.length}
+        </div>
+      </div>
+    );
+  },
 };

@@ -138,7 +138,7 @@ function buildCss() {
   out.push(cssDecls(dark, '  '));
   out.push('}\n');
 
-  const collapse = l1.motion.$reducedMotion ?? [];
+  const collapse = l1.motion.$reducedMotion ?? {};
   out.push(`/*
  * Calm floor (D-01 / A11y): reduced motion collapses every motion token to
  * near-zero HERE, once — components use the duration tokens and never write
@@ -146,7 +146,7 @@ function buildCss() {
  */
 @media (prefers-reduced-motion: reduce) {
   :root {
-${collapse.map((k) => `    --ornie-${k}: 1ms;`).join('\n')}
+${Object.entries(collapse).map(([k, v]) => `    --ornie-${k}: ${v};`).join('\n')}
   }
 }
 `);

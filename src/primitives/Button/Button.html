@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Button</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var matrix = function (variant) {
+        var text = variant === 'danger' ? 'Delete forever' : 'Get started';
+        var btn = function (size, extra, children) {
+          var props = { variant: variant, size: size };
+          for (var k in extra) props[k] = extra[k];
+          return h(C.Button, props, children || text);
+        };
+        return g.section(
+          'variant ' + variant,
+          g.row('rest', btn('sm'), btn('md'), btn('lg')),
+          g.row('disabled', btn('sm', { disabled: true }), btn('md', { disabled: true }), btn('lg', { disabled: true })),
+          g.row('loading', btn('sm', { loading: true }), btn('md', { loading: true }), btn('lg', { loading: true })),
+          g.row(
+            'leading',
+            btn('sm', { leading: h(C.Icon, { name: 'plus', size: 16 }) }, 'New project'),
+            btn('md', { leading: h(C.Icon, { name: 'plus' }) }, 'New project'),
+            btn('lg', { leading: h(C.Icon, { name: 'plus' }) }, 'New project'),
+          ),
+          g.row(
+            'trailing',
+            btn('sm', { trailing: h(C.Icon, { name: 'chevron-right', size: 16 }) }, 'Continue'),
+            btn('md', { trailing: h(C.Icon, { name: 'chevron-right' }) }, 'Continue'),
+            btn('lg', { trailing: h(C.Icon, { name: 'chevron-right' }) }, 'Continue'),
+          ),
+          g.row('fullWidth', btn('md', { fullWidth: true })),
+        );
+      };
+      return [matrix('primary'), matrix('secondary'), matrix('ghost'), matrix('danger')];
+      // focus-visible: tab through either half — every button gets the standard
+      // 2px outline (--ornie-focus-ring). Loading spinners pause (not race)
+      // under prefers-reduced-motion via --ornie-spin-state.
+    });
+  </script>
+</body>
+</html>

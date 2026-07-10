@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ProgressRing</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var values = [0, 0.3, 0.7, 1];
+      var dot = h('span', {
+        style: { width: '4px', height: '4px', borderRadius: '999px', background: 'var(--ornie-accent)' },
+      });
+      var ring = function (size, value, children) {
+        return h(
+          C.ProgressRing,
+          { size: size, value: value, label: 'Progress ' + Math.round(value * 100) + '%' },
+          children,
+        );
+      };
+      var matrix = function (size, center) {
+        return g.section(
+          'size ' + size,
+          g.row.apply(
+            null,
+            ['plain'].concat(
+              values.map(function (v) {
+                return ring(size, v);
+              }),
+            ),
+          ),
+          g.row.apply(
+            null,
+            ['center slot'].concat(
+              values.map(function (v, i) {
+                return ring(size, v, center(v, i));
+              }),
+            ),
+          ),
+        );
+      };
+      var counts = ['0/7', '2/7', '5/7', '7/7'];
+      return [
+        // 16 = project mini-ring, 24 = default, 46 = DayRing base (SPECS: 37px inner disc).
+        matrix(16, function () { return dot; }),
+        matrix(24, function () { return dot; }),
+        matrix(46, function (v, i) { return counts[i]; }),
+        g.section(
+          'custom trackColor',
+          g.row(
+            'accent-subtle',
+            h(C.ProgressRing, { size: 24, value: 0.6, trackColor: 'var(--ornie-accent-subtle)', label: 'Progress 60%' }),
+            h(C.ProgressRing, { size: 46, value: 0.6, trackColor: 'var(--ornie-accent-subtle)', label: 'Progress 60%' }, '4/7'),
+          ),
+          g.row(
+            'transparent',
+            h(C.ProgressRing, { size: 24, value: 0.6, trackColor: 'transparent', label: 'Progress 60%' }),
+            h(C.ProgressRing, { size: 46, value: 0.6, trackColor: 'transparent', label: 'Progress 60%' }, '4/7'),
+          ),
+        ),
+      ];
+      // Non-interactive (role="progressbar") — nothing to focus. Center slot at
+      // 16/24 shown with a dot only; text belongs at 46 (DayRing).
+    });
+  </script>
+</body>
+</html>

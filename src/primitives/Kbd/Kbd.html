@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kbd</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var inverseSwatch = function () {
+        var nodes = Array.prototype.slice.call(arguments);
+        return h(
+          'span',
+          {
+            style: {
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '8px',
+              padding: '6px 10px',
+              borderRadius: 'var(--ornie-radius-sm)',
+              background: 'var(--ornie-surface-inverse)',
+              color: 'var(--ornie-text-inverse)',
+              fontFamily: 'var(--ornie-font-sans)',
+              fontSize: 'var(--ornie-text-xs)',
+            },
+          },
+          nodes,
+        );
+      };
+      var hint = function (text) {
+        return h(
+          'span',
+          {
+            style: {
+              fontFamily: 'var(--ornie-font-sans)',
+              fontSize: 'var(--ornie-text-sm)',
+              color: 'var(--ornie-text-muted)',
+            },
+          },
+          text,
+        );
+      };
+      return [
+        g.section(
+          'single caps (children)',
+          g.row(
+            'glyphs',
+            h(C.Kbd, null, '⌘'),
+            h(C.Kbd, null, '⌥'),
+            h(C.Kbd, null, '↵'),
+            h(C.Kbd, null, '↑'),
+            h(C.Kbd, null, 'K'),
+          ),
+          g.row('words', h(C.Kbd, null, 'esc'), h(C.Kbd, null, 'tab'), h(C.Kbd, null, 'Space')),
+        ),
+        g.section(
+          'grouped (keys prop)',
+          g.row(
+            'chords',
+            h(C.Kbd, { keys: ['⌘', 'K'] }),
+            h(C.Kbd, { keys: ['⌘', '/'] }),
+            h(C.Kbd, { keys: ['⌥', 'Space'] }),
+            h(C.Kbd, { keys: ['⌘', '⇧', 'P'] }),
+          ),
+          g.row('pair', h(C.Kbd, { keys: ['↑', '↓'] })),
+        ),
+        g.section(
+          'onInverse (Tooltip-bubble look)',
+          g.row(
+            'group + single',
+            inverseSwatch('Quick Find', h(C.Kbd, { keys: ['⌘', '/'], onInverse: true })),
+            inverseSwatch('Close', h(C.Kbd, { onInverse: true }, 'esc')),
+          ),
+        ),
+        g.section(
+          'in context',
+          g.row(
+            'footer hint',
+            hint('navigate'),
+            h(C.Kbd, { keys: ['↑', '↓'] }),
+            hint('open'),
+            h(C.Kbd, null, '↵'),
+            hint('close'),
+            h(C.Kbd, null, 'esc'),
+          ),
+        ),
+      ];
+      // Kbd is inert — no focusable elements, nothing to tab to.
+    });
+  </script>
+</body>
+</html>

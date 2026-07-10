@@ -89,6 +89,7 @@ object OrnieTokens {
         val accentSubtle = Color(0xFFEDF4F1)
         val accentSubtleBorder = Color(0xFFB4D0C5)
         val accentText = Color(0xFF3E685D)
+        val accentTextHover = Color(0xFF32544B)
         val success = Color(0xFF567A4E)
         val successSubtle = Color(0xFFEDF2EA)
         val successText = Color(0xFF375031)
@@ -139,6 +140,7 @@ object OrnieTokens {
         val accentSubtle = Color(0xFF1B2F2A)
         val accentSubtleBorder = Color(0xFF32544B)
         val accentText = Color(0xFF8BB2A4)
+        val accentTextHover = Color(0xFFB4D0C5)
         val success = Color(0xFF567A4E)
         val successSubtle = Color(0xFF202E1D)
         val successText = Color(0xFF97B489)
@@ -208,5 +210,7 @@ object OrnieTokens {
         // milliseconds — collapse to ~0 when the OS reduce-motion setting is on
         const val durationQuick: Int = 120
         const val durationGentle: Int = 220
+        const val durationSpin: Int = 900
+        const val spinState: Int = NaN
     }
 }

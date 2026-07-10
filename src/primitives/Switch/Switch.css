@@ -1,3 +1,4 @@
+/* Switch — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
 .ornie-switch {
   position: relative;
   display: inline-flex;
@@ -25,8 +26,8 @@
   border-radius: var(--ornie-radius-full);
   background: var(--ornie-border-strong);
   transition:
-    background-color var(--ornie-duration-normal) var(--ornie-ease),
-    box-shadow var(--ornie-duration-fast) var(--ornie-ease);
+    background-color var(--ornie-duration-gentle) var(--ornie-ease-out),
+    box-shadow var(--ornie-duration-quick) var(--ornie-ease-out);
 }
 
 .ornie-switch--md .ornie-switch__track {
@@ -46,7 +47,7 @@
   border-radius: 50%;
   background: var(--ornie-surface);
   box-shadow: var(--ornie-shadow-sm);
-  transition: transform var(--ornie-duration-normal) var(--ornie-ease);
+  transition: transform var(--ornie-duration-gentle) var(--ornie-ease-inout);
 }
 
 .ornie-switch--md .ornie-switch__thumb {
@@ -58,29 +59,32 @@
   height: 14px;
 }
 
-.ornie-switch__input:checked + .ornie-switch__track {
+.ornie-switch__input:checked ~ .ornie-switch__track {
   background: var(--ornie-accent);
 }
-.ornie-switch--md .ornie-switch__input:checked + .ornie-switch__track .ornie-switch__thumb {
+.ornie-switch--md .ornie-switch__input:checked ~ .ornie-switch__track .ornie-switch__thumb {
   transform: translateX(18px);
 }
-.ornie-switch--sm .ornie-switch__input:checked + .ornie-switch__track .ornie-switch__thumb {
+.ornie-switch--sm .ornie-switch__input:checked ~ .ornie-switch__track .ornie-switch__thumb {
   transform: translateX(14px);
 }
 
-.ornie-switch__input:focus-visible + .ornie-switch__track {
+.ornie-switch__input:focus-visible ~ .ornie-switch__track {
   outline: 2px solid var(--ornie-focus-ring);
   outline-offset: 2px;
 }
 
-.ornie-switch__input:disabled + .ornie-switch__track {
+.ornie-switch__input:disabled ~ .ornie-switch__track {
   opacity: 0.55;
 }
 .ornie-switch__input:disabled ~ .ornie-switch__text {
   opacity: 0.55;
 }
 
+/* Text grows so a full-width settings row pushes the control to the right
+   (labelPlacement="start", the default). Intrinsic layouts are unaffected. */
 .ornie-switch__text {
+  flex: 1 1 auto;
   display: flex;
   flex-direction: column;
   gap: 2px;
@@ -98,4 +102,17 @@
   font-size: var(--ornie-text-sm);
   color: var(--ornie-text-muted);
   line-height: var(--ornie-leading-normal);
+}
+
+/* ≥44px hit target on touch: invisible hit-slop around the 24/20px track,
+   visual size unchanged (Chip's pattern). */
+@media (pointer: coarse) {
+  .ornie-switch__track::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: max(100%, 44px);
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
 }

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tabs</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var items = function () {
+        return [
+          { label: 'Overview', content: 'Recent activity and health checks for this module.' },
+          { label: 'Activity', content: 'Events from the last seven days.' },
+          { label: 'Settings', content: 'Rename, connect, or turn the module off.' },
+        ];
+      };
+      var withDisabled = function () {
+        var list = items();
+        list[2] = { label: 'Settings', content: list[2].content, disabled: true };
+        return list;
+      };
+      var box = function (node) {
+        return h('div', { style: { width: '360px' } }, node);
+      };
+      var matrix = function (size) {
+        return g.section(
+          'size ' + size,
+          g.row('underline', box(h(C.Tabs, { size: size, items: items() }))),
+          g.row('underline · 2nd active', box(h(C.Tabs, { size: size, items: items(), index: 1 }))),
+          g.row('underline · disabled', box(h(C.Tabs, { size: size, items: withDisabled() }))),
+          g.row('pills', box(h(C.Tabs, { size: size, variant: 'pills', items: items() }))),
+          g.row('pills · 2nd active', box(h(C.Tabs, { size: size, variant: 'pills', items: items(), index: 1 }))),
+          g.row('pills · disabled', box(h(C.Tabs, { size: size, variant: 'pills', items: withDisabled() }))),
+        );
+      };
+      return [
+        matrix('md'),
+        matrix('sm'),
+        g.section(
+          'labels only (parent owns the view)',
+          g.row('no content', box(h(C.Tabs, { items: [{ label: 'Issues' }, { label: 'Pull requests' }] }))),
+        ),
+      ];
+      // keyboard: Tab lands on the active tab; ArrowLeft/Right move + select
+      // (wrapping, skipping disabled); Home/End jump. focus-visible shows the
+      // standard 2px outline (--ornie-focus-ring).
+    });
+  </script>
+</body>
+</html>

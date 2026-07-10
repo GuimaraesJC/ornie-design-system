@@ -1,4 +1,54 @@
-/* Input-specific chrome; the shared field frame lives in styles/field.css. */
+/* Input — input-specific chrome; the shared field skin lives in styles/field.css
+   (do not restyle .ornie-field frame rules here).
+   Audit: semantic tokens only, no hex, no theme selectors. */
 .ornie-input::placeholder {
+  /* text-muted, not subtle: placeholder is real text, must hold 4.5:1 in dark */
+  color: var(--ornie-text-muted);
+}
+
+/* Shell — positions the leading/trailing slots inside the field frame.
+   It shares the .ornie-field__control div (which provides position: relative). */
+.ornie-input-shell__leading,
+.ornie-input-shell__trailing {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--ornie-space-1);
   color: var(--ornie-text-subtle);
+  /* Slots never steal clicks from the input… */
+  pointer-events: none;
+}
+.ornie-input-shell__leading {
+  left: var(--ornie-space-3);
+}
+.ornie-input-shell__trailing {
+  right: var(--ornie-space-3);
+}
+/* …except where the slot content is genuinely interactive (clear IconButton). */
+.ornie-input-shell__trailing :is(button, a, [role='button'], label) {
+  pointer-events: auto;
+}
+
+/* Slot glyphs match the field-skin icon measure (16px). */
+.ornie-input-shell__leading svg,
+.ornie-input-shell__trailing svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Padding compensation so typed text clears the slots
+   (values mirror the field.css icon compensation: 38px, 34px at sm). */
+.ornie-input-shell--leading .ornie-input {
+  padding-left: 38px;
+}
+.ornie-input-shell--trailing .ornie-input {
+  padding-right: 38px;
+}
+.ornie-input-shell--sm.ornie-input-shell--leading .ornie-input {
+  padding-left: 34px;
+}
+.ornie-input-shell--sm.ornie-input-shell--trailing .ornie-input {
+  padding-right: 34px;
 }

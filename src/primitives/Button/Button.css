@@ -1,3 +1,4 @@
+/* Button — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
 .ornie-btn {
   position: relative;
   display: inline-flex;
@@ -13,10 +14,10 @@
   cursor: pointer;
   user-select: none;
   transition:
-    background-color var(--ornie-duration-fast) var(--ornie-ease),
-    border-color var(--ornie-duration-fast) var(--ornie-ease),
-    color var(--ornie-duration-fast) var(--ornie-ease),
-    box-shadow var(--ornie-duration-fast) var(--ornie-ease);
+    background-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    border-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    color var(--ornie-duration-quick) var(--ornie-ease-out),
+    box-shadow var(--ornie-duration-quick) var(--ornie-ease-out);
 }
 
 .ornie-btn:focus-visible {
@@ -100,19 +101,32 @@
   width: 100%;
 }
 
-.ornie-btn__icon {
+.ornie-btn__leading,
+.ornie-btn__trailing {
   display: inline-flex;
   align-items: center;
 }
-.ornie-btn__icon svg {
+.ornie-btn__leading svg,
+.ornie-btn__trailing svg {
   width: 1.1em;
   height: 1.1em;
 }
 
-/* Loading */
+/* Loading: label and slots go invisible (width stays locked), spinner overlays.
+   visibility: hidden drops them from the accessibility tree, so a screen-reader-
+   only loading label supplies the button's name meanwhile. */
 .ornie-btn--loading .ornie-btn__label,
-.ornie-btn--loading .ornie-btn__icon {
+.ornie-btn--loading .ornie-btn__leading,
+.ornie-btn--loading .ornie-btn__trailing {
   visibility: hidden;
+}
+.ornie-btn__loading-label {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 .ornie-btn__spinner {
   position: absolute;
@@ -127,11 +141,25 @@
   border-radius: 50%;
   border: 2px solid currentColor;
   border-right-color: transparent;
-  animation: ornie-spin 0.7s linear infinite;
+  /* Sanctioned continuous motion: spin tokens only; reduced motion pauses it. */
+  animation: ornie-btn-spin var(--ornie-duration-spin) linear infinite;
+  animation-play-state: var(--ornie-spin-state);
 }
 
-@keyframes ornie-spin {
+@keyframes ornie-btn-spin {
   to {
     transform: rotate(360deg);
+  }
+}
+
+/* ≥44px hit targets on touch: invisible hit-slop for sm/md heights. */
+@media (pointer: coarse) {
+  .ornie-btn::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
   }
 }

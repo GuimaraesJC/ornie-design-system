@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { forwardRef, useState } from 'react';
 import type { HTMLAttributes } from 'react';
 import { cx } from '../../lib/cx';
+import './Avatar.css';
 
 export type AvatarSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 export type AvatarShape = 'circle' | 'square';
@@ -26,28 +27,29 @@ export interface AvatarProps extends HTMLAttributes<HTMLSpanElement> {
   src?: string;
   /** Accessible description of the image. Defaults to `name`. */
   alt?: string;
-  /** Used for the initials fallback and its deterministic tint. */
+  /** Used for the initials fallback (first + last word) and its deterministic tint. */
   name?: string;
-  /** @default 'md' */
+  /** xs 20 / sm 28 / md 36 / lg 44 / xl 56 (px). @default 'md' */
   size?: AvatarSize;
   /** @default 'circle' */
   shape?: AvatarShape;
 }
 
-export function Avatar({
-  src,
-  alt,
-  name,
-  size = 'md',
-  shape = 'circle',
-  className,
-  ...rest
-}: AvatarProps) {
-  const [failed, setFailed] = useState(false);
-  const showImage = !!src && !failed;
+/**
+ * Avatar — a person, as image, initials, or quiet person glyph.
+ * See Avatar.prompt.md. Screens: 2k people, D:people, share-later surfaces.
+ */
+export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
+  { src, alt, name, size = 'md', shape = 'circle', className, ...rest },
+  ref,
+) {
+  /* Track which src failed so a new src gets a fresh attempt. */
+  const [failedSrc, setFailedSrc] = useState<string | null>(null);
+  const showImage = !!src && failedSrc !== src;
   const initials = name ? initialsOf(name) : '';
   return (
     <span
+      ref={ref}
       className={cx(
         'ornie-avatar',
         `ornie-avatar--${size}`,
@@ -64,7 +66,7 @@ export function Avatar({
           className="ornie-avatar__img"
           src={src}
           alt={alt ?? name ?? ''}
-          onError={() => setFailed(true)}
+          onError={() => setFailedSrc(src)}
         />
       ) : initials ? (
         <span aria-hidden="true">{initials}</span>
@@ -75,4 +77,4 @@ export function Avatar({
       )}
     </span>
   );
-}
+});

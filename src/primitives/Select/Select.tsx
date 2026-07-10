@@ -1,6 +1,7 @@
 import { forwardRef, useId } from 'react';
 import type { ReactNode, SelectHTMLAttributes } from 'react';
 import { cx } from '../../lib/cx';
+import './Select.css';
 
 export type SelectSize = 'sm' | 'md' | 'lg';
 
@@ -17,14 +18,24 @@ export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement
   hint?: ReactNode;
   /** Error message; replaces the hint and switches the field to its error state. */
   error?: ReactNode;
-  /** Control height. @default 'md' */
+  /** Control height: sm 32 / md 40 / lg 48 (px). @default 'md' */
   size?: SelectSize;
   /** Options to render; alternatively pass <option> elements as children. */
   options?: SelectOption[];
   /** Placeholder shown while nothing is selected (uncontrolled usage). */
   placeholder?: string;
+  /**
+   * Slot inside the field frame, leading edge — an `<Icon>` (folder, flag…).
+   * Decorative: hidden from assistive tech, never intercepts clicks.
+   */
+  leading?: ReactNode;
 }
 
+/**
+ * Select — a native `<select>` on the shared field skin (a11y for free);
+ * a custom listbox is a non-goal until a real need appears.
+ * See Select.prompt.md. Screens: 1l task detail fields, D:settings.
+ */
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select(
   {
     label,
@@ -33,6 +44,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
     size = 'md',
     options,
     placeholder,
+    leading,
     className,
     id,
     disabled,
@@ -62,7 +74,19 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(function Select
           {label}
         </label>
       )}
-      <div className="ornie-field__control">
+      <div
+        className={cx(
+          'ornie-field__control',
+          'ornie-select-shell',
+          `ornie-select-shell--${size}`,
+          !!leading && 'ornie-select-shell--leading',
+        )}
+      >
+        {leading && (
+          <span className="ornie-select-shell__leading" aria-hidden="true">
+            {leading}
+          </span>
+        )}
         <select
           ref={ref}
           id={selectId}

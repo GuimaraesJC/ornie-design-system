@@ -9,9 +9,10 @@
   cursor: not-allowed;
 }
 
-/* Placeholder state: the hidden empty option is selected. */
+/* Placeholder state: the hidden empty option is selected. text-muted, not
+   text-subtle — this is real 13-15px text and must hold 4.5:1 in both themes. */
 .ornie-select:has(option[value='']:checked) {
-  color: var(--ornie-text-subtle);
+  color: var(--ornie-text-muted);
 }
 
 .ornie-field__chevron {
@@ -26,4 +27,30 @@
 .ornie-field__chevron svg {
   width: 16px;
   height: 16px;
+}
+
+/* Shell — positions the leading slot inside the field frame.
+   It shares the .ornie-field__control div (which provides position: relative). */
+.ornie-select-shell__leading {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--ornie-space-3);
+  display: inline-flex;
+  align-items: center;
+  color: var(--ornie-text-subtle);
+  pointer-events: none; /* clicks fall through to the select */
+}
+.ornie-select-shell__leading svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Padding compensation so the value clears the slot
+   (values mirror the field.css icon compensation: 38px, 34px at sm). */
+.ornie-select-shell--leading .ornie-select {
+  padding-left: 38px;
+}
+.ornie-select-shell--sm.ornie-select-shell--leading .ornie-select {
+  padding-left: 34px;
 }

@@ -1,0 +1,6 @@
+/* Icon — semantic tokens only. Color always inherits from the parent. */
+.ornie-icon {
+  flex: none;
+  display: inline-block;
+  vertical-align: middle;
+}

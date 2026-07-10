@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Card</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var body = function (title, text) {
+        return [
+          h('div', { key: 't', style: { fontWeight: 'var(--ornie-weight-bold)', marginBottom: '4px' } }, title),
+          h('div', { key: 'b', style: { color: 'var(--ornie-text-muted)', fontSize: 'var(--ornie-text-sm)' } }, text),
+        ];
+      };
+      var card = function (props, title, text) {
+        return h(C.Card, Object.assign({ style: { width: '220px' } }, props), body(title, text));
+      };
+      return [
+        g.section(
+          'variants (padding md)',
+          g.row('flat', card({ variant: 'flat' }, 'Flat', 'Surface + hairline edge')),
+          g.row('elevated', card({ variant: 'elevated' }, 'Elevated', 'Hairline + shadow-md')),
+          g.row('sunken', card({ variant: 'sunken' }, 'Sunken', 'Recessed grouping surface')),
+          g.row('outlined (deprecated)', card({ variant: 'outlined' }, 'Outlined', 'Maps to flat; removed in 0.3.0')),
+        ),
+        g.section(
+          'paddings (flat)',
+          g.row('none', card({ variant: 'flat', padding: 'none' }, 'none', '0px')),
+          g.row('sm', card({ variant: 'flat', padding: 'sm' }, 'sm', '12px')),
+          g.row('md', card({ variant: 'flat', padding: 'md' }, 'md', '16px')),
+          g.row('lg', card({ variant: 'flat', padding: 'lg' }, 'lg', '24px')),
+        ),
+        g.section(
+          'spine (radius-aware accent edge)',
+          g.row('elevated', card({ spine: true, padding: 'lg' }, 'RIGHT NOW', 'Email design feedback to Sam')),
+          g.row('flat', card({ variant: 'flat', spine: true }, 'Spine on flat', 'Same 4px accent edge')),
+          g.row('padding none', card({ spine: true, padding: 'none' }, 'Edge to edge', 'Spine clips to the radius')),
+        ),
+        g.section(
+          'interactive',
+          g.row(
+            'button (onClick)',
+            card({ interactive: true, onClick: function () {} }, 'Renders <button>', 'Hover wash + focus ring'),
+          ),
+          g.row(
+            'link (href)',
+            card({ interactive: true, href: '#', variant: 'flat' }, 'Renders <a>', 'Navigates instead of acts'),
+          ),
+          g.row(
+            'div (no handler)',
+            card({ interactive: true }, 'Renders <div>', 'Wash only — parent owns the click'),
+          ),
+        ),
+        g.section(
+          'combined',
+          g.row(
+            'spine + interactive',
+            card(
+              { spine: true, interactive: true, onClick: function () {}, padding: 'lg' },
+              'RIGHT NOW, tappable',
+              'One spine card per view',
+            ),
+          ),
+          g.row(
+            'sunken + interactive',
+            card({ variant: 'sunken', interactive: true, onClick: function () {} }, 'Sunken action', 'Quiet wash on hover'),
+          ),
+        ),
+      ];
+      // focus-visible: tab through either half — every interactive card gets the
+      // standard 2px outline (--ornie-focus-ring).
+    });
+  </script>
+</body>
+</html>

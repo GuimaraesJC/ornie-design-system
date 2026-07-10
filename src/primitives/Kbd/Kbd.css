@@ -1,0 +1,37 @@
+/* Kbd — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+.ornie-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-family: var(--ornie-font-sans);
+}
+
+/* One cap per key. min-width keeps single glyphs square-ish. */
+.ornie-kbd__key {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  background: var(--ornie-surface-sunken);
+  border: 1px solid var(--ornie-border);
+  border-radius: var(--ornie-radius-xs);
+  color: var(--ornie-text-muted);
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: var(--ornie-weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+/*
+ * Inverse surfaces (Tooltip bubble): transparent ground, inverse ink dimmed
+ * via element opacity (never color-mix), hairline drawn in the same ink.
+ */
+.ornie-kbd--inverse .ornie-kbd__key {
+  background: transparent;
+  border-color: currentColor;
+  color: var(--ornie-text-inverse);
+  opacity: 0.85;
+}

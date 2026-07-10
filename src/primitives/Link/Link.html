@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Link</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var copy = function () {
+        var nodes = Array.prototype.slice.call(arguments);
+        return h(
+          'p',
+          {
+            style: {
+              margin: 0,
+              maxWidth: '360px',
+              fontFamily: 'var(--ornie-font-sans)',
+              fontSize: 'var(--ornie-text-md)',
+              lineHeight: 1.5,
+              color: 'var(--ornie-text)',
+            },
+          },
+          nodes,
+        );
+      };
+      return [
+        g.section(
+          'variants',
+          g.row('accent (default)', h(C.Link, { href: '#' }, 'Read the sync guide')),
+          g.row('muted', h(C.Link, { href: '#', variant: 'muted' }, 'Learn how projects work')),
+        ),
+        g.section(
+          'states (hover/focus live — tab or mouse over)',
+          g.row('rest underline is subtle', h(C.Link, { href: '#' }, 'how sync works')),
+          g.row('no href (see prompt.md — prefer Button ghost)', h(C.Link, {}, 'not navigable')),
+        ),
+        g.section(
+          'in context',
+          g.row(
+            'sentence',
+            copy(
+              'Your workspace syncs when you are online. See ',
+              h(C.Link, { href: '#' }, 'how sync works'),
+              ' or ',
+              h(C.Link, { href: '#', variant: 'muted' }, 'manage devices'),
+              ' in settings.',
+            ),
+          ),
+          g.row(
+            'small copy — type is inherited',
+            h(
+              'span',
+              {
+                style: {
+                  fontFamily: 'var(--ornie-font-sans)',
+                  fontSize: 'var(--ornie-text-xs)',
+                  color: 'var(--ornie-text-muted)',
+                },
+              },
+              'Trouble syncing? ',
+              h(C.Link, { href: '#' }, 'Check device status'),
+            ),
+          ),
+        ),
+      ];
+      // focus-visible: tab through — every link gets the standard 2px
+      // outline (--ornie-focus-ring), offset 2, rounded by radius-xs.
+    });
+  </script>
+</body>
+</html>

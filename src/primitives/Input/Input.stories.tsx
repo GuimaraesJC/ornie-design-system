@@ -1,12 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
+import { useState } from 'react';
 import { Input } from './Input';
-
-const SearchIcon = (
-  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <circle cx="7" cy="7" r="4.5" stroke="currentColor" strokeWidth="1.5" />
-    <path d="M10.5 10.5L14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
+import { Icon } from '../Icon/Icon';
+import { IconButton } from '../IconButton/IconButton';
 
 const meta = {
   title: 'Components/Input',
@@ -53,7 +49,73 @@ export const WithIcon: Story = {
   args: {
     label: 'Search',
     placeholder: 'Search projects…',
-    iconStart: SearchIcon,
+    leading: <Icon name="search" />,
+  },
+  render: (args) => (
+    <div style={{ width: 280 }}>
+      <Input {...args} />
+    </div>
+  ),
+};
+
+export const WithTrailingClear: Story = {
+  args: { label: 'Capture', placeholder: 'What needs doing?' },
+  render: (args) => {
+    const [value, setValue] = useState('water the ferns tomorrow');
+    return (
+      <div style={{ width: 280 }}>
+        <Input
+          {...args}
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          trailing={
+            value ? (
+              <IconButton aria-label="Clear" size={32} onClick={() => setValue('')}>
+                <Icon name="x" size={16} />
+              </IconButton>
+            ) : undefined
+          }
+        />
+      </div>
+    );
+  },
+};
+
+export const WithKbdHint: Story = {
+  args: {
+    label: 'Quick find',
+    placeholder: 'Search notes and tasks…',
+    leading: <Icon name="search" />,
+    trailing: (
+      <span
+        style={{
+          fontSize: 11,
+          lineHeight: '16px',
+          padding: '1px 5px',
+          border: '1px solid var(--ornie-border)',
+          borderRadius: 5,
+          color: 'var(--ornie-text-muted)',
+        }}
+      >
+        ⌘/
+      </span>
+    ),
+  },
+  render: (args) => (
+    <div style={{ width: 280 }}>
+      <Input {...args} />
+    </div>
+  ),
+};
+
+export const MobileCapture: Story = {
+  args: {
+    label: 'Capture',
+    placeholder: 'What needs doing?',
+    size: 'lg',
+    inputMode: 'text',
+    enterKeyHint: 'done',
+    autoComplete: 'off',
   },
   render: (args) => (
     <div style={{ width: 280 }}>

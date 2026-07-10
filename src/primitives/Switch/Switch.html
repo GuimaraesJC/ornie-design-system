@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Switch</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var sealDesc = 'Seal the Burrow after 15 minutes of inactivity.';
+      var matrix = function (size) {
+        return g.section(
+          'size ' + size,
+          g.row(
+            'bare (aria-label)',
+            h(C.Switch, { size: size, 'aria-label': 'Notifications' }),
+            h(C.Switch, { size: size, 'aria-label': 'Notifications on', defaultChecked: true }),
+          ),
+          g.row(
+            'label',
+            h(C.Switch, { size: size, label: 'Notifications' }),
+            h(C.Switch, { size: size, label: 'Notifications', defaultChecked: true }),
+          ),
+          g.row(
+            'label + description',
+            h(
+              'div',
+              { style: { width: '340px' } },
+              h(C.Switch, {
+                size: size,
+                label: 'Auto-seal',
+                description: sealDesc,
+                defaultChecked: true,
+                style: { width: '100%' },
+              }),
+            ),
+          ),
+          g.row(
+            'placement end',
+            h(
+              'div',
+              { style: { width: '340px' } },
+              h(C.Switch, {
+                size: size,
+                labelPlacement: 'end',
+                label: 'Weekly digest',
+                description: 'Control first, text after.',
+              }),
+            ),
+          ),
+          g.row(
+            'disabled',
+            h(C.Switch, { size: size, label: 'Disabled off', disabled: true }),
+            h(C.Switch, { size: size, label: 'Disabled on', disabled: true, defaultChecked: true }),
+          ),
+          g.row(
+            'disabled + description',
+            h(
+              'div',
+              { style: { width: '340px' } },
+              h(C.Switch, {
+                size: size,
+                label: 'Auto-seal',
+                description: sealDesc,
+                disabled: true,
+                defaultChecked: true,
+                style: { width: '100%' },
+              }),
+            ),
+          ),
+        );
+      };
+      return [
+        matrix('md'),
+        matrix('sm'),
+        g.section(
+          'settings rows (start placement, full width)',
+          g.row(
+            'stacked',
+            h(
+              'div',
+              { style: { display: 'flex', flexDirection: 'column', gap: '20px', width: '360px' } },
+              h(C.Switch, { label: 'Auto-seal', description: sealDesc, defaultChecked: true, style: { width: '100%' } }),
+              h(C.Switch, {
+                label: 'Calendar module',
+                description: "Show events beside today's tasks.",
+                style: { width: '100%' },
+              }),
+            ),
+          ),
+        ),
+      ];
+      // keyboard: Tab to the switch, Space toggles. focus-visible: the standard
+      // 2px outline (--ornie-focus-ring) lands on the track. Clicking the text
+      // toggles too — the whole row is one <label>.
+    });
+  </script>
+</body>
+</html>

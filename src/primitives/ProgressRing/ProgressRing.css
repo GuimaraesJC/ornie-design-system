@@ -1,0 +1,65 @@
+/* ProgressRing — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors.
+   Anatomy: conic-gradient fill (--ornie-accent) over the track, with an inner
+   --ornie-surface disc masking the center to make it a ring (SPECS: day ring
+   46px ø, conic fill, 37px inner disc).
+   Value changes are INSTANT by design: conic-gradient stops cannot transition
+   without @property registration, and a progress tick is not motion the user
+   should watch anyway (D-01). Do not add a transition here. */
+.ornie-progress-ring {
+  --ornie-progress-ring-value: 0; /* set inline by the component, 0–1 */
+  --ornie-progress-ring-track: var(--ornie-track);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border-radius: var(--ornie-radius-full);
+  background: conic-gradient(
+    var(--ornie-accent) calc(var(--ornie-progress-ring-value) * 360deg),
+    var(--ornie-progress-ring-track) 0
+  );
+}
+
+/* Sizes — exact px boxes. Stroke scales with the box:
+   46px box → 37px disc (4.5px stroke, from SPECS)
+   24px box → 17px disc (3.5px stroke)
+   16px box → 11px disc (2.5px stroke) */
+.ornie-progress-ring--16 {
+  width: 16px;
+  height: 16px;
+}
+.ornie-progress-ring--24 {
+  width: 24px;
+  height: 24px;
+}
+.ornie-progress-ring--46 {
+  width: 46px;
+  height: 46px;
+}
+
+/* Inner disc — masks the center; also hosts the optional center slot. */
+.ornie-progress-ring__disc {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ornie-radius-full);
+  background: var(--ornie-surface);
+  color: var(--ornie-text);
+  font-family: var(--ornie-font-sans);
+  font-weight: var(--ornie-weight-semibold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+.ornie-progress-ring--16 .ornie-progress-ring__disc {
+  width: 11px;
+  height: 11px;
+}
+.ornie-progress-ring--24 .ornie-progress-ring__disc {
+  width: 17px;
+  height: 17px;
+}
+.ornie-progress-ring--46 .ornie-progress-ring__disc {
+  width: 37px;
+  height: 37px;
+  font-size: 12.5px;
+}

@@ -4,8 +4,17 @@
 @import './base.css';
 @import './field.css';
 
+@import '../primitives/Icon/Icon.css';
+@import '../primitives/Chip/Chip.css';
+@import '../primitives/Kbd/Kbd.css';
+@import '../primitives/Spinner/Spinner.css';
+@import '../primitives/Divider/Divider.css';
+@import '../primitives/Link/Link.css';
 @import '../primitives/Button/Button.css';
 @import '../primitives/Input/Input.css';
+@import '../primitives/TextArea/TextArea.css';
+@import '../primitives/IconButton/IconButton.css';
+@import '../primitives/ProgressRing/ProgressRing.css';
 @import '../primitives/Select/Select.css';
 @import '../primitives/Checkbox/Checkbox.css';
 @import '../primitives/Radio/Radio.css';

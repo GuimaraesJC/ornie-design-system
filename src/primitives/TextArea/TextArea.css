@@ -1,0 +1,61 @@
+/* TextArea — multi-line sibling of Input. The control chrome below copies the
+   shared field-skin recipe (styles/field.css) because that file only targets
+   .ornie-input/.ornie-select; the .ornie-field wrapper (label/desc) is shared.
+   Audit: semantic tokens only, no hex, no theme selectors. */
+.ornie-textarea {
+  width: 100%;
+  font-family: var(--ornie-font-sans);
+  line-height: var(--ornie-leading-normal);
+  color: var(--ornie-text);
+  background: var(--ornie-surface);
+  border: 1px solid var(--ornie-border-strong);
+  border-radius: var(--ornie-radius-md);
+  resize: vertical;
+  transition:
+    border-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    box-shadow var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+
+.ornie-textarea::placeholder {
+  /* text-muted, not subtle: placeholder is real text, must hold 4.5:1 in dark */
+  color: var(--ornie-text-muted);
+}
+
+.ornie-textarea:hover:not(:disabled):not(:focus) {
+  border-color: var(--ornie-border-hover);
+}
+
+.ornie-textarea:focus {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+  border-color: var(--ornie-accent);
+}
+
+.ornie-textarea:disabled {
+  background: var(--ornie-surface-sunken);
+  color: var(--ornie-text-muted);
+  cursor: not-allowed;
+  resize: none;
+}
+
+/* Sizes — paddings sit a single row at Input's 32/40/48 rhythm; height stays
+   content-driven (native `rows`). */
+.ornie-textarea--sm {
+  padding: 6px var(--ornie-space-3);
+  font-size: var(--ornie-text-sm);
+  border-radius: var(--ornie-radius-sm);
+}
+.ornie-textarea--md {
+  padding: 8px var(--ornie-space-3);
+  font-size: var(--ornie-text-md);
+}
+.ornie-textarea--lg {
+  padding: var(--ornie-space-3) var(--ornie-space-4);
+  font-size: 16px; /* matches field.css lg — 16px so iOS never zooms */
+}
+
+/* Error state — danger border, same focus ring as everywhere. */
+.ornie-textarea--error,
+.ornie-textarea--error:focus {
+  border-color: var(--ornie-danger);
+}

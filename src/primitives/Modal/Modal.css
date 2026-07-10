@@ -1,3 +1,4 @@
+/* Modal — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
 .ornie-modal {
   position: fixed;
   inset: 0;
@@ -6,7 +7,14 @@
   place-items: center;
   padding: var(--ornie-space-4);
   background: var(--ornie-overlay);
-  animation: ornie-fade-in var(--ornie-duration-fast) var(--ornie-ease);
+  /* Fade only — no slide/zoom entrances (D-01). Collapses via the duration token. */
+  animation: ornie-modal-fade var(--ornie-duration-gentle) var(--ornie-ease-out);
+}
+
+/* Top placement — command-overlay position (quick capture / Quick Find) */
+.ornie-modal--top {
+  place-items: start center;
+  padding-top: 12vh;
 }
 
 .ornie-modal__panel {
@@ -19,14 +27,21 @@
   font-family: var(--ornie-font-sans);
   border-radius: var(--ornie-radius-lg);
   box-shadow: var(--ornie-shadow-lg);
-  animation: ornie-modal-in var(--ornie-duration-normal) var(--ornie-ease);
+}
+.ornie-modal--top .ornie-modal__panel {
+  max-height: calc(88vh - var(--ornie-space-8));
+}
+.ornie-modal__panel:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
 }
 
+/* Sizes: sm 400 / md 540 / lg 680 */
 .ornie-modal__panel--sm {
   max-width: 400px;
 }
 .ornie-modal__panel--md {
-  max-width: 520px;
+  max-width: 540px;
 }
 .ornie-modal__panel--lg {
   max-width: 680px;
@@ -59,19 +74,21 @@
 
 .ornie-modal__close {
   flex: none;
+  position: relative;
   display: grid;
   place-items: center;
   width: 32px;
   height: 32px;
   margin: -6px -8px 0 0;
+  padding: 0;
   border: none;
   background: none;
   cursor: pointer;
   color: var(--ornie-text-muted);
   border-radius: var(--ornie-radius-sm);
   transition:
-    background-color var(--ornie-duration-fast) var(--ornie-ease),
-    color var(--ornie-duration-fast) var(--ornie-ease);
+    background-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    color var(--ornie-duration-quick) var(--ornie-ease-out);
 }
 .ornie-modal__close:hover {
   background: var(--ornie-surface-sunken);
@@ -80,10 +97,6 @@
 .ornie-modal__close:focus-visible {
   outline: 2px solid var(--ornie-focus-ring);
   outline-offset: 2px;
-}
-.ornie-modal__close svg {
-  width: 16px;
-  height: 16px;
 }
 
 .ornie-modal__body {
@@ -103,15 +116,20 @@
   padding: 0 var(--ornie-space-6) var(--ornie-space-6);
 }
 
-@keyframes ornie-fade-in {
-  from {
-    opacity: 0;
+/* ≥44px hit target for the close button on touch. */
+@media (pointer: coarse) {
+  .ornie-modal__close::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
   }
 }
 
-@keyframes ornie-modal-in {
+@keyframes ornie-modal-fade {
   from {
     opacity: 0;
-    transform: translateY(8px) scale(0.97);
   }
 }

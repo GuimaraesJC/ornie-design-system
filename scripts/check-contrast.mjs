@@ -76,6 +76,8 @@ const PAIRS = [
   ['--ornie-text-on-accent', '--ornie-danger', 4.5, true],
   ['--ornie-text-on-accent', '--ornie-danger-hover', 4.5, true],
   ['--ornie-accent-text', '--ornie-accent-subtle', 4.5, true],
+  ['--ornie-accent-text-hover', '--ornie-surface', 4.5, true],
+  ['--ornie-accent-text-hover', '--ornie-bg', 4.5, true],
   ['--ornie-success-text', '--ornie-success-subtle', 4.5, true],
   ['--ornie-warning-text', '--ornie-warning-subtle', 4.5, true],
   ['--ornie-danger-text', '--ornie-danger-subtle', 4.5, true],

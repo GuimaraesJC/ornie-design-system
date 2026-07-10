@@ -134,6 +134,8 @@
   --ornie-ease-out: cubic-bezier(0.2, 0, 0.2, 1);
   --ornie-ease-inout: cubic-bezier(0.45, 0, 0.25, 1);
   --ornie-ease: cubic-bezier(0.2, 0, 0.2, 1); /* DEPRECATED since 0.2.0 — use ease-out; remove at 0.3.0 */
+  --ornie-duration-spin: 900ms; /* Spinner rotation period; paused (not sped to 1ms) under reduced motion */
+  --ornie-spin-state: running; /* animation-play-state for continuous animations; reduced motion flips it to paused */
 
   /* --- Layer 1: stacking --- */
   --ornie-z-modal: 1000;
@@ -170,6 +172,7 @@
   --ornie-accent-subtle: var(--ornie-river-50);
   --ornie-accent-subtle-border: var(--ornie-river-200);
   --ornie-accent-text: var(--ornie-river-600);
+  --ornie-accent-text-hover: var(--ornie-river-700);
   --ornie-success: var(--ornie-moss-500);
   --ornie-success-subtle: var(--ornie-moss-50);
   --ornie-success-text: var(--ornie-moss-700);
@@ -232,6 +235,7 @@
   --ornie-accent-subtle: var(--ornie-river-900);
   --ornie-accent-subtle-border: var(--ornie-river-700);
   --ornie-accent-text: var(--ornie-river-300);
+  --ornie-accent-text-hover: var(--ornie-river-200);
   --ornie-success: var(--ornie-moss-500);
   --ornie-success-subtle: var(--ornie-moss-900);
   --ornie-success-text: var(--ornie-moss-300);
@@ -272,5 +276,6 @@
     --ornie-duration-gentle: 1ms;
     --ornie-duration-fast: 1ms;
     --ornie-duration-normal: 1ms;
+    --ornie-spin-state: paused;
   }
 }

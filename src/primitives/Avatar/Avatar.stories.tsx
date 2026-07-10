@@ -27,6 +27,7 @@ export const WithImage: Story = {
   args: { src: PORTRAIT, alt: 'Portrait of Jean' },
 };
 
+/** Scale (0.2.0): xs 20 / sm 28 / md 36 / lg 44 / xl 56 px. */
 export const Sizes: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>

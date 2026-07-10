@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Divider</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var row = function (text) {
+        return h(
+          'div',
+          {
+            style: {
+              padding: '12px 16px',
+              fontFamily: 'var(--ornie-font-sans)',
+              fontSize: 'var(--ornie-text-md)',
+              color: 'var(--ornie-text)',
+            },
+          },
+          text,
+        );
+      };
+      var card = function () {
+        var nodes = Array.prototype.slice.call(arguments);
+        return h(
+          'div',
+          {
+            style: {
+              width: '300px',
+              background: 'var(--ornie-surface)',
+              border: '1px solid var(--ornie-border)',
+              borderRadius: 'var(--ornie-radius-lg)',
+              overflow: 'hidden',
+            },
+          },
+          nodes,
+        );
+      };
+      var track = function (node) {
+        return h('div', { style: { width: '260px', background: 'var(--ornie-surface)', padding: '8px 0' } }, node);
+      };
+      return [
+        g.section(
+          'horizontal × inset',
+          g.row('inset none', track(h(C.Divider, {}))),
+          g.row('inset md (16px, list rows)', track(h(C.Divider, { inset: 'md' }))),
+          g.row('inset lg (24px, card/sheet)', track(h(C.Divider, { inset: 'lg' }))),
+        ),
+        g.section(
+          'vertical',
+          g.row(
+            'stretch in flex',
+            h(
+              'div',
+              {
+                style: {
+                  display: 'flex',
+                  alignItems: 'stretch',
+                  gap: '12px',
+                  fontFamily: 'var(--ornie-font-sans)',
+                  fontSize: 'var(--ornie-text-sm)',
+                  color: 'var(--ornie-text-muted)',
+                },
+              },
+              h('span', null, 'Today'),
+              h(C.Divider, { orientation: 'vertical' }),
+              h('span', null, 'This week'),
+              h(C.Divider, { orientation: 'vertical' }),
+              h('span', null, 'Someday'),
+            ),
+          ),
+          g.row(
+            'explicit height + inset md',
+            h(
+              'div',
+              { style: { display: 'flex', gap: '12px' } },
+              h(C.Divider, { orientation: 'vertical', style: { height: '40px' } }),
+              h(C.Divider, { orientation: 'vertical', inset: 'md', style: { height: '40px' } }),
+            ),
+          ),
+        ),
+        g.section(
+          'in context — settings rows (inset md aligns with 16px row padding)',
+          g.row(
+            'card',
+            card(
+              row('Appearance'),
+              h(C.Divider, { inset: 'md' }),
+              row('Notifications'),
+              h(C.Divider, { inset: 'md' }),
+              row('Shortcuts'),
+            ),
+          ),
+        ),
+      ];
+      // Divider is inert — nothing to tab to. <hr> carries the implicit
+      // separator role; vertical divs set role + aria-orientation.
+    });
+  </script>
+</body>
+</html>

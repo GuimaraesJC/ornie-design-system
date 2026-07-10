@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Badge</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var WORDS = { neutral: 'Draft', accent: 'New', success: 'Active', warning: 'Pending', danger: 'Failed' };
+      var matrix = function (size) {
+        return g.section(
+          'size ' + size,
+          g.row(
+            'variants',
+            h(C.Badge, { size: size, variant: 'neutral' }, WORDS.neutral),
+            h(C.Badge, { size: size, variant: 'accent' }, WORDS.accent),
+            h(C.Badge, { size: size, variant: 'success' }, WORDS.success),
+            h(C.Badge, { size: size, variant: 'warning' }, WORDS.warning),
+            h(C.Badge, { size: size, variant: 'danger' }, WORDS.danger),
+          ),
+          g.row(
+            'dot',
+            h(C.Badge, { size: size, variant: 'neutral', dot: true }, 'Offline'),
+            h(C.Badge, { size: size, variant: 'accent', dot: true }, 'Syncing'),
+            h(C.Badge, { size: size, variant: 'success', dot: true }, 'Online'),
+            h(C.Badge, { size: size, variant: 'warning', dot: true }, 'Away'),
+            h(C.Badge, { size: size, variant: 'danger', dot: true }, 'Failed'),
+          ),
+          g.row(
+            'count (neutral default)',
+            h(C.Badge, { size: size, count: 1 }),
+            h(C.Badge, { size: size, count: 8 }),
+            h(C.Badge, { size: size, count: 142 }),
+            h(C.Badge, { size: size, count: 142, max: 999 }),
+          ),
+          g.row(
+            'count accent (opt-in)',
+            h(C.Badge, { size: size, variant: 'accent', count: 1 }),
+            h(C.Badge, { size: size, variant: 'accent', count: 8 }),
+            h(C.Badge, { size: size, variant: 'accent', count: 142 }),
+          ),
+          g.row(
+            'count guardrails',
+            h(C.Badge, { size: size, variant: 'danger', count: 8 }),
+            h('span', { style: { font: '12px var(--ornie-font-sans)', color: 'var(--ornie-text-muted)' } },
+              'danger coerced to neutral · count 0 renders nothing:'),
+            h(C.Badge, { size: size, count: 0 }),
+          ),
+        );
+      };
+      return [matrix('sm'), matrix('md')];
+      // Counts never shout: variant="danger" with count renders neutral (D-01),
+      // count={0} renders nothing at all.
+    });
+  </script>
+</body>
+</html>

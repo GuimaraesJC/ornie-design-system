@@ -1,0 +1,41 @@
+/* Link — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+
+/*
+ * Text-level: inherits the surrounding font so links sit inside prose,
+ * settings copy, and empty-state help lines without re-declaring type.
+ */
+.ornie-link {
+  border-radius: var(--ornie-radius-xs); /* softens the focus outline corners */
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  transition:
+    color var(--ornie-duration-quick) var(--ornie-ease-out),
+    text-decoration-color var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+
+.ornie-link:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
+}
+
+/* accent — the standard link: river ink, underline quiet at rest, full on hover */
+.ornie-link--accent {
+  color: var(--ornie-accent-text);
+  text-decoration-color: var(--ornie-accent-subtle-border);
+}
+.ornie-link--accent:hover {
+  color: var(--ornie-accent-text-hover);
+  text-decoration-color: currentColor;
+}
+
+/* muted — quiet secondary link */
+.ornie-link--muted {
+  color: var(--ornie-text-muted);
+  text-decoration-color: var(--ornie-border-strong);
+}
+.ornie-link--muted:hover {
+  color: var(--ornie-text);
+  text-decoration-color: currentColor;
+}

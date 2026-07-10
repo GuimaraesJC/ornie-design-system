@@ -18,7 +18,15 @@
   border-radius: var(--ornie-radius-sm);
   box-shadow: var(--ornie-shadow-md);
   pointer-events: none;
-  animation: ornie-tooltip-in var(--ornie-duration-fast) var(--ornie-ease);
+  animation: ornie-tooltip-in var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+
+/* Shortcut caps after the label — Kbd handles the inverse look itself
+   (ornie-kbd--inverse); this wrapper only spaces and aligns it. */
+.ornie-tooltip__kbd {
+  display: inline-flex;
+  margin-left: 6px;
+  vertical-align: middle;
 }
 
 .ornie-tooltip__bubble::after {

@@ -87,6 +87,7 @@ public enum OrnieTokens {
     public static let accentSubtle = Color(.sRGB, red: 0.9294, green: 0.9569, blue: 0.9451)
     public static let accentSubtleBorder = Color(.sRGB, red: 0.7059, green: 0.8157, blue: 0.7725)
     public static let accentText = Color(.sRGB, red: 0.2431, green: 0.4078, blue: 0.3647)
+    public static let accentTextHover = Color(.sRGB, red: 0.1961, green: 0.3294, blue: 0.2941)
     public static let success = Color(.sRGB, red: 0.3373, green: 0.4784, blue: 0.3059)
     public static let successSubtle = Color(.sRGB, red: 0.9294, green: 0.9490, blue: 0.9176)
     public static let successText = Color(.sRGB, red: 0.2157, green: 0.3137, blue: 0.1922)
@@ -137,6 +138,7 @@ public enum OrnieTokens {
     public static let accentSubtle = Color(.sRGB, red: 0.1059, green: 0.1843, blue: 0.1647)
     public static let accentSubtleBorder = Color(.sRGB, red: 0.1961, green: 0.3294, blue: 0.2941)
     public static let accentText = Color(.sRGB, red: 0.5451, green: 0.6980, blue: 0.6431)
+    public static let accentTextHover = Color(.sRGB, red: 0.7059, green: 0.8157, blue: 0.7725)
     public static let success = Color(.sRGB, red: 0.3373, green: 0.4784, blue: 0.3059)
     public static let successSubtle = Color(.sRGB, red: 0.1255, green: 0.1804, blue: 0.1137)
     public static let successText = Color(.sRGB, red: 0.5922, green: 0.7059, blue: 0.5373)
@@ -207,5 +209,9 @@ public enum OrnieTokens {
     public static let durationQuick: Double = 120
     /// milliseconds — collapse to ~0 when the OS reduce-motion setting is on
     public static let durationGentle: Double = 220
+    /// milliseconds — collapse to ~0 when the OS reduce-motion setting is on
+    public static let durationSpin: Double = 900
+    /// milliseconds — collapse to ~0 when the OS reduce-motion setting is on
+    public static let spinState: Double = NaN
   }
 }

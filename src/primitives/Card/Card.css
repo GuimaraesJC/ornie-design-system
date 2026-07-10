@@ -1,29 +1,71 @@
+/* Card — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
 .ornie-card {
+  position: relative;
+  display: block;
+  margin: 0;
+  padding: 0;
+  border: 0;
   background: var(--ornie-surface);
   border-radius: var(--ornie-radius-lg);
   font-family: var(--ornie-font-sans);
   color: var(--ornie-text);
+  text-align: inherit;
 }
 
+/* Semantic-element resets (interactive cards render <button>/<a>) */
+a.ornie-card,
+button.ornie-card {
+  width: 100%;
+  appearance: none;
+  font: inherit;
+  font-family: var(--ornie-font-sans);
+  text-decoration: none;
+}
+
+/* Variants */
+.ornie-card--flat {
+  border: 1px solid var(--ornie-border-subtle);
+}
 .ornie-card--elevated {
   border: 1px solid var(--ornie-border-subtle);
   box-shadow: var(--ornie-shadow-md);
 }
-
-.ornie-card--outlined {
-  border: 1px solid var(--ornie-border);
-}
-
 .ornie-card--sunken {
   background: var(--ornie-surface-sunken);
 }
 
+/* Padding presets: sm 12 / md 16 / lg 24 */
 .ornie-card--pad-sm {
-  padding: var(--ornie-space-4);
+  padding: var(--ornie-space-3);
 }
 .ornie-card--pad-md {
-  padding: var(--ornie-space-6);
+  padding: var(--ornie-space-4);
 }
 .ornie-card--pad-lg {
-  padding: var(--ornie-space-8);
+  padding: var(--ornie-space-6);
+}
+
+/* Spine — 4px accent left edge; overflow clip keeps it radius-aware (2a RIGHT NOW) */
+.ornie-card--spine {
+  overflow: hidden;
+}
+.ornie-card--spine::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--ornie-accent);
+}
+
+/* Interactive — quiet hover wash, standard focus ring */
+.ornie-card--interactive {
+  cursor: pointer;
+  transition: background-color var(--ornie-duration-quick) var(--ornie-ease-out);
+}
+.ornie-card--interactive:hover {
+  background: var(--ornie-hover);
+}
+.ornie-card--interactive:focus-visible {
+  outline: 2px solid var(--ornie-focus-ring);
+  outline-offset: 2px;
 }

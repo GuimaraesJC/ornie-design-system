@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TextArea</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var box = function (node) {
+        return h('div', { style: { width: '250px' } }, node);
+      };
+      var matrix = function (size) {
+        return g.section(
+          'size ' + size,
+          g.row(
+            'rest',
+            box(h(C.TextArea, { size: size, label: 'Notes', placeholder: 'Anything worth remembering…', rows: 3 })),
+            box(h(C.TextArea, { size: size, label: 'Notes', rows: 3, defaultValue: 'Slow morning, good walk by the river.' })),
+          ),
+          g.row(
+            'hint',
+            box(h(C.TextArea, { size: size, label: 'Notes', rows: 3, placeholder: 'Anything worth remembering…', hint: 'Saved as you type.' })),
+          ),
+          g.row(
+            'error',
+            box(
+              h(C.TextArea, {
+                size: size,
+                label: 'Journal entry',
+                rows: 3,
+                defaultValue: 'Slow morning, good walk by the river.',
+                error: 'This entry could not be saved. It is kept locally.',
+              }),
+            ),
+          ),
+          g.row(
+            'disabled',
+            box(h(C.TextArea, { size: size, label: 'Notes', rows: 3, defaultValue: 'This note is sealed in the Burrow.', disabled: true })),
+          ),
+          g.row('rows 6', box(h(C.TextArea, { size: size, label: 'Today', rows: 6, placeholder: 'A longer thought…' }))),
+        );
+      };
+      return [matrix('sm'), matrix('md'), matrix('lg')];
+      // focus: tab into any textarea — the standard 2px --ornie-focus-ring
+      // outline with accent border; error fields keep the danger border under
+      // the same ring. Vertical resize handle stays available except disabled.
+    });
+  </script>
+</body>
+</html>

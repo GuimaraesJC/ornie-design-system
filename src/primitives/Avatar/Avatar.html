@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avatar</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      /* Inline portrait so the image cells never depend on the network.
+         (Hex lives only inside the data URI — grid chrome, not component CSS.) */
+      var PORTRAIT =
+        'data:image/svg+xml;utf8,' +
+        encodeURIComponent(
+          '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">' +
+            '<rect width="64" height="64" fill="#8bb2a4"/>' +
+            '<circle cx="32" cy="24" r="11" fill="#32544b"/>' +
+            '<path d="M10 60c0-12 10-18 22-18s22 6 22 18v4H10z" fill="#32544b"/>' +
+            '</svg>',
+        );
+      var SIZES = ['xs', 'sm', 'md', 'lg', 'xl'];
+      var across = function (make) {
+        return SIZES.map(function (s) {
+          return h('span', { key: s }, make(s));
+        });
+      };
+      return [
+        g.section(
+          'sizes xs 20 / sm 28 / md 36 / lg 44 / xl 56',
+          g.row(
+            'initials',
+            across(function (s) {
+              return h(C.Avatar, { size: s, name: 'Ada Lovelace' });
+            }),
+          ),
+          g.row(
+            'image',
+            across(function (s) {
+              return h(C.Avatar, { size: s, src: PORTRAIT, name: 'Ada Lovelace', alt: 'Portrait of Ada' });
+            }),
+          ),
+          g.row(
+            'icon fallback (no name, no image)',
+            across(function (s) {
+              return h(C.Avatar, { size: s, alt: 'Unknown user' });
+            }),
+          ),
+          g.row(
+            'broken image → initials',
+            across(function (s) {
+              return h(C.Avatar, { size: s, src: 'about:invalid#broken', name: 'Ada Lovelace' });
+            }),
+          ),
+        ),
+        g.section(
+          'tones (deterministic from name — rust excluded)',
+          g.row(
+            'md',
+            h(C.Avatar, { name: 'Ada Lovelace' }),
+            h(C.Avatar, { name: 'Grace Hopper' }),
+            h(C.Avatar, { name: 'Alan Turing' }),
+            h(C.Avatar, { name: 'Katherine Johnson' }),
+            h(C.Avatar, { name: 'Edsger Dijkstra' }),
+          ),
+          g.row(
+            'single word / empty name',
+            h(C.Avatar, { name: 'Ornie' }),
+            h(C.Avatar, { name: 'Madonna' }),
+            h(C.Avatar, { name: ' ', alt: 'Unnamed' }),
+          ),
+        ),
+        g.section(
+          'shape square',
+          g.row(
+            'initials',
+            across(function (s) {
+              return h(C.Avatar, { size: s, shape: 'square', name: 'Ada Lovelace' });
+            }),
+          ),
+          g.row(
+            'image',
+            across(function (s) {
+              return h(C.Avatar, { size: s, shape: 'square', src: PORTRAIT, name: 'Ada Lovelace' });
+            }),
+          ),
+        ),
+      ];
+      // No presence dot anywhere — deferred with sharing (D-17).
+    });
+  </script>
+</body>
+</html>

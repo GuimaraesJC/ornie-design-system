@@ -1,3 +1,4 @@
+/* Avatar — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
 .ornie-avatar {
   position: relative;
   display: inline-flex;
@@ -19,30 +20,32 @@
   border-radius: var(--ornie-radius-md);
 }
 
+/* Size scale xs 20 / sm 28 / md 36 / lg 44 / xl 56 (0.2.0 — was 24/32/40/48/64);
+   initials sized ~2/5 of the box. */
 .ornie-avatar--xs {
-  width: 24px;
-  height: 24px;
-  font-size: 10px;
+  width: 20px;
+  height: 20px;
+  font-size: 9px;
 }
 .ornie-avatar--sm {
-  width: 32px;
-  height: 32px;
-  font-size: var(--ornie-text-xs);
+  width: 28px;
+  height: 28px;
+  font-size: 11px;
 }
 .ornie-avatar--md {
-  width: 40px;
-  height: 40px;
-  font-size: var(--ornie-text-md);
+  width: 36px;
+  height: 36px;
+  font-size: 14px;
 }
 .ornie-avatar--lg {
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   font-size: var(--ornie-text-lg);
 }
 .ornie-avatar--xl {
-  width: 64px;
-  height: 64px;
-  font-size: 22px;
+  width: 56px;
+  height: 56px;
+  font-size: 21px;
 }
 
 .ornie-avatar--xs.ornie-avatar--square {

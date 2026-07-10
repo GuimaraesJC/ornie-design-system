@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tooltip</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      /* Bubbles position absolutely around the trigger — pad each cell so
+         the open-forced bubbles stay visible inside the grid. */
+      var pad = function (node) {
+        return h('div', { style: { padding: '48px 64px' } }, node);
+      };
+      var trigger = function (label) {
+        return h(C.Button, { variant: 'secondary' }, label);
+      };
+      return [
+        g.section(
+          'hover/focus (uncontrolled — mouse over or tab to show)',
+          g.row(
+            'triggers',
+            h(C.Tooltip, { content: 'Appears above' }, trigger('Top')),
+            h(C.Tooltip, { content: 'Appears below', placement: 'bottom' }, trigger('Bottom')),
+            h(C.Tooltip, { content: 'Appears to the left', placement: 'left' }, trigger('Left')),
+            h(C.Tooltip, { content: 'Appears to the right', placement: 'right' }, trigger('Right')),
+          ),
+        ),
+        g.section(
+          'open (controlled) × placement',
+          g.row('top', pad(h(C.Tooltip, { content: 'Appears above', open: true }, trigger('Top')))),
+          g.row('bottom', pad(h(C.Tooltip, { content: 'Appears below', placement: 'bottom', open: true }, trigger('Bottom')))),
+          g.row('left', pad(h(C.Tooltip, { content: 'Appears to the left', placement: 'left', open: true }, trigger('Left')))),
+          g.row('right', pad(h(C.Tooltip, { content: 'Appears to the right', placement: 'right', open: true }, trigger('Right')))),
+        ),
+        g.section(
+          'kbd shortcut caps (dimmed, decorative)',
+          g.row('label + chord', pad(h(C.Tooltip, { content: 'Quick Find', kbd: ['⌘', '/'], open: true }, trigger('Search')))),
+          g.row('label + single cap', pad(h(C.Tooltip, { content: 'Close', kbd: ['esc'], open: true }, trigger('Close')))),
+        ),
+        g.section(
+          'long content (wraps at 240px)',
+          g.row(
+            'wrapped',
+            pad(
+              h(
+                C.Tooltip,
+                {
+                  content:
+                    'Tooltips wrap once they hit 240px, so longer explanations stay readable instead of stretching across the screen.',
+                  placement: 'bottom',
+                  open: true,
+                },
+                trigger('Details'),
+              ),
+            ),
+          ),
+        ),
+      ];
+      // focus-visible: tab to any trigger in the hover section — the bubble
+      // appears on keyboard focus too, and aria-describedby wires the label.
+    });
+  </script>
+</body>
+</html>

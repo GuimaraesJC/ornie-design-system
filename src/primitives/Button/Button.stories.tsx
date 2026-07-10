@@ -1,23 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
-
-const ArrowRightIcon = (
-  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path
-      d="M3 8h10m0 0L9 4m4 4l-4 4"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
-const PlusIcon = (
-  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
-    <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-);
+import { Icon } from '../Icon/Icon';
 
 const meta = {
   title: 'Components/Button',
@@ -55,8 +38,8 @@ export const Sizes: Story = {
 export const WithIcons: Story = {
   render: () => (
     <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
-      <Button iconStart={PlusIcon}>New project</Button>
-      <Button variant="secondary" iconEnd={ArrowRightIcon}>
+      <Button leading={<Icon name="plus" />}>New project</Button>
+      <Button variant="secondary" trailing={<Icon name="chevron-right" />}>
         Continue
       </Button>
     </div>
@@ -76,6 +59,18 @@ export const FullWidth: Story = {
   render: (args) => (
     <div style={{ width: 320 }}>
       <Button {...args} />
+    </div>
+  ),
+};
+
+/** `iconStart`/`iconEnd` still render (mapped to `leading`/`trailing`) and warn once in dev. Removed in 0.3.0. */
+export const DeprecatedIconProps: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+      <Button iconStart={<Icon name="plus" />}>iconStart (deprecated)</Button>
+      <Button variant="secondary" iconEnd={<Icon name="chevron-right" />}>
+        iconEnd (deprecated)
+      </Button>
     </div>
   ),
 };

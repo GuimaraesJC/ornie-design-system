@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Radio</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var useState = OrnieGrid.React.useState;
+
+      // Working controlled group — click or use arrow keys to move selection.
+      function WorkingThemePicker() {
+        var state = useState('system');
+        return h(
+          C.RadioGroup,
+          {
+            label: 'Appearance',
+            description: 'Arrow keys move the selection between options.',
+            value: state[0],
+            onChange: state[1],
+            style: { width: '340px' },
+          },
+          h(C.Radio, { value: 'light', label: 'Light' }),
+          h(C.Radio, { value: 'dark', label: 'Dark' }),
+          h(C.Radio, { value: 'system', label: 'System' }),
+        );
+      }
+
+      function WorkingHorizontal() {
+        var state = useState('phone');
+        return h(
+          C.RadioGroup,
+          { label: 'Density', orientation: 'horizontal', value: state[0], onChange: state[1] },
+          h(C.Radio, { value: 'phone', label: 'Comfortable' }),
+          h(C.Radio, { value: 'desktop', label: 'Compact' }),
+        );
+      }
+
+      return [
+        g.section(
+          'standalone states',
+          g.row('unchecked', h(C.Radio, { name: 's1', label: 'Monthly billing' })),
+          g.row('checked', h(C.Radio, { name: 's2', label: 'Monthly billing', defaultChecked: true })),
+          g.row(
+            'with description',
+            h(
+              'div',
+              { style: { width: '340px' } },
+              h(C.Radio, {
+                name: 's3',
+                label: 'Starter',
+                description: 'For personal projects. Up to 3 collaborators.',
+                defaultChecked: true,
+              }),
+            ),
+          ),
+          g.row('bare (aria-label)', h(C.Radio, { name: 's4', 'aria-label': 'Sort by date' })),
+        ),
+        g.section(
+          'disabled',
+          g.row('unchecked', h(C.Radio, { name: 'd1', label: 'Disabled unchecked', disabled: true })),
+          g.row(
+            'checked',
+            h(C.Radio, { name: 'd1', label: 'Disabled checked', disabled: true, defaultChecked: true }),
+          ),
+          g.row(
+            'with description',
+            h(
+              'div',
+              { style: { width: '340px' } },
+              h(C.Radio, {
+                name: 'd2',
+                label: 'Lifetime',
+                description: 'Not available on this plan.',
+                disabled: true,
+              }),
+            ),
+          ),
+        ),
+        g.section('radiogroup — working, vertical', g.row('theme picker', h(WorkingThemePicker))),
+        g.section('radiogroup — working, horizontal', g.row('density', h(WorkingHorizontal))),
+        g.section(
+          'radiogroup — option descriptions',
+          g.row(
+            'static',
+            h(
+              C.RadioGroup,
+              { label: 'Start my day on', value: 'today', onChange: function () {}, style: { width: '360px' } },
+              h(C.Radio, { value: 'today', label: 'Today', description: 'Tasks and events for the current day.' }),
+              h(C.Radio, { value: 'inbox', label: 'Inbox', description: 'Everything captured and not yet sorted.' }),
+            ),
+          ),
+        ),
+      ];
+      // keyboard: Tab reaches the checked radio (or the first, if none checked);
+      // ArrowUp/Down/Left/Right move selection within the group — native
+      // same-name behaviour, nothing custom. focus-visible: the standard 2px
+      // outline (--ornie-focus-ring) lands on the 18px circle.
+    });
+  </script>
+</body>
+</html>

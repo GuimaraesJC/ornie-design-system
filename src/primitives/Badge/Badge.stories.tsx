@@ -52,3 +52,39 @@ export const Sizes: Story = {
     </div>
   ),
 };
+
+/** Quiet counts for sidebar/dock (D:sidebar, 2n). Neutral by default; accent is opt-in. */
+export const Count: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+      <Badge count={1} />
+      <Badge count={8} />
+      <Badge count={142} />
+      <Badge count={8} variant="accent" />
+      <Badge count={8} size="sm" />
+    </div>
+  ),
+};
+
+/** Above `max` (default 99) the count settles into "99+". */
+export const CountMax: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+      <Badge count={142} />
+      <Badge count={142} max={999} />
+      <Badge count={1000} max={999} />
+    </div>
+  ),
+};
+
+/** `count={0}` renders nothing — an empty badge is silence. */
+export const CountZero: Story = {
+  render: () => (
+    <div style={{ display: 'flex', gap: 8, alignItems: 'center' }}>
+      <span style={{ color: 'var(--ornie-text-muted)', font: '13px var(--ornie-font-sans)' }}>
+        count={'{0}'} renders nothing:
+      </span>
+      <Badge count={0} />
+    </div>
+  ),
+};

@@ -1,3 +1,4 @@
+/* Checkbox — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
 .ornie-check {
   position: relative;
   display: inline-flex;
@@ -32,9 +33,9 @@
   border-radius: var(--ornie-radius-xs);
   color: var(--ornie-text-on-accent);
   transition:
-    background-color var(--ornie-duration-fast) var(--ornie-ease),
-    border-color var(--ornie-duration-fast) var(--ornie-ease),
-    box-shadow var(--ornie-duration-fast) var(--ornie-ease);
+    background-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    border-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    box-shadow var(--ornie-duration-quick) var(--ornie-ease-out);
 }
 
 .ornie-check__box svg {
@@ -44,8 +45,8 @@
   opacity: 0;
   transform: scale(0.6);
   transition:
-    opacity var(--ornie-duration-fast) var(--ornie-ease),
-    transform var(--ornie-duration-fast) var(--ornie-ease);
+    opacity var(--ornie-duration-quick) var(--ornie-ease-out),
+    transform var(--ornie-duration-quick) var(--ornie-ease-out);
 }
 
 .ornie-check:hover .ornie-check__input:not(:disabled):not(:checked):not(:indeterminate) + .ornie-check__box {
@@ -58,7 +59,9 @@
   border-color: var(--ornie-accent);
 }
 
-.ornie-check__input:checked + .ornie-check__box .ornie-check__check {
+/* Indeterminate wins over checked: the dash shows whenever the mixed flag is
+   set, so a "select all" over a partial selection never shows a check. */
+.ornie-check__input:checked:not(:indeterminate) + .ornie-check__box .ornie-check__check {
   opacity: 1;
   transform: none;
 }
@@ -98,4 +101,17 @@
   font-size: var(--ornie-text-sm);
   color: var(--ornie-text-muted);
   line-height: var(--ornie-leading-normal);
+}
+
+/* ≥44px hit target on touch: invisible hit-slop around the 18px box, visual
+   size unchanged (Chip's pattern; ::before because the box owns no pseudo). */
+@media (pointer: coarse) {
+  .ornie-check__box::before {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
 }

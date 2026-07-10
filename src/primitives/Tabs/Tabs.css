@@ -1,3 +1,4 @@
+/* Tabs — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
 .ornie-tabs {
   font-family: var(--ornie-font-sans);
 }
@@ -8,6 +9,7 @@
 }
 
 .ornie-tabs__tab {
+  position: relative;
   appearance: none;
   border: none;
   background: none;
@@ -17,9 +19,9 @@
   font-weight: var(--ornie-weight-semibold);
   color: var(--ornie-text-muted);
   transition:
-    color var(--ornie-duration-fast) var(--ornie-ease),
-    background-color var(--ornie-duration-fast) var(--ornie-ease),
-    box-shadow var(--ornie-duration-fast) var(--ornie-ease);
+    color var(--ornie-duration-quick) var(--ornie-ease-out),
+    background-color var(--ornie-duration-quick) var(--ornie-ease-out),
+    box-shadow var(--ornie-duration-quick) var(--ornie-ease-out);
 }
 
 .ornie-tabs__tab:disabled {
@@ -77,4 +79,33 @@
   background: var(--ornie-surface);
   color: var(--ornie-text);
   box-shadow: var(--ornie-shadow-sm);
+}
+
+/* Small size — tighter paddings + 13px labels */
+.ornie-tabs--sm .ornie-tabs__tab {
+  font-size: var(--ornie-text-sm);
+}
+.ornie-tabs--sm .ornie-tabs__panel {
+  padding-top: var(--ornie-space-4);
+}
+.ornie-tabs--sm.ornie-tabs--underline .ornie-tabs__list {
+  gap: var(--ornie-space-4);
+}
+.ornie-tabs--sm.ornie-tabs--underline .ornie-tabs__tab {
+  padding: var(--ornie-space-2) 2px;
+}
+.ornie-tabs--sm.ornie-tabs--pills .ornie-tabs__tab {
+  padding: 6px 12px;
+}
+
+/* ≥44px hit targets on touch: invisible hit-slop, visual size unchanged. */
+@media (pointer: coarse) {
+  .ornie-tabs__tab::after {
+    content: '';
+    position: absolute;
+    inset: 50% auto auto 50%;
+    width: max(100%, 44px);
+    height: 44px;
+    transform: translate(-50%, -50%);
+  }
 }

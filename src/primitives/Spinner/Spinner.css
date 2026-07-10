@@ -1,0 +1,39 @@
+/* Spinner — semantic tokens only. Audit: no hex, no raw scales w/o comment, no theme selectors. */
+
+/*
+ * The ring is drawn in currentColor (one transparent quarter = the moving
+ * gap), so parents can recolor it by setting `color`. Default ink is
+ * --ornie-text-subtle — a non-text graphic, ≥3:1 on --ornie-surface.
+ * Continuous rotation is sanctioned ONLY via the spin tokens: reduced
+ * motion pauses the ring (--ornie-spin-state), it never speeds to 1ms.
+ */
+.ornie-spinner {
+  display: inline-block;
+  flex: none;
+  border: 2px solid currentColor;
+  border-right-color: transparent;
+  border-radius: var(--ornie-radius-full);
+  color: var(--ornie-text-subtle);
+  animation: ornie-spinner-spin var(--ornie-duration-spin) linear infinite;
+  animation-play-state: var(--ornie-spin-state);
+}
+
+/* Sizes */
+.ornie-spinner--14 {
+  width: 14px;
+  height: 14px;
+}
+.ornie-spinner--18 {
+  width: 18px;
+  height: 18px;
+}
+.ornie-spinner--24 {
+  width: 24px;
+  height: 24px;
+}
+
+@keyframes ornie-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

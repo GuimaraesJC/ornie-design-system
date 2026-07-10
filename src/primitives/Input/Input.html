@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Input</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      var box = function (node) {
+        return h('div', { style: { width: '250px' } }, node);
+      };
+      var kbd = h(
+        'span',
+        {
+          style: {
+            fontSize: '11px',
+            lineHeight: '16px',
+            padding: '1px 5px',
+            border: '1px solid var(--ornie-border)',
+            borderRadius: '5px',
+            color: 'var(--ornie-text-muted)',
+          },
+        },
+        '⌘/',
+      );
+      var clearBtn = function () {
+        return h(C.IconButton, { 'aria-label': 'Clear', size: 32 }, h(C.Icon, { name: 'x', size: 16 }));
+      };
+      var matrix = function (size) {
+        return g.section(
+          'size ' + size,
+          g.row('rest', box(h(C.Input, { size: size, label: 'Email', placeholder: 'you@example.com' }))),
+          g.row(
+            'leading',
+            box(h(C.Input, { size: size, label: 'Search', placeholder: 'Search projects…', leading: h(C.Icon, { name: 'search' }) })),
+          ),
+          g.row(
+            'trailing',
+            box(h(C.Input, { size: size, label: 'Capture', defaultValue: 'water the ferns', trailing: clearBtn() })),
+            box(h(C.Input, { size: size, label: 'Quick find', placeholder: 'Search…', trailing: kbd })),
+          ),
+          g.row(
+            'both slots',
+            box(
+              h(C.Input, {
+                size: size,
+                label: 'Quick find',
+                defaultValue: 'ferns',
+                leading: h(C.Icon, { name: 'search' }),
+                trailing: clearBtn(),
+              }),
+            ),
+          ),
+          g.row(
+            'error',
+            box(h(C.Input, { size: size, label: 'Email', defaultValue: 'jean@ornie', error: 'That email address looks invalid.' })),
+            box(
+              h(C.Input, {
+                size: size,
+                label: 'Search',
+                defaultValue: 'jean@ornie',
+                leading: h(C.Icon, { name: 'search' }),
+                error: 'Nothing matches yet.',
+              }),
+            ),
+          ),
+          g.row(
+            'disabled',
+            box(h(C.Input, { size: size, label: 'Email', defaultValue: 'Locked value', disabled: true })),
+            box(
+              h(C.Input, {
+                size: size,
+                label: 'Search',
+                placeholder: 'Search…',
+                leading: h(C.Icon, { name: 'search' }),
+                trailing: kbd,
+                disabled: true,
+              }),
+            ),
+          ),
+          g.row(
+            'hint',
+            box(h(C.Input, { size: size, label: 'Email', placeholder: 'you@example.com', hint: "We'll never share your email." })),
+          ),
+        );
+      };
+      return [matrix('sm'), matrix('md'), matrix('lg')];
+      // focus: tab into any field — the input gets the standard 2px
+      // --ornie-focus-ring outline with accent border; error fields keep the
+      // danger border under the same ring. The trailing clear button receives
+      // focus after the input and shows the same ring.
+    });
+  </script>
+</body>
+</html>

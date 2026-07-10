@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modal</title>
+  <link rel="stylesheet" href="../../../dist/styles.css" />
+  <style>
+    body { margin: 0; }
+  </style>
+</head>
+<body>
+  <script src="../../../dist/grid/ornie-grid.js"></script>
+  <script>
+    OrnieGrid.mount(function (h, C, g) {
+      // Modal portals to <body>: an open dialog would cover both theme halves,
+      // so this grid proves the closed states and documents the matrix. Open
+      // states (both themes) are proven in Storybook: Interactive,
+      // Confirmation, WithForm, TopPlacement, InitialFocus.
+      var note = function (text) {
+        return h('span', { style: { fontSize: 'var(--ornie-text-sm)', color: 'var(--ornie-text-muted)' } }, text);
+      };
+      return [
+        g.section(
+          'closed (renders nothing)',
+          g.row(
+            'open: false',
+            h(C.Modal, { open: false, title: 'Rename project' }),
+            note('No DOM output while closed — the trigger below is the only visible state.'),
+          ),
+          g.row('trigger', h(C.Button, {}, 'Open modal'), note('App wires open/onClose; opener regains focus on close.')),
+        ),
+        g.section(
+          'sizes (open in Storybook)',
+          g.row('sm', note('max-width 400px — confirmations (2i empty-trash)')),
+          g.row('md', note('max-width 540px — default; quick-capture width (SPECS)')),
+          g.row('lg', note('max-width 680px — larger forms and content dialogs')),
+        ),
+        g.section(
+          'placement (open in Storybook)',
+          g.row('center', note('default — panel centered on the --ornie-overlay scrim')),
+          g.row('top', note('panel 12vh from the top — CommandOverlay position (Phase 3)')),
+        ),
+        g.section(
+          'behavior notes',
+          g.row('dismissible', note('true (default): Escape + scrim click close; false reserves closing for explicit actions')),
+          g.row('focus', note('trap inside the panel; initialFocus ref or the panel on open; opener refocused on close')),
+          g.row('motion', note('fade only, --ornie-duration-gentle — collapses to 1ms under reduced motion')),
+        ),
+      ];
+    });
+  </script>
+</body>
+</html>
