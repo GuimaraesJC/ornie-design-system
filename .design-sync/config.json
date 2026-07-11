@@ -6,15 +6,26 @@
   "storybookStatic": ".design-sync/sb-reference",
   "buildCmd": "pnpm run build",
   "readmeHeader": ".design-sync/conventions.md",
+  "extraEntries": ["./.design-sync/preview-shell.mjs"],
+  "provider": { "component": "OrnieApp" },
   "overrides": {
     "Card": { "cardMode": "column" },
     "Radio": { "cardMode": "column" },
     "Switch": { "cardMode": "column" },
     "Tabs": { "cardMode": "column" },
+    "Button": { "cardMode": "column" },
+    "Dock": { "cardMode": "column" },
+    "Icon": { "cardMode": "column" },
+    "TaskRow": { "cardMode": "column" },
+    "TopBar": { "cardMode": "column" },
+    "MetaLine": { "cardMode": "column" },
+    "RedactedBars": {
+      "skip": ["components-redactedbars--default", "components-redactedbars--organic-list", "components-redactedbars--fixed-two-bars", "components-redactedbars--fixed-three-bars"]
+    },
     "Modal": {
       "cardMode": "single",
       "primaryStory": "Interactive",
-      "skip": ["components-modal--confirmation", "components-modal--with-form"]
+      "skip": ["components-modal--confirmation", "components-modal--with-form", "components-modal--top-placement"]
     }
   }
 }

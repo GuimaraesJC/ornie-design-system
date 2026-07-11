@@ -12,7 +12,7 @@ Put `className="ornie-app"` on your page root. It sets the Manrope font, page ba
 </div>
 ```
 
-No JS provider is needed — theming is pure CSS.
+Theming is pure CSS — no JS provider or React context is required. (The bundle also exports `OrnieApp`, a thin convenience wrapper that renders exactly `<div className="ornie-app">` — the preview cards use it and it's equivalent, but `className="ornie-app"` is the canonical form that ships in `@ornie/react`; prefer it in code you intend to hand to engineers.)
 
 ## Dark mode
 
